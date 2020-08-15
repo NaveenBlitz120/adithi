@@ -16,7 +16,7 @@ class product(models.Model):
     price = models.FloatField()
     image = models.ImageField(null=True,blank = True)
     grade = models.CharField( choices = Grade_choices,max_length=20)
-    type = models.CharField( choices = Type_choices,max_length=20 )
+    types = models.CharField( choices = Type_choices,max_length=20 )
 
     def __str__(self):
         return self.name
