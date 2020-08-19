@@ -1,1 +1,1 @@
-web: gunicorn adithi.wsgi --log-file -
+web: gunicorn bt.wsgi --log-file -
