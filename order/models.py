@@ -8,9 +8,9 @@ class product(models.Model):
         ('3','3'),
     )
     Type_choices = (
-        ('1','count'),
-        ('2','kg'),
-        ('3','grams'),
+        ('count','count'),
+        ('kg','kg'),
+        ('grams','grams'),
     )
     name = models.CharField(max_length=200)
     price = models.FloatField()
