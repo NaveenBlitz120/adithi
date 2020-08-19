@@ -78,4 +78,4 @@ def processOrder(request):
 	# 	order.complete = True
 
 
-	return JsonResponse('Payment submitted..', safe=False)
+	return JsonResponse(safe=False)

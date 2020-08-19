@@ -102,19 +102,23 @@
                body:JSON.stringify({'form':userFormData }),
 
           })
-          .then((response) => response.json())
-          .then((data) => {
-                    console.log('Success:', data);
-                    alert('Transaction completed');
+          
+          // .then((response) => response.json())
+//           .then(response => {
+//   return response.json()
+// })
+          .then(() => {
+          //           // console.log('Success:', data);
+          //           // alert('Transaction completed');
+          cart = {}
+          document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
 
-                    cart = {}
-                    document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
-
+          //           
                     window.location.href = "{% url 'store' %}"
 
-                    })
+          //           })
+           })
           }
-
      </script>
      <!-- <script src="src="{% static 'js/checkout.js' %}" charset="utf-8"></script> -->
 {% endblock content %}
