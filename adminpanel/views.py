@@ -4,7 +4,7 @@ from .forms import Create , Update
 from order.models import product
 from .filters import myFilter
 
-st='/stock'
+st='/admin'
 # Create your views here.
 def create(request):
     
