@@ -1,16 +1,17 @@
 # from django.shortcuts import render
 
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import JsonResponse
 import json
 import datetime
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
+from .forms import checkoutform
 
 def store(request):
 
-	data = cartData(request)
+	data = cartData(request) 
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
@@ -31,13 +32,25 @@ def cart(request):
 	return render(request, 'order/cart.html', context)
 
 def checkout(request):
-
-	data = cartData(request)
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
-	context = {'items':items, 'order':order, 'cartItems':cartItems}
-	return render(request, 'order/checkout.html', context)
+		print(request)	
+		if request.method == 'GET':
+			print('hiii')
+			form = checkoutform(request.GET)
+			if form.is_valid():
+				print('hiii')
+				guestOrder(request,form) 
+				return redirect('store')
+			# return render(request, 'order/store.html', context)
+		data = cartData(request)
+		checkout_data_form = checkoutform()
+		checkout_data_form.fields['name'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'Name','id':'name'}
+		checkout_data_form.fields['number'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'your phone number','pattern':"[0-9]{10}"}
+		cartItems = data['cartItems']
+		order = data['order']
+		items = data['items']
+		context = {'items':items, 'order':order, 'cartItems':cartItems,'checkout_data_form':checkout_data_form}
+		print('hii')
+		return render(request, 'order/checkout.html', context)
 #
 def updateItem(request):
 # 	data = json.loads(request.body)

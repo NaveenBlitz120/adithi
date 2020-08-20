@@ -72,8 +72,8 @@ def cartData(request):
 
 
 def guestOrder(request, data):
-	cust_name = data['form']['name']
-	phonenum = data['form']['phonenumber']
+	cust_name = data.cleaned_data['name']#changed
+	phonenum = data.cleaned_data['number']
 	old_orderid_object = orders.objects.last()
 	# orderid = '#ae'+str(int(old_orderid.orderid[2:])+1)
 	old_orderid = old_orderid_object.id
