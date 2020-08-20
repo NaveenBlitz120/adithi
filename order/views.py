@@ -32,14 +32,16 @@ def cart(request):
 	return render(request, 'order/cart.html', context)
 
 def checkout(request):
-		print(request)	
+		# print(request)	
 		if request.method == 'GET':
 			print('hiii')
 			form = checkoutform(request.GET)
 			if form.is_valid():
 				print('hiii')
 				guestOrder(request,form) 
-				return redirect('store')
+				response = redirect('store')
+				response.delete_cookie('cart')
+				return response
 			# return render(request, 'order/store.html', context)
 		data = cartData(request)
 		checkout_data_form = checkoutform()
