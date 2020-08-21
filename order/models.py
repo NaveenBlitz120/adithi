@@ -12,13 +12,18 @@ class product(models.Model):
         ('kg','kg'),
         ('grams','grams'),
     )
+    category = (
+        ('fruits','fruits'),
+        ('vegetables','vegetables'),
+        ('groceries','groceries'),
+    )
     name = models.CharField(max_length=200)
     our_price = models.FloatField()
     market_price = models.FloatField()
     image = models.ImageField(null=True,blank = True)
     grade = models.CharField( choices = Grade_choices,max_length=20)
     types = models.CharField( choices = Type_choices,max_length=20 )
-
+    category = models.CharField( choices = category,max_length = 60 )
     def __str__(self):
         return self.name
 
@@ -44,6 +49,7 @@ class orders(models.Model):
 class orderedcart(models.Model):
     pid = models.ForeignKey('product' , on_delete=models.SET_NULL, null=True, blank=True)
     orderedid = models.ForeignKey('orders' , on_delete=models.SET_NULL, null=True, blank=True)
+    quantity_type = models.CharField(max_length=30,null=True)
     quantity = models.FloatField()
     pidtotal = models.FloatField()
 

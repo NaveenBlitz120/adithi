@@ -21,6 +21,41 @@ def store(request):
 	context = {'products':products,'order':order,'cartItems':cartItems}
 	return render(request, 'order/store.html', context)
 
+def vegetables(request):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = product.objects.filter(category = 'vegetables')
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':products,'order':order,'cartItems':cartItems}
+	return render(request, 'order/store.html', context)
+
+def fruits(request):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = product.objects.filter(category = 'fruits')
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':products,'order':order,'cartItems':cartItems}
+	return render(request, 'order/store.html', context)
+
+def groceries(request):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = product.objects.filter(category = 'groceries' )
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':products,'order':order,'cartItems':cartItems}
+	return render(request, 'order/store.html', context)
 
 def cart(request):
 
@@ -51,11 +86,13 @@ def checkout(request):
 			if form.is_valid():
 				print('hiii')
 				where = guestOrder(request,form)
-				if where == 'store':
-					response = redirect(where)
-					response.delete_cookie('cart')
-					print('inside1')
-					return response
+				if where:
+					# response = redirect('store')
+					# # response = request
+					# print('here')
+					# response.delete_cookie('cart')
+					# print('inside1')
+					return htmlbill(request,where)
 				else:
 					response = redirect(where)
 					warning ='minimum cart value is 200'
@@ -65,44 +102,19 @@ def checkout(request):
 			# return render(request, 'order/store.html', context)
 
 		return render(request, 'order/checkout.html', context)
-#
-def updateItem(request):
-# 	data = json.loads(request.body)
-# 	productId = data['productId']
-# 	action = data['action']
-# 	print('Action:', action)
-# 	print('Product:', productId)
-#
-# 	# customer = request.user.customer
-# 	products = product.objects.get(id=productId)
-# 	# order, created = orderedcart.objects.get_or_create(customer=customer, complete=False)
-#
-# 	# orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
-#
-# 	if action == 'add':
-# 		products.quantity = (products.quantity + 1)
-# 	elif action == 'remove':
-# 		products.quantity = (products.quantity - 1)
-#
-# 	# orderedcart.save()
-#
-# 	if orderItem.quantity <= 0:
-# 		products.delete()
-#
-	return JsonResponse('Item was added', safe=False)
-
-def processOrder(request):
-	# transaction_id = datetime.datetime.now().timestamp()
-	data = json.loads(request.body)
-	print(data)
-	#
-	guestOrder(request, data)
-	#
-	# total = float(data['form']['total'])
-	# # order.transaction_id = transaction_id
-	#
-	# if total == order.get_cart_total:
-	# 	order.complete = True
 
 
-	return JsonResponse(safe=False)
+def htmlbill(request,ordered_id):
+	# user = request.user
+	bill = orders.objects.get(orderid = ordered_id)
+	# order = Order.objects.get(complete=False,invoice_id=bill)
+	bill_total = bill.orderfinaltotal
+	# order_item = []
+	order_item = orderedcart.objects.filter(orderedid = bill)
+	context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total}
+	return render(request, 'order/index.html',context)
+
+def deletecookie(request):
+	response = redirect('store')
+	response.delete_cookie('cart')
+	return response

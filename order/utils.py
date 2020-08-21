@@ -84,7 +84,7 @@ def guestOrder(request, data):
 
 	requirement = setcart.objects.get(id = 1)
 	if order_total_calculated < requirement.minimum_cart_value:
-		return 'checkout'
+		return False
 
 	old_orderid_object = orders.objects.last()
 	old_orderid = old_orderid_object.id
@@ -114,6 +114,7 @@ def guestOrder(request, data):
 			orderedid=new_order,
 			quantity=item['quantity'],
 			pidtotal=item['get_total'],
+			quantity_type = item['product']['type']
 		)
 		ordercart.save()
 	offerpercenttage = 0
@@ -141,7 +142,7 @@ def guestOrder(request, data):
     'TXTLCL', 'HI !!!'+cust_name+' your order has been placed Successfully You can track order with order ID :'+update_order.orderid+' Someone from our side will contact you soon and confirm the order.')
 	print (resp)
 	update_order.save()
-	return 'store'
+	return new_orderid
 
 
 def sendSMS(apikey, numbers, sender, message):
