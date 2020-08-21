@@ -94,7 +94,7 @@ def checkout(request):
 					# print('inside1')
 					return htmlbill(request,where)
 				else:
-					response = redirect(where)
+					# response = redirect(where)
 					warning ='minimum cart value is 200'
 					print('inside2')
 					context = {'items':items, 'order':order, 'cartItems':cartItems,'checkout_data_form':checkout_data_form,'warning':warning}
