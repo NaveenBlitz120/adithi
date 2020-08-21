@@ -1,12 +1,13 @@
 # from django.shortcuts import render
 
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import JsonResponse
 import json
 import datetime
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
+from .forms import checkoutform
 
 def store(request):
 
@@ -15,9 +16,9 @@ def store(request):
 	order = data['order']
 	items = data['items']
 	products = product.objects.all()
-	test = product.objects.get(id=1)
-	print(test.type,'entered')
-	context = {'products':products, 'cartItems':cartItems}
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':products,'order':order,'cartItems':cartItems}
 	return render(request, 'order/store.html', context)
 
 
@@ -31,13 +32,39 @@ def cart(request):
 	return render(request, 'order/cart.html', context)
 
 def checkout(request):
+		# print(request)
+		warning = ''
 
-	data = cartData(request)
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
-	context = {'items':items, 'order':order, 'cartItems':cartItems}
-	return render(request, 'order/checkout.html', context)
+		data = cartData(request)
+		checkout_data_form = checkoutform()
+		checkout_data_form.fields['name'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'Name','id':'name'}
+		checkout_data_form.fields['number'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'your phone number','pattern':"[0-9]{10}"}
+		cartItems = data['cartItems']
+		order = data['order']
+		items = data['items']
+		context = {'items':items, 'order':order, 'cartItems':cartItems,'checkout_data_form':checkout_data_form,'warning':warning}
+		# print('hii')
+
+		if request.method == 'POST':
+			print('hiii')
+			form = checkoutform(request.POST)
+			if form.is_valid():
+				print('hiii')
+				where = guestOrder(request,form)
+				if where == 'store':
+					response = redirect(where)
+					response.delete_cookie('cart')
+					print('inside1')
+					return response
+				else:
+					response = redirect(where)
+					warning ='minimum cart value is 200'
+					print('inside2')
+					context = {'items':items, 'order':order, 'cartItems':cartItems,'checkout_data_form':checkout_data_form,'warning':warning}
+					return render(request, 'order/checkout.html', context)
+			# return render(request, 'order/store.html', context)
+
+		return render(request, 'order/checkout.html', context)
 #
 def updateItem(request):
 # 	data = json.loads(request.body)
@@ -78,4 +105,4 @@ def processOrder(request):
 	# 	order.complete = True
 
 
-	return JsonResponse('Payment submitted..', safe=False)
+	return JsonResponse(safe=False)

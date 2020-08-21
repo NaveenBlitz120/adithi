@@ -1,4 +1,6 @@
 import json
+import urllib.request
+import urllib.parse
 from .models import *
 
 def cookieCart(request):
@@ -20,7 +22,8 @@ def cookieCart(request):
 			# print(i)
 			# cartItems += cart[i]['quantity']
 			products = product.objects.get(id=i)
-			total = (products.price * cart[i]['quantity'])
+			total = (products.our_price * cart[i]['quantity'])
+			print('i')
 			# print(products)
 			order['get_cart_total'] += total
 			item = {
@@ -28,9 +31,9 @@ def cookieCart(request):
 				'product':{
 					'id':products.id,
 					'name':products.name,
-					'price':products.price,
+					'price':products.our_price,
 				    'imageURL':products.image.url,
-					'type':products.type
+					'type':products.types
 					},
 				'quantity':cart[i]['quantity'],
 				# 'digital':product.digital,
@@ -70,15 +73,25 @@ def cartData(request):
 
 
 def guestOrder(request, data):
-	cust_name = data['form']['name']
-	phonenum = data['form']['phonenumber']
-	old_orderid_object = orders.objects.last()
+	cust_name = data.cleaned_data['name']#changed
+	phonenum = data.cleaned_data['number']
 	# orderid = '#ae'+str(int(old_orderid.orderid[2:])+1)
+	cookieData = cookieCart(request)
+	items = cookieData['items']
+	order_total_calculated = 0
+	for item in items:
+		order_total_calculated = order_total_calculated+item['get_total']
+
+	requirement = setcart.objects.get(id = 1)
+	if order_total_calculated < requirement.minimum_cart_value:
+		return 'checkout'
+
+	old_orderid_object = orders.objects.last()
 	old_orderid = old_orderid_object.id
 	new_orderid = '#aecid'+str(old_orderid)
 
-	cookieData = cookieCart(request)
-	items = cookieData['items']
+	# cookieData = cookieCart(request)
+	# items = cookieData['items']
 
 	new_order = orders.objects.create(orderid = new_orderid,name = cust_name,phoneno = phonenum,ordertotal=0)
 	# new_order.orderid = new_orderid
@@ -103,8 +116,39 @@ def guestOrder(request, data):
 			pidtotal=item['get_total'],
 		)
 		ordercart.save()
+	offerpercenttage = 0
 	update_order = orders.objects.get(orderid=new_orderid)
-	# update_order.phoneno = data['form']['phonenumber']
-	update_order.ordertotal =  order_total_calculated
+
+	update_order.ordertotal =  round(order_total_calculated,2)
+
+	if order_total_calculated >= requirement.silveroff_value:
+		offerpercenttage = requirement.silveroff_percentage
+		if order_total_calculated >= requirement.goldenoff_value:
+			offerpercenttage = requirement.goldenoff_percentage
+			if order_total_calculated >= requirement.platinumoff_value:
+				offerpercenttage = requirement.platinumoff_percentage
+
+
+	if offerpercenttage:
+		update_order.offer = offerpercenttage
+		offerpercenttage = offerpercenttage/100
+		amount_reduction = order_total_calculated * offerpercenttage
+		order_total_calculated = order_total_calculated - amount_reduction
+
+	update_order.orderfinaltotal =  round(order_total_calculated,2)
+
+	resp =  sendSMS('tjscNy0t/Wc-uAvFTKR7036IdflMIH71wcCasC1DPf', '91'+phonenum,
+    'TXTLCL', 'HI !!!'+cust_name+' your order has been placed Successfully You can track order with order ID :'+update_order.orderid+' Someone from our side will contact you soon and confirm the order.')
+	print (resp)
 	update_order.save()
-	# return orders, order
+	return 'store'
+
+
+def sendSMS(apikey, numbers, sender, message):
+    data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
+        'message' : message, 'sender': sender})
+    data = data.encode('utf-8')
+    request = urllib.request.Request("https://api.textlocal.in/send/?")
+    f = urllib.request.urlopen(request, data)
+    fr = f.read()
+    return(fr)
