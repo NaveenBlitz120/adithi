@@ -2,7 +2,16 @@
 {% load static %}
 {% block content %}
 	<div class="row">
-		<th><h5>Total:<strong> ₹{{order.get_cart_total|floatformat:2}}</strong></h5></th>
+		<th><h5>Total:<strong> ₹{{order.get_cart_total|floatformat:2}}</strong></h5></th><br>
+		<div class="wrap">
+			<div class="search">
+			  <form method="get">
+					 {{filter.form}}
+ 
+				 <button class="btn btn-sm btn-danger" type="submit">Search</button>
+			   </form>
+			</div>
+		 </div>
 		{% for product in products %}
 		<div class="col-lg-4">
 			<img class="thumbnail" src="{{product.image.url}}">

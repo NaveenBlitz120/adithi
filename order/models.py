@@ -30,7 +30,7 @@ class product(models.Model):
 class orders(models.Model):
     Status_Choices = (
         ('pending' , 'pending'),
-        ('orderconfiremd' , 'orderconfiremd'),
+        ('orderconfirmed' , 'orderconfirmed'),
         ('cancelled' , 'cancelled'),
         ('completed' , 'completed'),
     )

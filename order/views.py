@@ -8,6 +8,7 @@ import datetime
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
 from .forms import checkoutform
+from adminpanel.filters import myFilter
 
 def store(request):
 
@@ -16,22 +17,27 @@ def store(request):
 	order = data['order']
 	items = data['items']
 	products = product.objects.all()
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
-	context = {'products':products,'order':order,'cartItems':cartItems}
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter }
 	return render(request, 'order/store.html', context)
 
 def vegetables(request):
-
 	data = cartData(request)
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
 	products = product.objects.filter(category = 'vegetables')
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
+	print(prod_obj)
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
-	context = {'products':products,'order':order,'cartItems':cartItems}
+	context = {'products':prod_obj , 'filter':myfilter ,'order':order,'cartItems':cartItems }
 	return render(request, 'order/store.html', context)
+
 
 def fruits(request):
 
@@ -40,9 +46,12 @@ def fruits(request):
 	order = data['order']
 	items = data['items']
 	products = product.objects.filter(category = 'fruits')
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
+	print(prod_obj)
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
-	context = {'products':products,'order':order,'cartItems':cartItems}
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter }
 	return render(request, 'order/store.html', context)
 
 def groceries(request):
@@ -52,9 +61,11 @@ def groceries(request):
 	order = data['order']
 	items = data['items']
 	products = product.objects.filter(category = 'groceries' )
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
-	context = {'products':products,'order':order,'cartItems':cartItems}
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter }
 	return render(request, 'order/store.html', context)
 
 def cart(request):
@@ -69,7 +80,6 @@ def cart(request):
 def checkout(request):
 		# print(request)
 		warning = ''
-
 		data = cartData(request)
 		checkout_data_form = checkoutform()
 		checkout_data_form.fields['name'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'Name','id':'name'}

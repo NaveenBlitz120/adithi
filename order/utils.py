@@ -22,7 +22,7 @@ def cookieCart(request):
 			# print(i)
 			# cartItems += cart[i]['quantity']
 			products = product.objects.get(id=i)
-			total = (products.our_price * cart[i]['quantity'])
+			total = round((products.our_price * cart[i]['quantity']),2)
 			print('i')
 			# print(products)
 			order['get_cart_total'] += total
@@ -37,7 +37,7 @@ def cookieCart(request):
 					},
 				'quantity':cart[i]['quantity'],
 				# 'digital':product.digital,
-				'get_total':total,
+				'get_total':round(total,2),
 				}
 			# print(i,'entered')
 			print(item['product']['type'],item['quantity'])
@@ -138,16 +138,14 @@ def guestOrder(request, data):
 
 	update_order.orderfinaltotal =  round(order_total_calculated,2)
 
-	resp =  sendSMS('tjscNy0t/Wc-uAvFTKR7036IdflMIH71wcCasC1DPf', '91'+phonenum,
-    'TXTLCL', 'HI !!!'+cust_name+' your order has been placed Successfully You can track order with order ID :'+update_order.orderid+' Someone from our side will contact you soon and confirm the order.')
+	resp =  sendSMS('tjscNy0t/Wc-uAvFTKR7036IdflMIH71wcCasC1DPf', '91'+phonenum,'TXTLCL', 'HI !!!'+cust_name+' your order has been placed Successfully You can track order with order ID :'+update_order.orderid+' Someone from our side will contact you soon and confirm the order.')
 	print (resp)
 	update_order.save()
 	return new_orderid
 
 
 def sendSMS(apikey, numbers, sender, message):
-    data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
-        'message' : message, 'sender': sender})
+    data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,'message' : message, 'sender': sender})
     data = data.encode('utf-8')
     request = urllib.request.Request("https://api.textlocal.in/send/?")
     f = urllib.request.urlopen(request, data)
