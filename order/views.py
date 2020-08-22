@@ -102,7 +102,8 @@ def checkout(request):
 					# print('here')
 					# response.delete_cookie('cart')
 					# print('inside1')
-					return htmlbill(request,where)
+
+					return deletecookie(request,where)
 				else:
 					# response = redirect(where)
 					warning ='minimum cart value is 200'
@@ -114,8 +115,10 @@ def checkout(request):
 		return render(request, 'order/checkout.html', context)
 
 
-def htmlbill(request,ordered_id):
+def htmlbill(request):
 	# user = request.user
+	ordered_id = request.COOKIES['orderid']
+	print(ordered_id)
 	bill = orders.objects.get(orderid = ordered_id)
 	# order = Order.objects.get(complete=False,invoice_id=bill)
 	bill_total = bill.orderfinaltotal
@@ -124,7 +127,14 @@ def htmlbill(request,ordered_id):
 	context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total}
 	return render(request, 'order/index.html',context)
 
-def deletecookie(request):
-	response = redirect('store')
+def deletecookie(request,ordered_id):
+	response = redirect('bill')
 	response.delete_cookie('cart')
+	response.set_cookie('orderid',ordered_id)
+	return response
+
+def deletecartcookie(request):
+	response = redirect('store')
+	response.delete_cookie('orderid')
+	# response.set_cookie('orderid',ordered_id)
 	return response
