@@ -6,10 +6,12 @@ from .forms import Create , Update , Update_order
 from order.models import product , orders , orderedcart
 from .filters import myFilter , orderFilter
 from .decorators import allowed_user ,unauthenticated_user
+from django.contrib.auth.decorators import login_required
 
 
 st='/admin'
 # Create your views here.
+@login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])
 def home(request):
     order = orders.objects.all()
@@ -27,6 +29,7 @@ def home(request):
 	'pending':pending ,'filter':orderfil }
     return render(request, 'admin/dashboard.html', context)
 
+@login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])
 def stock(request):
     prod_obj = product.objects.all()
@@ -37,6 +40,7 @@ def stock(request):
     return render(request, 'admin/search.html',context)
 
 
+@login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])
 def create(request):
     
@@ -51,10 +55,8 @@ def create(request):
 
     return render(request,'admin/forms.html',context)
 
-@allowed_user(allowed_roles=['admin'])
-def success(request):
-    return HttpResponse('your task completed successfully')
 
+@login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])
 def update(request,pk):
     
@@ -70,6 +72,7 @@ def update(request,pk):
     context = {'form':form}
     return render(request,'admin/forms.html',context)
 
+@login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])
 def delete(request,pk):
     
@@ -81,7 +84,7 @@ def delete(request,pk):
     context = {'item':order}
     return render(request,'admin/delete.html',context)
 
-@unauthenticated_user
+
 def loginPage(request):
 
 	if request.method == 'POST':
@@ -103,6 +106,8 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
+@login_required(login_url='login')
+@allowed_user(allowed_roles=['admin'])
 def update_order(request , pk):
     order = orders.objects.get(id=pk)
     form = Update_order(instance=order)
@@ -115,6 +120,8 @@ def update_order(request , pk):
     context = {'form':form}
     return render(request,'admin/forms.html',context)
 
+@login_required(login_url='login')
+@allowed_user(allowed_roles=['admin'])
 def view(request,pk):
     print(pk)
     bill = orders.objects.get(id = pk)
