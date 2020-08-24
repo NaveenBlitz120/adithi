@@ -18,10 +18,11 @@ def store(request):
 	items = data['items']
 	products = product.objects.all()
 	myfilter = myFilter(request.GET,queryset=products)
+	lis = [250,500,750]
 	prod_obj= myfilter.qs
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
-	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter }
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter,'list':lis }
 	return render(request, 'order/store.html', context)
 
 def vegetables(request):

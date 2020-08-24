@@ -30,8 +30,10 @@
       <a class="logu" href={% url 'products'%}>Products</a>
     {% else %}
       <a class="logu" href={% url 'home' %}>Orders</a>
+      
 
     {% endifequal %}
+    <a class="logu" href={% url 'updateoffer' %}>Offers</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

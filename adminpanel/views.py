@@ -2,8 +2,8 @@ from django.shortcuts import render ,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
-from .forms import Create , Update , Update_order
-from order.models import product , orders , orderedcart
+from .forms import Create , Update , Update_order , Update_offer
+from order.models import product , orders , orderedcart , setcart
 from .filters import myFilter , orderFilter
 from .decorators import allowed_user ,unauthenticated_user
 from django.contrib.auth.decorators import login_required
@@ -132,3 +132,18 @@ def view(request,pk):
     context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total}
     return render(request, 'order/index.html',context)
 
+@login_required(login_url='login')
+@allowed_user(allowed_roles=['admin'])
+def update_offer(request):
+    
+    setcarts = setcart.objects.get(id=1)
+    form = Update_offer(instance=setcarts)
+    if request.method == 'POST':
+        form = Update_offer(request.POST,instance = setcarts)
+        if form.is_valid():
+            form.save()
+            return redirect(st)
+
+
+    context = {'form':form}
+    return render(request,'admin/forms.html',context)

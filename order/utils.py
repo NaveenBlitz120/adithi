@@ -121,13 +121,13 @@ def guestOrder(request, data):
 	update_order = orders.objects.get(orderid=new_orderid)
 
 	update_order.ordertotal =  round(order_total_calculated,2)
-
-	if order_total_calculated >= requirement.silveroff_value:
-		offerpercenttage = requirement.silveroff_percentage
-		if order_total_calculated >= requirement.goldenoff_value:
-			offerpercenttage = requirement.goldenoff_percentage
-			if order_total_calculated >= requirement.platinumoff_value:
-				offerpercenttage = requirement.platinumoff_percentage
+	if requirement.offer_on_or_off == 'on':
+		if order_total_calculated >= requirement.silveroff_value:
+			offerpercenttage = requirement.silveroff_percentage
+			if order_total_calculated >= requirement.goldenoff_value:
+				offerpercenttage = requirement.goldenoff_percentage
+				if order_total_calculated >= requirement.platinumoff_value:
+					offerpercenttage = requirement.platinumoff_percentage
 
 
 	if offerpercenttage:

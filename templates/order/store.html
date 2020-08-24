@@ -7,7 +7,7 @@
 			<div class="search">
 			  <form method="get">
 					 {{filter.form}}
- 
+
 				 <button class="btn btn-sm btn-danger" type="submit">Search</button>
 			   </form>
 			</div>
@@ -19,10 +19,19 @@
 				<h6><strong>{{product.name}}</strong></h6>
 				<hr>
 
-				<button data-product="{{product.id}}" data-action="add" data-type="{{product.types}}" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				<button data-product="{{product.id}}" data-action="add" data-page="home" data-type="{{product.types}}" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				<!-- <a class="btn btn-outline-success" href="#">View</a> -->
+				<!-- <a class="btn btn-outline-success btn-sm" href="#">{{product.get_types_display}}</a> -->
+				<select id="{{product.id}}" class="btn btn-outline-success added" name="">
+					<option value="{{product.get_types_display}}">{{product.get_types_display}}</option>
+					{% if product.get_types_display != "count" %}
+						{% for i in list %}
+						   <option value="{{ i }}">{{ i }} grams</option>
 
-				<a class="btn btn-outline-success" href="#">View</a>
-				<a class="btn btn-outline-success btn-sm" href="#">{{product.get_types_display}}</a>
+						{% endfor %}
+					{% endif %}
+				</select>
+
 				<h6 style="display: inline-block; float: right;"><s>₹{{product.market_price}}</s></h6>
 				<h4 style="display: inline-block; float: right;"><strong>₹{{product.our_price}}</strong></h4>
 			</div>

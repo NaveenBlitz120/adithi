@@ -1,20 +1,28 @@
 var updateBtns = document.getElementsByClassName('update-cart')
+// var check = document.getElementsByClassName('added')
 
-for (i = 0; i < updateBtns.length; i++) {
-	console.log('entred')
+for (let i = 0; i < updateBtns.length; i++) {
+	// console.log(updateBtns[i].dataset.product,'here')
+
 	updateBtns[i].addEventListener('click', function(){
 		var productId = this.dataset.product
 		var action = this.dataset.action
 		var type = this.dataset.type
-
+		var page = this.dataset.page
+		if(page == 'home')
+		{
+			var check = document.getElementById(productId).value
+		}
+		console.log(check);
 		// console.log('productId:', productId, 'Action:', action, 'Type:',type)
 		// console.log('USER:', user)
 
-		addCookieItem(productId, action ,type)
+		addCookieItem(productId, action ,type,check)
 
 	})
 }
-function addCookieItem(productId, action, type){
+
+function addCookieItem(productId, action, type,check){
 	// console.log('User is not authenticated')
 
 
@@ -22,37 +30,50 @@ function addCookieItem(productId, action, type){
 			console.log('USER:', user);
 	if (action == 'add'){
 		if (cart[productId] == undefined){
-			if((type == 'kg') || (type == 'count'))
+			// check=check*1
+			console.log('entered',(check));
+			console.log('entered',typeof(check));
+			if((type == 'kg') || (type == 'grams'))
 			{
-				cart[productId] = {'quantity':1};
+				if (check=='250'||check=='500'||check=='750')
+				{
+					console.log('entered',check);
+					cart[productId] = {'quantity':(check/1000)};
+				}
+				else if (type == 'kg'){
+					cart[productId] = {'quantity':1};
+				}
+				else{
+					cart[productId] = {'quantity':.1};
+				}
+
 			}
 			else
 			{
-				cart[productId] = {'quantity':.100};
+				cart[productId] = {'quantity':1	};
 			}
 		}
 		else
 		{
-			if((type == 'grams'))
-			{
-				console.log(cart[productId]['quantity']);
-				cart[productId]['quantity'] += .100;
-				cart[productId]['quantity'] = parseFloat(cart[productId]['quantity'].toPrecision(3))
-				console.log(cart[productId]['quantity']);
-			}
-			else if (type == 'count')
+			if (type == 'count')
 			{
 				cart[productId]['quantity'] += 1
 			}
 			else
 			{
-				cart[productId]['quantity'] += .100
+				if (check=='250'||check=='500'||check=='750')
+				{
+					console.log('entered',check);
+					cart[productId]['quantity'] += (check/1000);
+				}
+				else {
+					cart[productId]['quantity'] += .100
+				}
 				cart[productId]['quantity'] = parseFloat(cart[productId]['quantity'].toPrecision(3))
 			}
 
 		}
 	}
-
 	if (action == 'remove'){
 		if (type == 'count') {
 				cart[productId]['quantity'] -= 1;
