@@ -9,10 +9,7 @@ for (let i = 0; i < updateBtns.length; i++) {
 		var action = this.dataset.action
 		var type = this.dataset.type
 		var page = this.dataset.page
-		if(page == 'home')
-		{
-			var check = document.getElementById(productId).value
-		}
+		
 		console.log(check);
 		// console.log('productId:', productId, 'Action:', action, 'Type:',type)
 		// console.log('USER:', user)
@@ -22,6 +19,10 @@ for (let i = 0; i < updateBtns.length; i++) {
 			addflowerItem(productId,action,category)
 		}
 		else {
+			if(page == 'home')
+			{
+				var check = document.getElementById(productId).value
+			}
 			addCookieItem(productId, action ,type,check)
 		}
 
