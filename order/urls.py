@@ -24,6 +24,7 @@ urlpatterns = [
 	path('vegetables/', views.vegetables, name="vegetables"),
 	path('fruits/', views.fruits, name="fruits"),
     path('groceries/', views.groceries, name="groceries"),
+    path('flowers/', views.flowers, name="flowers"),
     path('bill/', views.htmlbill, name="bill"),
     path('deletecookie/', views.deletecookie, name="deletecookie"),
     path('deletecartcookie/', views.deletecartcookie, name="deletecartcookie"),

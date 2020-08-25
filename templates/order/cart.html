@@ -57,6 +57,35 @@
 					<div style="flex:1"><p>₹{{item.get_total|floatformat:2}}</p></div>
 				</div>
 				{% endfor %}
+				{% for item in floweritems %}
+				<div class="cart-row">
+					<div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+					<div style="flex:2"><p>{{item.product.name}}</p></div>
+					<div style="flex:1"><p>₹{{item.product.price|floatformat:2}}</p></div>
+					<div style="flex:1">
+						<!-- {{item.product.type}} -->
+						{%if item.product.category == "grams"%}
+						<p class="quantity">{{item.quantity|floatformat:0}}</p>
+						{%elif item.product.category == "count"%}
+						<p class="quantity">{{item.quantity|floatformat:0}}</p>
+						{%elif item.product.category == "maalai"%}
+						<p class="quantity">{{item.quantity|floatformat:0}}</p>
+						{%elif item.product.category == "bunch"%}
+						<p class="quantity">{{item.quantity|floatformat:0}}</p>
+						{%else%}
+						<p class="quantity">{{item.quantity|floatformat:2}}</p>
+						{%endif%}
+						<!-- <p class="quantity">{{item.type}}</p> -->
+						<div class="quantity">
+							<img data-product="{{item.product.id}}"  data-type="flower" data-category="{{item.product.category}}" data-page="not" data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+
+							<img data-product="{{item.product.id}}" data-type="flower"data-category="{{item.product.category}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+						</div>
+					</div>
+					<div style="flex:1"><p>{{item.product.category}}</p></div>
+					<div style="flex:1"><p>₹{{item.get_total|floatformat:2}}</p></div>
+				</div>
+				{% endfor %}
 			</div>
 		</div>
 	</div>

@@ -179,7 +179,11 @@
         <tbody>
           {%for obj in order_item%}
           <tr>
-            <td class="desc">{{obj.pid}}</td>
+               {%if obj.pid%}
+               <td class="desc">{{obj.pid}}</td>
+               {%else%}
+               <td class="desc">{{obj.pfid}}</td>
+               {%endif%}
             <td class="qty">{{obj.quantity}}</td>
             <td class="unit">{{obj.quantity_type}}</td>
             <td class="total">{{obj.pidtotal}}</td>

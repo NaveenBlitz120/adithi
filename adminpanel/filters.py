@@ -1,5 +1,5 @@
 import django_filters
-from order.models import product,orders
+from order.models import product,orders,flower
 from django_filters import CharFilter , ChoiceFilter
 
 class myFilter(django_filters.FilterSet):
@@ -7,6 +7,13 @@ class myFilter(django_filters.FilterSet):
 
     class meta:
         model = product
+        fields = ['name']
+
+class floFilter(django_filters.FilterSet):
+    productname=CharFilter(field_name='name',lookup_expr='contains')
+
+    class meta:
+        model = flower
         fields = ['name']
 
 Status_Choices = (

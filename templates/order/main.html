@@ -50,13 +50,15 @@
 		    return null;
 		}
 		var cart = JSON.parse(getCookie('cart'))
-
+		var flower = JSON.parse(getCookie('flower'))
 		if (cart == undefined){
 			cart = {}
+			flower = {}
 			console.log('Cart Created!', cart)
 			document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+			document.cookie ='flower=' + JSON.stringify(flower) + ";domain=;path=/"
 		}
-		console.log('Cart', cart)
+		console.log('Cart', cart,'flower',flower)
 
 	</script>
 
@@ -78,6 +80,7 @@
 		  <a class="nav-link" href="{% url 'vegetables' %}">vegetables <span class="sr-only">(current)</span></a>
 		  <a class="nav-link" href="{% url 'fruits' %}">fruits <span class="sr-only">(current)</span></a>
 		  <a class="nav-link" href="{% url 'groceries' %}">groceries <span class="sr-only">(current)</span></a>
+		  <a class="nav-link" href="{% url 'flowers' %}">Flowers <span class="sr-only">(current)</span></a>
 	    </ul>
 	    <div class="form-inline my-2 my-lg-0">
 
@@ -85,7 +88,7 @@
 	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
 	    	</a>
 
-			 
+
 			<p id="cart-total">{{cartItems}}</p>
 
 	    </div>

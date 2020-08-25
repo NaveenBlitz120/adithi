@@ -21,7 +21,6 @@
     		  </form>
            </div>
         </div>
-        
     <div class="tableallign">
       <table class="table table-striped table-bordered table-hover tablewrap">
         <thead class="thead-light">
@@ -30,9 +29,11 @@
             <th scope="col">price</th>
 
             <th scope="col">image</th>
-            <th scope="col">Grade</th>
-            <th scope="col">Types</th>
-
+            {% if prod.0.types != "flower"%}
+              <th scope="col">Types</th>
+            {% else %}
+              <th scope="col">Categories</th>
+            {% endif %}
             <th scope="col">update</th>
             <th scope="col">delete</th>
           </tr>
@@ -44,12 +45,16 @@
 						<td>{{obj.name}}</td>
                         <td>{{obj.our_price}}</td>
                         <td><img src="{{obj.image.url}}" alt="" width="150" height = "100"></td>
-                        <td>{{obj.grade}}</td>
-                        <td>{{obj.get_types_display}}</td>
+                        <td>{{obj.category}}</>
+                        
+                        {% if prod.0.types != "flower"%}
 
-                        <td><a class="btn btn-sm btn-info" href="{% url 'update' obj.id %}">Update</a></td>
-
-                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete' obj.id %}">Delete</a></td>
+                          <td><a class="btn btn-sm btn-info" href="{% url 'update' obj.id %}">Update</a></td>
+                          <td><a class="btn btn-sm btn-danger" href="{% url 'delete' obj.id %}">Delete</a></td>
+                        {% else %}
+                          <td><a class="btn btn-sm btn-info" href="{% url 'updateflo' obj.id %}">Update</a></td>
+                          <td><a class="btn btn-sm btn-danger" href="{% url 'deleteflo' obj.id %}">Delete</a></td>
+                        {% endif %}
 
 
 

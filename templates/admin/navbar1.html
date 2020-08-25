@@ -26,14 +26,20 @@
 <nav class="navbar navbar-expand-lg navbar-light mynavbar " id="mynav" >
 
     <a class =" logu" href={% url 'store' %}>Home</a>
-    {% ifequal  request.path "/admin/" %}
+    {% if  request.path == "/admin/" %}
       <a class="logu" href={% url 'products'%}>Products</a>
-    {% else %}
+    {% else%}
       <a class="logu" href={% url 'home' %}>Orders</a>
-      
 
-    {% endifequal %}
+
+    {% endif %}
     <a class="logu" href={% url 'updateoffer' %}>Offers</a>
+
+    {% if  request.path == "/admin/flowers" %}
+      <a class="logu" href={% url 'products' %}>Products</a>
+    {% else %}
+    <a class="logu" href={% url 'floproducts' %}>Flowers</a>
+    {% endif %}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

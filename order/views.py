@@ -56,7 +56,7 @@ def fruits(request):
 	return render(request, 'order/store.html', context)
 
 def groceries(request):
-
+    
 	data = cartData(request)
 	cartItems = data['cartItems']
 	order = data['order']
@@ -69,13 +69,31 @@ def groceries(request):
 	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter }
 	return render(request, 'order/store.html', context)
 
-def cart(request):
+def flowers(request):
 
 	data = cartData(request)
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	context = {'items':items, 'order':order, 'cartItems':cartItems}
+	floweritems = data['floweritems']
+
+	flowers = flower.objects.all()
+	myfilter = myFilter(request.GET,queryset=flowers)
+	flow_obj= myfilter.qs
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'flowers':flow_obj,'order':order,'cartItems':cartItems, 'filter':myfilter }
+	return render(request, 'order/store.html', context)
+
+def cart(request):
+
+	data = cartData(request)
+	print(data,'here')
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	floweritems = data['floweritems']
+	context = {'items':items, 'floweritems':floweritems, 'order':order, 'cartItems':cartItems}
 	return render(request, 'order/cart.html', context)
 
 def checkout(request):
@@ -88,7 +106,8 @@ def checkout(request):
 		cartItems = data['cartItems']
 		order = data['order']
 		items = data['items']
-		context = {'items':items, 'order':order, 'cartItems':cartItems,'checkout_data_form':checkout_data_form,'warning':warning}
+		floweritems = data['floweritems']
+		context = {'items':items, 'order':order, 'floweritems':floweritems,'cartItems':cartItems,'checkout_data_form':checkout_data_form,'warning':warning}
 		# print('hii')
 
 		if request.method == 'POST':
@@ -109,7 +128,7 @@ def checkout(request):
 					# response = redirect(where)
 					warning ='minimum cart value is 200'
 					print('inside2')
-					context = {'items':items, 'order':order, 'cartItems':cartItems,'checkout_data_form':checkout_data_form,'warning':warning}
+					context = {'items':items, 'order':order, 'floweritems':floweritems,'cartItems':cartItems,'checkout_data_form':checkout_data_form,'warning':warning}
 					return render(request, 'order/checkout.html', context)
 			# return render(request, 'order/store.html', context)
 
@@ -131,6 +150,7 @@ def htmlbill(request):
 def deletecookie(request,ordered_id):
 	response = redirect('bill')
 	response.delete_cookie('cart')
+	response.delete_cookie('flower')
 	response.set_cookie('orderid',ordered_id)
 	return response
 

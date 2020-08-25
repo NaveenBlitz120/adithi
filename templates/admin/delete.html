@@ -55,13 +55,20 @@
 	<div class="col-md-6">
 		<div class="card card-body">
 
-
-			<p>Are you sure you want to delete '{{product.name}}' ?</p>
-
+			{% if item.types != "flower"%}
+			<p>Are you sure you want to delete '{{item.name}} [{{item.types}}]' ?</p>
+			{% else %}
+			<p>Are you sure you want to delete '{{item.name}} [{{item.category}}]' ?</p>
+			{% endif %}
 			<form action=# method="POST">
 				
 				{% csrf_token %}
-				<a class="btn btn-warning" href=#>Cancel</a>
+
+				{% if item.types != "flower"%}
+				<a class="btn btn-warning" href={% url 'products' %}>Cancel</a>
+				{% else %}
+				<a class="btn btn-warning" href={% url 'floproducts' %}>Cancel</a>
+				{% endif %}
 
 				<input class="btn btn-danger" type="submit" name="Confirm">
 			</form>

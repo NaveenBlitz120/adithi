@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from order.models import product,orders,setcart
+from order.models import product,orders,setcart,flower
 
 
 class Create(ModelForm):
@@ -21,3 +21,8 @@ class Update_offer(ModelForm):
 	class Meta:
 		model = setcart
 		fields = '__all__'
+
+class Update_flower(ModelForm):
+	class Meta:
+		model = flower
+		fields = [ 'our_price','market_price' , 'name' ]

@@ -22,18 +22,49 @@
 				<button data-product="{{product.id}}" data-action="add" data-page="home" data-type="{{product.types}}" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
 				<!-- <a class="btn btn-outline-success" href="#">View</a> -->
 				<!-- <a class="btn btn-outline-success btn-sm" href="#">{{product.get_types_display}}</a> -->
+<!-- <select class="" name="">
+	<option value="">{{category}}</option>
+</select> -->
+
 				<select id="{{product.id}}" class="btn btn-outline-success added" name="">
 					<option value="{{product.get_types_display}}">{{product.get_types_display}}</option>
 					{% if product.get_types_display != "count" %}
 						{% for i in list %}
 						   <option value="{{ i }}">{{ i }} grams</option>
-
 						{% endfor %}
 					{% endif %}
 				</select>
 
 				<h6 style="display: inline-block; float: right;"><s>₹{{product.market_price}}</s></h6>
 				<h4 style="display: inline-block; float: right;"><strong>₹{{product.our_price}}</strong></h4>
+			</div>
+		</div>
+		{% endfor %}
+		{% for flower in flowers %}
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{{flower.image.url}}">
+			<div class="box-element product">
+				<h6><strong>{{flower.name}}</strong></h6>
+				<hr>
+
+				<button data-product="{{flower.id}}" data-category="{{flower.category}}" data-action="add" data-page="home" data-type="{{flower.types}}" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				<!-- <a class="btn btn-outline-success" href="#">View</a> -->
+				<a class="btn btn-outline-success btn-sm" href="#">{{flower.category}}</a>
+<!-- <select class="" name="">
+	<option value="">{{category}}</option>
+</select> -->
+
+				<!-- <select id="{{product.id}}" class="btn btn-outline-success added" name="">
+					<option value="{{product.get_types_display}}">{{p.get_types_display}}</option>
+					{% if product.get_types_display != "count" %}
+						{% for i in list %}
+						   <option value="{{ i }}">{{ i }} grams</option>
+						{% endfor %}
+					{% endif %}
+				</select> -->
+
+				<h6 style="display: inline-block; float: right;"><s>₹{{flower.market_price}}</s></h6>
+				<h4 style="display: inline-block; float: right;"><strong>₹{{flower.our_price}}</strong></h4>
 			</div>
 		</div>
 		{% endfor %}

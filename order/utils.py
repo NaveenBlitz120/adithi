@@ -8,14 +8,61 @@ def cookieCart(request):
 	#Create empty cart for now for non-logged in user
 	try:
 		cart = json.loads(request.COOKIES['cart'])
+		flo = json.loads(request.COOKIES['flower'])
 	except:
 		cart = {}
+		flo = {}
 		print('CART:', cart)
 
 	items = []
-	order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
-	order['get_cart_items'] += len(cart)
+	floitems = []
+	order = {'get_cart_total':0, 'get_cart_items':0}
+	order['get_cart_items'] += len(cart)+len(flo)
 	cartItems = order['get_cart_items']
+
+	for i in flo:
+		try:
+			flowers = flower.objects.get(id=i)
+			# print(flowers.our_price,'entered')
+			total = round((flowers.our_price * flo[i]['quantity']),2)
+			order['get_cart_total'] += total
+			floitem = {
+				'id':flowers.id,
+				'product':{
+					'id':flowers.id,
+					'name':flowers.name,
+					'price':flowers.our_price,
+					'imageURL':flowers.image.url,
+					'category':flowers.category,
+					},
+				'quantity':flo[i]['quantity'],
+				# 'digital':product.digital,
+				'get_total':round(total,2),
+			}
+			# print(floitem['product']['type'],floitem['quantity'])
+			if floitem['product']['category'] != 'count':
+				if floitem['product']['category'] != 'maalai':
+					if floitem['product']['category'] != 'mulam':
+						if floitem['product']['category'] != 'bunch':
+							if floitem['quantity']!=0:
+								if(floitem['quantity']>=1 ):
+									floitem['product']['category'] = 'kg'
+								elif (floitem['quantity']<1):
+									# print('enterd')
+									floitem['product']['category'] = 'grams'
+
+			if floitem['product']['category'] == 'grams':
+				# print('entered')
+				floitem['quantity'] = floitem['quantity'] * 1000
+
+			# print(floitem)
+			floitems.append(floitem)
+			print(floitem)
+
+		except:
+			print('escaped')
+			pass
+
 	for i in cart:
 		#We use try block to prevent items in cart that may have been removed from causing error
 		try:
@@ -61,15 +108,15 @@ def cookieCart(request):
 			print('escaped')
 			pass
 
-	return {'cartItems':cartItems ,'order':order, 'items':items}
+	return {'cartItems':cartItems ,'order':order, 'items':items , 'floweritems' : floitems}
 
 def cartData(request):
 	cookieData = cookieCart(request)
 	cartItems = cookieData['cartItems']
 	order = cookieData['order']
 	items = cookieData['items']
-
-	return {'cartItems':cartItems ,'order':order, 'items':items}
+	floweritems = cookieData['floweritems']
+	return {'cartItems':cartItems ,'order':order, 'items':items , 'floweritems':floweritems}
 
 
 def guestOrder(request, data):
@@ -78,8 +125,12 @@ def guestOrder(request, data):
 	# orderid = '#ae'+str(int(old_orderid.orderid[2:])+1)
 	cookieData = cookieCart(request)
 	items = cookieData['items']
+	floweritems = cookieData['floweritems']
 	order_total_calculated = 0
 	for item in items:
+		order_total_calculated = order_total_calculated+item['get_total']
+
+	for item in floweritems:
 		order_total_calculated = order_total_calculated+item['get_total']
 
 	requirement = setcart.objects.get(id = 1)
@@ -117,6 +168,18 @@ def guestOrder(request, data):
 			quantity_type = item['product']['type']
 		)
 		ordercart.save()
+	for item in floweritems:
+		order_total_calculated = order_total_calculated+item['get_total']
+		products = flower.objects.get(id=item['id'])
+		ordercart = orderedcart.objects.create(
+			pfid=products,
+			orderedid=new_order,
+			quantity=item['quantity'],
+			pidtotal=item['get_total'],
+			quantity_type = item['product']['category']
+		)
+		ordercart.save()
+
 	offerpercenttage = 0
 	update_order = orders.objects.get(orderid=new_orderid)
 
