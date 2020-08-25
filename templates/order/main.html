@@ -53,9 +53,13 @@
 		var flower = JSON.parse(getCookie('flower'))
 		if (cart == undefined){
 			cart = {}
-			flower = {}
+			// flower = {}
 			console.log('Cart Created!', cart)
 			document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+			// document.cookie ='flower=' + JSON.stringify(flower) + ";domain=;path=/"
+		}
+		if (flower == undefined){
+			flower = {}
 			document.cookie ='flower=' + JSON.stringify(flower) + ";domain=;path=/"
 		}
 		console.log('Cart', cart,'flower',flower)
