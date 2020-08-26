@@ -103,6 +103,7 @@ def checkout(request):
 		checkout_data_form = checkoutform()
 		checkout_data_form.fields['name'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'Name','id':'name'}
 		checkout_data_form.fields['number'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'your phone number','pattern':"[0-9]{10}"}
+		checkout_data_form.fields['address'].widget.attrs = {'class' : 'form-control', 'id' : 'autocomplete' ,'placeholder' : 'your Address Here'}
 		cartItems = data['cartItems']
 		order = data['order']
 		items = data['items']

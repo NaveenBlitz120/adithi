@@ -14,7 +14,12 @@
 						<div class="form-field">
                                    {{checkout_data_form.number}}
                                    <!-- <input required class="form-control" type="tel" name="phonenumber" pattern="[0-9]{10}" placeholder="your phone number"> -->
-						</div>
+                              </div>
+                              <div class="ui icon big input" id="locator-input-section">
+                                   {{checkout_data_form.address}}
+                                   <!-- <input type="text" placeholder="Enter Your Address" id="autocomplete" /> -->
+                                   <i aria-hidden="true" class="dot circle outline link icon" id="locator-button"></i>
+                              </div>
 					</div>
 
 					<!-- <hr> -->
@@ -129,6 +134,9 @@
                     // })varuthudb check pathuvum crcta varuthu push panidu
           }
 
+     </script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBP55H5fnZ3B7G7-5QklaM1VH2TAPzZHY4&libraries=places"></script>
+     <script type="text/javascript" src="{% static 'js/geo.js' %}"></script>
      </script>
      <!-- <script src="src="{% static 'js/checkout.js' %}" charset="utf-8"></script> -->
 {% endblock content %}

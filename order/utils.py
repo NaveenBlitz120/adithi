@@ -122,6 +122,7 @@ def cartData(request):
 def guestOrder(request, data):
 	cust_name = data.cleaned_data['name']#changed
 	phonenum = data.cleaned_data['number']
+	add = data.cleaned_data['address']
 	# orderid = '#ae'+str(int(old_orderid.orderid[2:])+1)
 	cookieData = cookieCart(request)
 	items = cookieData['items']
@@ -144,7 +145,7 @@ def guestOrder(request, data):
 	# cookieData = cookieCart(request)
 	# items = cookieData['items']
 
-	new_order = orders.objects.create(orderid = new_orderid,name = cust_name,phoneno = phonenum,ordertotal=0)
+	new_order = orders.objects.create(orderid = new_orderid,name = cust_name,phoneno = phonenum,ordertotal=0 ,address = add)
 	# new_order.orderid = new_orderid
 	# new_order.name = name
 	# new_order.phoneno = phonenum

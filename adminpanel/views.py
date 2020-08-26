@@ -167,7 +167,7 @@ def view(request,pk):
     # order_item = []
     order_item = orderedcart.objects.filter(orderedid = bill)
     context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total}
-    return render(request, 'admin/index.html',context)
+    return render(request, 'admin/invoice.html',context)
 
 @login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])
