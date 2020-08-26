@@ -184,3 +184,6 @@ def update_offer(request):
 
     context = {'form':form}
     return render(request,'admin/forms.html',context)
+
+def geo(request):
+    return render(request,'admin/geo.html')

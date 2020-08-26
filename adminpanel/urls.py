@@ -19,6 +19,7 @@ urlpatterns = [
     path('updateorder/<str:pk>/', views.update_order, name = 'updateorder'), 
     path('updateoffer/', views.update_offer, name = 'updateoffer'), 
     path('view/<str:pk>/', views.view, name = 'view'), 
+    path('geo/', views.geo, name = 'geo'), 
 
     
 
