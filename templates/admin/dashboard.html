@@ -7,41 +7,42 @@
 <br>
 
 <div class="row">
-	<!-- <div class="col-md-5">
-		<h5>CUSTOMERS:</h5>
+	<div class="col-md-5">
+		<hr>
+		<h5>Feedbacks:</h5>
 		<hr>
 		<div class="card card-body">
-			<a class="btn btn-primary  btn-sm btn-block" href={% url 'create'%}>Create Product</a>
 			<table class="table table-sm">
 				<tr>
-					<th></th>
-					<th>Market Price</th>
-					<th>Our Price</th>
+					<th>Name</th>
+					<th>Messages</th>
 				</tr>
 
-				{% for product in products %}
+				{% for feedback in feedbacks %}
 					<tr>
-                        <td>{{ product.name }}</td>
-						<td>{{ product.market_price }}</td>
-						<td>{{ product.our_price }}</td>
+						<td>{{feedback.name}}</td>
+						<td>{{feedback.feedbackdata}}</td>
 					</tr>
 				{% endfor %}
 
 			</table>
 		</div>
-	</div> -->
+	</div>
 
 	<div class="col-md-7">
 		<div class="wrap">
+			<hr>
             <div class="search">
               <form method="get">
-                     {{filter.form}}
+				<h5>Orders:</h5>
+                {{filter.form}}
 
              <button class="btn btn-sm btn-danger" type="submit">Search</button>
                </form>
             </div>
         </div>
 		<hr>
+		
 		<div class="card card-body">
 
 			<table class="table table-sm">

@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
 from .forms import Create , Update , Update_order , Update_offer , Update_flower
-from order.models import product , orders , orderedcart , setcart , flower
+from order.models import product , orders , orderedcart , setcart , flower, feedback
 from .filters import myFilter , orderFilter , floFilter
 from .decorators import allowed_user ,unauthenticated_user
 from django.contrib.auth.decorators import login_required
@@ -16,6 +16,7 @@ st='/admin'
 def home(request):
     order = orders.objects.all()
     products = product.objects.all()
+    feedbacks = feedback.objects.all()
     total_products = products.count()
     total_orders = order.count()
     completed = order.filter(status='completed').count()
@@ -25,7 +26,7 @@ def home(request):
 
     context = {'orders':order, 'products':products,
     'total_orders':total_orders,'completed':completed,
-	'pending':pending ,'filter':orderfil }
+	'pending':pending ,'filter':orderfil , 'feedbacks':feedbacks }
     return render(request, 'admin/dashboard.html', context)
 
 @login_required(login_url='login')
@@ -166,7 +167,7 @@ def view(request,pk):
     # order_item = []
     order_item = orderedcart.objects.filter(orderedid = bill)
     context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total}
-    return render(request, 'order/index.html',context)
+    return render(request, 'admin/index.html',context)
 
 @login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])

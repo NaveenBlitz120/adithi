@@ -209,11 +209,11 @@
         <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
       </div>
     </main>
-    <!-- <a class = "btn btn-success" href="{% url 'deletecartcookie' %}">store</a> -->
-     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">store</button>
+    <a class = "btn btn-success" href="{% url 'deletecartcookie' %}">store</a>
+     <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">store</button>
      <div id="myModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
-                    <!-- Modal content-->
+                    Modal content
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -226,7 +226,7 @@
                                  {% csrf_token %}
                                 <div class="form-group">
                                     <label for="name"> Name:</label>
-                                    <!-- <input type="text" class="form-control" id="name" name="name" required maxlength="50"> -->
+                                    <input type="text" class="form-control" id="name" name="name" required maxlength="50">
                                     {{form.name}}
                                 </div>
                                 <div class="form-group">
@@ -239,7 +239,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
     <footer>
       Invoice was created on a computer and is valid without the signature and seal.
     </footer>

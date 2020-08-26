@@ -7,7 +7,7 @@ import json
 import datetime
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
-from .forms import checkoutform
+from .forms import checkoutform,Create
 from adminpanel.filters import myFilter
 
 def store(request):
@@ -56,7 +56,7 @@ def fruits(request):
 	return render(request, 'order/store.html', context)
 
 def groceries(request):
-    
+
 	data = cartData(request)
 	cartItems = data['cartItems']
 	order = data['order']
@@ -117,12 +117,6 @@ def checkout(request):
 				print('hiii')
 				where = guestOrder(request,form)
 				if where:
-					# response = redirect('store')
-					# # response = request
-					# print('here')
-					# response.delete_cookie('cart')
-					# print('inside1')
-
 					return deletecookie(request,where)
 				else:
 					# response = redirect(where)
@@ -136,15 +130,24 @@ def checkout(request):
 
 
 def htmlbill(request):
-	# user = request.user
 	ordered_id = request.COOKIES['orderid']
 	print(ordered_id)
+	print('hiiiis')
+	fbform = Create()
+	print(fbform,'hereiiii')
+	fbform.fields['name'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'Your Name goes here','id':'name'}
+	fbform.fields['feedbackdata'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'Your Message will be placed here,,,,,','id':'message'}
 	bill = orders.objects.get(orderid = ordered_id)
-	# order = Order.objects.get(complete=False,invoice_id=bill)
 	bill_total = bill.orderfinaltotal
-	# order_item = []
 	order_item = orderedcart.objects.filter(orderedid = bill)
-	context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total}
+	context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total ,'form':fbform}
+	if request.method == 'POST':
+		form = Create(request.POST)
+		print(form)
+		if form.is_valid():
+			print('hiii')
+			form.save()
+			return redirect('deletecartcookie')
 	return render(request, 'order/index.html',context)
 
 def deletecookie(request,ordered_id):
