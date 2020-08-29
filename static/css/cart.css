@@ -245,7 +245,7 @@ tr:nth-child(2)
     }
 
     .cart-mob-flex div{
-        padding: 1rem;
+        padding: 0.5rem;
     }
     #h,#s{
          display: block;
