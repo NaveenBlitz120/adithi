@@ -94,7 +94,8 @@
 
                 <a class="go-home" href="/"><span style='font-size:1.5rem;'>&#8592; </span>Continue shopping</a>
                 <a style='font-size:1.5rem; padding:0.7rem;font-weight: 700;'>Grand Total: ₹{{order.get_cart_total|floatformat:2}}</a>
-                <a class="check-out" href="/checkout">Checkout<span style='font-size:1.5rem;'>&#8594;</span></a>
+                <a class="check-out" href="{% url 'checkout' %}"
+				>Place order<span style='font-size:1.5rem;'>&#8594;</span></a>
 
         </div>
      </div>
@@ -302,8 +303,8 @@
 
 			<div class='hide' id ='h' style="text-align: center;margin-top: 3rem;">
 	              <h4 style="padding-bottom: 3rem;color:black;font-weight: 700;">Grand Total: ₹{{order.get_cart_total|floatformat:2}}</h4>
-	              <!-- <a class="check-out" href="{% url 'checkout' %}">checkout<span style='font-size:1.3rem;'>&#8594;</span></a> -->
+	              <a class="check-out" href="{% url 'checkout' %}">checkout<span style='font-size:1.3rem;'>&#8594;</span></a>
 	          </div>
-
+<br><br><br>
 
 {% endblock content %}
