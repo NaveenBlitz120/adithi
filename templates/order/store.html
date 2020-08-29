@@ -25,16 +25,15 @@
 			   <a class="category-4" href="{% url 'flowers' %}"><div ><section class="cat-name">Flowers</section></div></a>
 		   </div>
 		   <div class="category_sub">
-			  <div class="row-1">
-				<!-- <div ><section class="cat-name">Fruits </section></div> -->
-				<a class="category-1" href="{% url 'fruits' %}"><div class="category-1" ><section class="cat-name">Fruits</section></div></a>
-				 <div class="category-2" ><a class="category-2" href="{% url 'vegetables' %}"><section class="cat-name">Vegetables</section></a></div>
-			  </div>
+			<div class="row-1">
+				<div class="category-1" onclick="location.href=fruits" ><section class="cat-name">Fruits</section></div>
+				<div class="category-2" onclick="location.href='vegetables'"><section class="cat-name">Vegetables</section></div>
+			 </div>
 
-			  <div class="row-2">
-				 <div class="category-3" ><a class="category-3" href="{% url 'groceries' %}"><section class="cat-name">Groceries</section></a></div>
-				 <div class="category-4" ><a class="category-4" href="{% url 'flowers' %}"><section class="cat-name">flowers</section></a></div>
-			  </div>
+			 <div class="row-2">
+				<div class="category-3" onclick="location.href='groceries'"><section class="cat-name">Groceries</section></div>
+				<div class="category-4" onclick="location.href='flowers'"><section class="cat-name">Flowers</section></div>
+			 </div>
 		   </div>
 		   <a class="header-bottom"href="#grid">Explore more</a>
 		</div>
