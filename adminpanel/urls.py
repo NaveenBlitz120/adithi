@@ -7,9 +7,11 @@ from django.conf import settings
 urlpatterns = [
 
     path('', views.home, name = 'home'),
+    path('feedback/', views.feedbackpage, name = 'feedback'),
     path('products', views.stock, name = 'products'),   
     path('flowers', views.stockflo, name = 'floproducts'),   
     path('create/',views.create,name='create'),
+    path('createflower/',views.createflo,name='createflo'),
     path('delete/<str:pk>/', views.delete, name = 'delete'), 
     path('update/<str:pk>/', views.update, name = 'update'),    
     path('updateflo/<str:pk>/', views.updateflo, name = 'updateflo'),    

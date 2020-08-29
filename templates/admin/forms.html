@@ -1,21 +1,25 @@
 {%  extends 'admin/main.html' %}
 {% load static %}
 {% block content %}
-
-<div class="row">
-	<div class="col-md-6">
-        
-        <div class="card card-body">
-			<form class ="sub-form" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-				
-                {{ form.as_p }}
-                                    
-				<input type="submit" name="Submit">
-			</form>
-	    </div>
-	</div>
-</div>
+<link rel="stylesheet" type="text/css" href="{% static '/css/form-design.css' %}">
+		<form class ="forms" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="container">
+				<div class="row">
+			{% for field in form %}
+			
+				<div class="form-group col-md-6" style="text-align: center;">
+					{{field.label}}
+					{{field}}
+				</div>
+			
+			
+			
+			{% endfor %}
+			</div>
+		</div>	
+			<input type="submit" name="Submit" style="font-family:'Poppins', sans-serif">
+		</form>
 <script src="{% static "js/form.js" %}"></script>
 
 {% endblock %}

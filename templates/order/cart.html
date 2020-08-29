@@ -1,7 +1,7 @@
 {% extends 'order/main.html' %}
 {% load static %}
 {% block content %}
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-lg-12">
 			<div class="box-element">
 
@@ -27,7 +27,7 @@
 					<div style="flex:2"></div>
 					<div style="flex:2"><strong>Item</strong></div>
 					<div style="flex:1"><strong>Price</strong></div>
-					<!-- <div style="flex:1"><strong>type</strong></div> -->
+					<div style="flex:1"><strong>type</strong></div> commetn
 					<div style="flex:1"><strong>Quantity</strong></div>
 					<div style="flex:1"><strong>type</strong></div>
 					<div style="flex:1"><strong>Total</strong></div>
@@ -38,7 +38,7 @@
 					<div style="flex:2"><p>{{item.product.name}}</p></div>
 					<div style="flex:1"><p>₹{{item.product.price|floatformat:2}}</p></div>
 					<div style="flex:1">
-						<!-- {{item.product.type}} -->
+						{{item.product.type}}comment
 						{%if item.product.type == "grams"%}
 						<p class="quantity">{{item.quantity|floatformat:0}}</p>
 						{%elif item.product.type == "count"%}
@@ -46,7 +46,7 @@
 						{%else%}
 						<p class="quantity">{{item.quantity|floatformat:2}}</p>
 						{%endif%}
-						<!-- <p class="quantity">{{item.type}}</p> -->
+						<p class="quantity">{{item.type}}</p> comment
 						<div class="quantity">
 							<img data-product="{{item.product.id}}"  data-type="{{item.product.type}}" data-page="not" data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
 
@@ -63,7 +63,7 @@
 					<div style="flex:2"><p>{{item.product.name}}</p></div>
 					<div style="flex:1"><p>₹{{item.product.price|floatformat:2}}</p></div>
 					<div style="flex:1">
-						<!-- {{item.product.type}} -->
+						{{item.product.type}comment}
 						{%if item.product.category == "grams"%}
 						<p class="quantity">{{item.quantity|floatformat:0}}</p>
 						{%elif item.product.category == "count"%}
@@ -75,7 +75,7 @@
 						{%else%}
 						<p class="quantity">{{item.quantity|floatformat:2}}</p>
 						{%endif%}
-						<!-- <p class="quantity">{{item.type}}</p> -->
+						<p class="quantity">{{commentitem.type}}</p>
 						<div class="quantity">
 							<img data-product="{{item.product.id}}"  data-type="flower" data-category="{{item.product.category}}" data-page="not" data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
 
@@ -88,5 +88,222 @@
 				{% endfor %}
 			</div>
 		</div>
+	</div> -->
+	<div class="cart-basic-fix" style="margin-top: -7rem;padding:3rem 0 0 0">
+            <div class="cart-basic">
+
+                <a class="go-home" href="/"><span style='font-size:1.5rem;'>&#8592; </span>Continue shopping</a>
+                <a style='font-size:1.5rem; padding:0.7rem;font-weight: 700;'>Grand Total: ₹{{order.get_cart_total|floatformat:2}}</a>
+                <a class="check-out" href="/checkout">Checkout<span style='font-size:1.5rem;'>&#8594;</span></a>
+
+        </div>
+     </div>
+	<div>
+	    <div class="cart-item" style="margin-top: 10rem;">
+		   <div id="table-scroll">
+
+			   <table class="myt">
+
+				   <tr>
+					  <!-- <th>No</th> -->
+
+					  <th class="empty-cell">
+						 photo
+					  </th>
+					  <th>
+						 Item
+					  </th>
+
+					  <th>
+						 Price
+					  </th>
+					  <th>
+						 Quantity
+					  </th>
+					  <th>
+						 Type
+					  </th>
+					  <th>
+						 Total
+					  </th>
+					  <th>
+
+					  </th>
+
+				</tr>
+				{% for item in items %}
+				<tr>
+				    <!-- <td>1</td> -->
+
+				    <td class="empty-cell">
+					    <img src="{{item.product.imageURL}}" alt="product image">
+					   <!-- <img src="/images/product-2.jpg" alt="strawberry"> -->
+				    </td>
+				    <td>
+					   {{item.product.name}}
+				    </td>
+
+				    <td>
+					   ₹{{item.product.price|floatformat:2}}/kg
+				    </td>
+				    <td>
+					   <img data-product="{{item.product.id}}" data-type="{{item.product.type}}" data-action="remove" data-remove='false' class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;"src="{% static  '/images/minus.png' %}" alt="sub" srcset="">
+					   {%if item.product.type == "grams"%}
+					   	<span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+					   {%elif item.product.type == "count"%}
+					   	<span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+					   {%else%}
+					   	<span style="padding: 10px;">{{item.quantity|floatformat:2}}</span>
+					   {%endif%}
+					   <img  data-product="{{item.product.id}}"  data-type="{{item.product.type}}" data-page="not" data-action="add" class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;" src="{% static  '/images/plus.png' %}" alt="add" srcset="">
+					</td>
+				    <td>
+					   {{item.product.type}}
+				    </td>
+				    <td>
+					   ₹{{item.get_total|floatformat:2}}
+				    </td>
+				    <td>
+					   <img data-product="{{item.product.id}}" data-remove="true" data-type="{{item.product.type}}" data-page="not" data-action="remove" class="update-cart" style="width:1rem;height:1rem;cursor:pointer;" src="{% static  '/images/cancel.svg' %}" alt="cancel">
+				    </td>
+				</tr>
+				{% endfor %}
+				{% for item in floweritems %}
+
+				<tr>
+				    <!-- <td>1</td> -->
+
+				    <td class="empty-cell">
+					    <img src="{{item.product.imageURL}}" alt="product image">
+					   <!-- <img src="/images/product-2.jpg" alt="strawberry"> -->
+				    </td>
+				    <td>
+					   {{item.product.name}}
+				    </td>
+
+				    <td>
+					   ₹{{item.product.price|floatformat:2}}/{{item.product.category}}
+				    </td>
+				    <td>
+					    <img img data-product="{{item.product.id}}" data-type="flower"data-category="{{item.product.category}}" data-action="remove" data-remove='false' class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;"src="{% static  '/images/minus.png' %}" alt="sub" srcset="">
+					   {%if item.product.category == "grams"%}
+					   	<span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+					   {%elif item.product.category == "count"%}
+					   	<span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+					   {%elif item.product.category == "maalai"%}
+					   	<span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+					   {%elif item.product.category == "bunch"%}
+					   	<span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+					   {%else%}
+					   	<span style="padding: 10px;">{{item.quantity|floatformat:2}}</span>
+					   {%endif%}
+					   <img data-product="{{item.product.id}}"  data-type="flower" data-category="{{item.product.category}}" data-page="not" data-action="add" class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;" src="{% static  '/images/plus.png' %}" alt="add" srcset="">
+
+				    </td>
+				    <td>
+					   {{item.product.category}}
+				    </td>
+				    <td>
+					   ₹{{item.get_total|floatformat:2}}
+				    </td>
+				    <td>
+					   <img img data-product="{{item.product.id}}"  data-type="flower" data-remove='true' data-category="{{item.product.category}}" data-page="not" data-action="remove" class="update-cart" style="width:1rem;height:1rem;cursor:pointer;" src="{% static  '/images/cancel.svg' %}" alt="cancel">
+				    </td>
+				</tr>
+
+				{% endfor %}
+			   </table>
+
+
+		   </div>
+		</div>
 	</div>
+
+	<!-- <div> -->
+	
+		{% for item in items %}
+
+		<div class="cart-mob">
+		    <img data-product="{{item.product.id}}" data-remove="true" data-type="{{item.product.type}}" data-page="not" data-action="remove" class="update-cart cart-mob-cancel"  style="width:2rem;height:2rem;" src="{% static  '/images/cancel.svg' %}" alt="">
+		    <img class="cart-mob-pic" style="width:50%;height:50%;" src="{{item.product.imageURL}}" alt="strawberry">
+		    <h4 style="padding-top: 1rem;">{{item.product.name}}</h4>
+
+		    <div class="cart-mob-flex">
+
+				  <div>
+					  <img data-product="{{item.product.id}}" data-type="{{item.product.type}}" data-action="remove" class=" update-cart"  style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;"src="{% static  '/images/minus.png' %}" alt="minus" srcset="">
+					 {%if item.product.type == "grams"%}
+					   <span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+					 {%elif item.product.type == "count"%}
+					   <span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+					 {%else%}
+					   <span style="padding: 10px;">{{item.quantity|floatformat:2}}</span>
+					 {%endif%}
+					 <!-- <span style="padding: 10px;">100</span>
+					 <span style="padding: 10px;">100</span>
+					 <span style="padding: 10px;">100</span> -->
+					 <img  data-product="{{item.product.id}}"  data-type="{{item.product.type}}" data-page="not" data-action="add" class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;" src="{% static  '/images/plus.png' %}" alt="plus" srcset="">
+				  </div>
+				  <div>
+					 {{item.product.type}}
+				  </div>
+				  <div>
+					 <!-- ₹20 -->
+					 ₹{{item.product.price|floatformat:2}}/kg
+				  </div>
+				  <div>
+					 ₹{{item.get_total|floatformat:2}}
+				  </div>
+		    </div>
+	   </div>
+
+		{% endfor %}
+	<!-- </div> -->
+		{% for item in floweritems %}
+			<div class="cart-mob">
+			    <img img data-product="{{item.product.id}}"  data-type="flower" data-remove='true' data-category="{{item.product.category}}" data-page="not" data-action="remove" class="update-cart cart-mob-cancel" style="width:2rem;height:2rem;" src="{% static  '/images/cancel.svg' %}" alt="">
+			    <img class="cart-mob-pic" style="width:50%;height:50%;" src="{{item.product.imageURL}}" alt="strawberry">
+			    <h4 style="padding-top: 1rem;">{{item.product.name}}</h4>
+
+			    <div class="cart-mob-flex">
+
+					  <div>
+						 <img data-product="{{item.product.id}}" data-type="{{item.product.type}}" data-action="remove" class=" update-cart"  style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;"src="{% static  '/images/minus.png' %}" alt="" srcset="">
+						 {%if item.product.category == "grams"%}
+	   					   	<span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+	   					   {%elif item.product.category == "count"%}
+	   					   	<span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+	   					   {%elif item.product.category == "maalai"%}
+	   					   	<span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+	   					   {%elif item.product.category == "bunch"%}
+	   					   	<span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+	   					   {%else%}
+	   					   	<span style="padding: 10px;">{{item.quantity|floatformat:2}}</span>
+	   					   {%endif%}
+	   					   <!-- <span style="padding: 10px;">100</span>
+						 <span style="padding: 10px;">100</span>
+						 <span style="padding: 10px;">100</span> -->
+						 <img  data-product="{{item.product.id}}"  data-type="{{item.product.type}}" data-page="not" data-action="add" class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;" src="{% static  '/images/plus.png' %}" alt="plus" srcset="">
+					  </div>
+					  <div>
+						{{item.product.category}}
+					  </div>
+					  <div>
+						 <!-- ₹20 -->
+						 ₹{{item.product.price|floatformat:2}}/{{item.product.category}}
+					  </div>
+					  <div>
+					 ₹{{item.get_total|floatformat:2}}
+					  </div>
+			    </div>
+		   	</div>
+
+			{% endfor %}
+
+			<div class='hide' id ='h' style="text-align: center;margin-top: 3rem;">
+	              <h4 style="padding-bottom: 3rem;color:black;font-weight: 700;">Grand Total: ₹{{order.get_cart_total|floatformat:2}}</h4>
+	              <!-- <a class="check-out" href="{% url 'checkout' %}">checkout<span style='font-size:1.3rem;'>&#8594;</span></a> -->
+	          </div>
+
+
 {% endblock content %}

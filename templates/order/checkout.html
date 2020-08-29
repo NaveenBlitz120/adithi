@@ -1,32 +1,42 @@
-{% extends 'order/main.html' %}
 {% load static %}
+<head>
+
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+     <link href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/font-awesome.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
 {% block content %}
-     <div class="row">
+     <!-- <div class="row">
 		<div class="col-lg-6">
 			<div class="box-element" id="form-wrapper">
 				<form id="form" method="post">
 					<div id="user-info">
 						<div class="form-field">
-                                   {% csrf_token %}
+                                   {% csrf_token %} -->
 							<!-- <input required class="form-control" type="text" name="name" placeholder="Name.."> -->
-                                   {{checkout_data_form.name}}
+                                   <!-- {{checkout_data_form.name}}
 						</div>
 						<div class="form-field">
-                                   {{checkout_data_form.number}}
+                                   {{checkout_data_form.number}} -->
                                    <!-- <input required class="form-control" type="tel" name="phonenumber" pattern="[0-9]{10}" placeholder="your phone number"> -->
-                              </div>
+                              <!-- </div>
                               <div class="ui icon big input" id="locator-input-section">
-                                   {{checkout_data_form.address}}
+                                   {{checkout_data_form.address}} -->
                                    <!-- <input type="text" placeholder="Enter Your Address" id="autocomplete" /> -->
-                                   <i aria-hidden="true" class="dot circle outline link icon" id="locator-button"></i>
+                                   <!-- <i aria-hidden="true" class="dot circle outline link icon" id="locator-button"></i>
                               </div>
-					</div>
+					</div> -->
 
 					<!-- <hr> -->
-                         <button type="submit" id="form-submit" class="filled-button">Send Message</button>
+                         <!-- <button type="submit" id="form-submit" class="filled-button">Send Message</button> -->
                          <!-- <input id="form-button" class="btn btn-success btn-block" type="submit" value="place orders"> -->
-				</form>
-			</div>
+				<!-- </form>
+			</div> -->
 
 			<!-- <br>
 			<div class="box-element hidden" id="payment-info">
@@ -34,12 +44,12 @@
 				<button id="make-payment">Make payment</button> -->
 			<!-- </div> -->
 
-		</div>
+		<!-- </div>
 
 		<div class="col-lg-6">
-			<div class="box-element">
+			<div class="box-element">-->
                     <!-- {{request}} -->
-				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+				<!-- <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
 				<hr>
 				<h3>Order Summary</h3>
 				<hr>
@@ -63,8 +73,85 @@
 				<h5>Total:   ₹{{order.get_cart_total|floatformat:2}} {{warning}}</h5>
 			</div>
 		</div>
-	</div>
+	</div>  -->
+<body>
 
+     <nav>
+          <div class="logo">
+               <a href="#">Adhithi Veg Court</a>
+          </div>
+          <ul class="nav-links">
+               <li><a href="{% url 'store' %}">Home</a></li>
+               <li><a href="#">About</a></li>
+               <li><a href="{% url 'cart' %}"><i class="fa" style="font-size:24px;padding-left: 1rem;">&#xf07a;</i>
+                    <span class='badge badge-warning' id='count'> {{cartItems}} </span></a></li>
+                    <li><a href="{% url 'cart' %}">₹{{order.get_cart_total|floatformat:2}}</a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+               </ul>
+               <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+               </div>
+          </nav>
+
+          <div style="display: flex;height:4rem; justify-content: center;">
+               <div class="flx">
+                    <a href="#">Items in cart:{{cartItems}}</a>
+                    <a href="#"> {{warning}}</a>
+                    <a href="#">Amount:₹{{order.get_cart_total|floatformat:2}}</a>
+               </div>
+          </div>
+
+
+          <div class="container">
+               <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                         <div class="col-25">
+                              <label for="fname">Name</label>
+                         </div>
+                         <div class="col-75">
+                              {{checkout_data_form.name}}
+                              <!-- <input type="text" id="fname" name="firstname" placeholder="Your name.."> -->
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-25">
+                              <label for="lname">Mobile </label>
+                         </div>
+                         <div class="col-75">
+                              {{checkout_data_form.number}}
+                              <!-- <input type="text" id="lname" name="lastname" placeholder="Your number.."> -->
+                         </div>
+                    </div>
+
+                    <div class="row " id="locator-input-section" style="padding-bottom: 3rem;">
+                         <div class="col-25">
+                              <label for="lname">Address </label>
+                         </div>
+                         <div style="position: relative;" class="col-75">
+                              <i  aria-hidden="true" class="material-icons ic "id="locator-button" >&#xe55f;</i>
+                              <!-- <i aria-hidden="true" class="dot circle outline link icon" id="locator-button"></i> -->
+                              {{checkout_data_form.address}}
+                              <!-- <input type="text" id="lname" name="lastname" placeholder="Your address.."> -->
+                         </div>
+                    </div>
+
+                    <div class="submit" style="text-align:center">
+                         <input type="submit" value="Place Your Order">
+                    </div>
+               </form>
+          </div>
+
+
+
+</body>
+
+      <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/anchor.js' %}"></script>
 
      <script type="text/javascript">
           // var total = {{order.get_cart_total|floatformat:2}}

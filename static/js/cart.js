@@ -9,27 +9,31 @@ for (let i = 0; i < updateBtns.length; i++) {
 		var action = this.dataset.action
 		var type = this.dataset.type
 		var page = this.dataset.page
-		
+		var deletes = ''
 		console.log(check);
 		// console.log('productId:', productId, 'Action:', action, 'Type:',type)
 		// console.log('USER:', user)
+		if(action == 'remove')
+		{
+			deletes = this.dataset.remove
+		}
 		if(type == 'flower')
 		{
 			var category = this.dataset.category
-			addflowerItem(productId,action,category)
+			addflowerItem(productId,action,category,deletes)
 		}
 		else {
 			if(page == 'home')
 			{
 				var check = document.getElementById(productId).value
 			}
-			addCookieItem(productId, action ,type,check)
+			addCookieItem(productId, action ,type,check,deletes)
 		}
 
 	})
 }
 
-function addCookieItem(productId, action, type,check){
+function addCookieItem(productId, action, type,check,deletes){
 	// console.log('User is not authenticated')
 
 
@@ -86,17 +90,25 @@ function addCookieItem(productId, action, type,check){
 		}
 	}
 	if (action == 'remove'){
-		if (type == 'count') {
-				cart[productId]['quantity'] -= 1;
+		console.log(deletes,'here');
+		if (deletes == 'true') {
+			delete cart[productId];
 		}
 		else {
-			cart[productId]['quantity'] -= .100;
-			cart[productId]['quantity'] = parseFloat(cart[productId]['quantity'].toPrecision(3))
-		}
 
-		if (cart[productId]['quantity'] < .100){
-			console.log('Item should be deleted');
-			delete cart[productId];
+			if (type == 'count') {
+				cart[productId]['quantity'] -= 1;
+			}
+			else {
+				cart[productId]['quantity'] -= .100;
+				cart[productId]['quantity'] = parseFloat(cart[productId]['quantity'].toPrecision(3))
+			}
+
+			if (cart[productId]['quantity'] < .100){
+				console.log('Item should be deleted');
+				delete cart[productId];
+			}
+
 		}
 	}
 	console.log('CART:', cart);
@@ -106,7 +118,7 @@ function addCookieItem(productId, action, type,check){
 }
 
 
-function addflowerItem(productId, action, category){
+function addflowerItem(productId, action, category,deletes){
 	// console.log('User is not authenticated')
 
 
@@ -143,17 +155,23 @@ function addflowerItem(productId, action, category){
 		}
 	}
 	if (action == 'remove'){
-		if ((category == 'grams') || (category == 'kg')){
-			flower[productId]['quantity'] -= .1;
+		if (deletes == 'true') {
+			delete flower[productId];
 		}
 		else {
-			flower[productId]['quantity'] -= 1;
-		}
-		flower[productId]['quantity'] = parseFloat(flower[productId]['quantity'].toPrecision(3))
 
-		if (flower[productId]['quantity'] < .100){
-			console.log('Item should be deleted');
-			delete flower[productId];
+			if ((category == 'grams') || (category == 'kg')){
+				flower[productId]['quantity'] -= .1;
+			}
+			else {
+				flower[productId]['quantity'] -= 1;
+			}
+			flower[productId]['quantity'] = parseFloat(flower[productId]['quantity'].toPrecision(3))
+
+			if (flower[productId]['quantity'] < .100){
+				console.log('Item should be deleted');
+				delete flower[productId];
+			}
 		}
 	}
 	console.log('flower', flower);

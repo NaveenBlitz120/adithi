@@ -7,38 +7,18 @@
 <br>
 
 <div class="row">
-	<div class="col-md-5">
-		<hr>
-		<h5>Feedbacks:</h5>
-		<hr>
-		<div class="card card-body">
-			<table class="table table-sm">
-				<tr>
-					<th>Name</th>
-					<th>Messages</th>
-				</tr>
-
-				{% for feedback in feedbacks %}
-					<tr>
-						<td>{{feedback.name}}</td>
-						<td>{{feedback.feedbackdata}}</td>
-					</tr>
-				{% endfor %}
-
-			</table>
-		</div>
-	</div>
-
-	<div class="col-md-7">
+	
+	<div class="col-md-12">
 		<div class="wrap">
 			<hr>
             <div class="search">
-              <form method="get">
-				<h5>Orders:</h5>
-                {{filter.form}}
-
-             <button class="btn btn-sm btn-danger" type="submit">Search</button>
-               </form>
+            	<form method="get">
+				<h5 style="padding-left: 5rem;">Orders:</h5>
+					<div style="padding-left: 5rem;">
+						{{filter.form}}
+						<button class="btn btn-sm btn-danger" type="submit">Search</button>
+					</div>
+				</form>
             </div>
         </div>
 		<hr>

@@ -1,0 +1,131 @@
+body{
+  font-family: 'Poppins', sans-serif;
+}
+a:link,a:visited{
+  font-weight: 600;
+  color:black;
+  text-decoration: none;
+}
+
+.flx{
+  width:60%;
+  margin-top:  4rem;
+    display: flex;
+    justify-content: space-between;
+}
+input[type=text], select, textarea{
+    text-indent: 3rem;
+  width: 40%;
+  height: 4rem;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+
+.col-25{
+    text-align: center;
+}
+
+.col-75{
+    text-align: center;
+}
+
+label {
+    font-weight: 650;
+    padding:2rem;
+  display: inline-block;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+  }
+input[type=submit] {
+    border-radius: 100px;
+  background-color:black;
+  color:white;
+  font-weight: 700;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+input[type=submit]:hover{
+  box-shadow: 2px 2px 5px 0.7px rgba(0, 0, 0, 0.5);
+}
+
+
+input[type=submit]:active{
+  box-shadow: 2px 2px 5px 0.5px rgba(0, 0, 0, 0.2);
+}
+/* Style the container */
+.container {
+    margin: 2rem;
+    background-image:linear-gradient(to bottom,#8cce8073, rgb(109, 221, 152)),url("/images/bg_3.jpg") ;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.ic{
+    position: absolute; right:31%; top:30%
+
+}
+.ic:hover{
+     cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  input[type=text], select, textarea{
+    text-indent: 0rem;
+    text-align: center;
+  width: 100%;
+  height: 2rem;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.ic{
+    position: absolute; right:1%; top:15%
+}
+
+label {
+    font-weight: 650;
+    padding:1rem;
+  display: inline-block;
+}
+
+.container {
+
+  margin: 2rem;
+  background-color: rgb(191, 243, 211);
+padding: 20px;
+}
+form{
+  padding: 1rem;
+}
+input[type=submit]{
+  width:150px
+}
+
+.flx{
+  width:100%;
+  font-size: 0.7rem;
+}
+
+}

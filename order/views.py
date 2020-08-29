@@ -20,6 +20,7 @@ def store(request):
 	myfilter = myFilter(request.GET,queryset=products)
 	lis = [250,500,750]
 	prod_obj= myfilter.qs
+	print(prod_obj)
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
 	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter,'list':lis }
@@ -101,9 +102,9 @@ def checkout(request):
 		warning = ''
 		data = cartData(request)
 		checkout_data_form = checkoutform()
-		checkout_data_form.fields['name'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'Name','id':'name'}
-		checkout_data_form.fields['number'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'your phone number','pattern':"[0-9]{10}"}
-		checkout_data_form.fields['address'].widget.attrs = {'class' : 'form-control', 'id' : 'autocomplete' ,'placeholder' : 'your Address Here'}
+		checkout_data_form.fields['name'].widget.attrs = {'placeholder' : 'Name','id':'name'}
+		checkout_data_form.fields['number'].widget.attrs = {'placeholder' : 'your phone number','pattern':"[0-9]{10}"}
+		checkout_data_form.fields['address'].widget.attrs = {'id' : 'autocomplete' ,'placeholder' : 'your Address Here or locate yourself ---->'}
 		cartItems = data['cartItems']
 		order = data['order']
 		items = data['items']
@@ -136,8 +137,8 @@ def htmlbill(request):
 	print('hiiiis')
 	fbform = Create()
 	print(fbform,'hereiiii')
-	fbform.fields['name'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'Your Name goes here','id':'name'}
-	fbform.fields['feedbackdata'].widget.attrs = {'class' : 'form-control' ,'placeholder' : 'Your Message will be placed here,,,,,','id':'message'}
+	fbform.fields['name'].widget.attrs = {'placeholder' : 'Your Name goes here','id':'name'}
+	fbform.fields['feedbackdata'].widget.attrs = {'placeholder' : 'Your Message will be placed here,,,,,','id':'message'}
 	bill = orders.objects.get(orderid = ordered_id)
 	bill_total = bill.orderfinaltotal
 	order_item = orderedcart.objects.filter(orderedid = bill)

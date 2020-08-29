@@ -1,0 +1,37 @@
+{%  extends 'admin/main.html' %}/
+
+{% block content %}
+
+
+<br>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <hr>
+        <h5 style="padding-left: 5rem;">Feedbacks:</h5>
+        <hr>
+        <br>
+    
+        <div class="card card-body">
+            <table class="table table-sm">
+            <tr>
+                <th style="width:25rem">Name</th>
+                <th>Messages</th>
+            </tr>
+
+            {% for feedback in feedbacks %}
+                <tr>
+                    <td style="width:25rem">{{feedback.name}}</td>
+                    <td>{{feedback.feedbackdata}}</td>
+                </tr>
+            {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

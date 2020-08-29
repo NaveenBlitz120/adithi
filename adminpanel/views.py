@@ -2,7 +2,7 @@ from django.shortcuts import render ,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
-from .forms import Create , Update , Update_order , Update_offer , Update_flower
+from .forms import Create , Update , Update_order , Update_offer , Update_flower , CreateFlo
 from order.models import product , orders , orderedcart , setcart , flower, feedback
 from .filters import myFilter , orderFilter , floFilter
 from .decorators import allowed_user ,unauthenticated_user
@@ -16,7 +16,6 @@ st='/admin'
 def home(request):
     order = orders.objects.all()
     products = product.objects.all()
-    feedbacks = feedback.objects.all()
     total_products = products.count()
     total_orders = order.count()
     completed = order.filter(status='completed').count()
@@ -26,8 +25,15 @@ def home(request):
 
     context = {'orders':order, 'products':products,
     'total_orders':total_orders,'completed':completed,
-	'pending':pending ,'filter':orderfil , 'feedbacks':feedbacks }
+	'pending':pending ,'filter':orderfil  }
     return render(request, 'admin/dashboard.html', context)
+
+def feedbackpage(request):
+    feedbacks = feedback.objects.all()
+    context ={
+        'feedbacks':feedbacks
+    }
+    return render(request, 'admin/feedback.html', context)
 
 @login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])
@@ -64,6 +70,22 @@ def create(request):
 
     return render(request,'admin/forms.html',context)
 
+@login_required(login_url='login')
+@allowed_user(allowed_roles=['admin'])
+def createflo(request):
+
+    form = CreateFlo()
+    context = {'form':form,}
+    if request.method == 'POST':
+        #print('printing POST:',request.POST)
+        form = CreateFlo(request.POST , request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(st)
+
+    return render(request,'admin/forms.html',context)
+
+
 
 @login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])
@@ -71,6 +93,10 @@ def update(request,pk):
 
     order = product.objects.get(id=pk)
     form = Update(instance=order)
+    form.fields['our_price'].widget.attrs = {'class' : 'form-control' }
+    form.fields['market_price' ].widget.attrs = {'class' : 'form-control' }
+    form.fields['types'].widget.attrs = {'class' : 'form-control' }
+    form.fields['name'].widget.attrs = {'class' : 'form-control' }
     if request.method == 'POST':
         form = Update(request.POST,instance = order)
         if form.is_valid():
@@ -87,6 +113,9 @@ def updateflo(request,pk):
 
     order = flower.objects.get(id=pk)
     form = Update_flower(instance=order)
+    form.fields['our_price'].widget.attrs = {'class' : 'form-control' }
+    form.fields['market_price' ].widget.attrs = {'class' : 'form-control' }
+    form.fields['name'].widget.attrs = {'class' : 'form-control' }
     if request.method == 'POST':
         form = Update_flower(request.POST,instance = order)
         if form.is_valid():
@@ -148,6 +177,7 @@ def logoutUser(request):
 def update_order(request , pk):
     order = orders.objects.get(id=pk)
     form = Update_order(instance=order)
+    form.fields['status'].widget.attrs = {'class' : 'form-control' }
     if request.method == 'POST':
         form = Update_order(request.POST,instance = order)
         if form.is_valid():
@@ -175,6 +205,16 @@ def update_offer(request):
 
     setcarts = setcart.objects.get(id=1)
     form = Update_offer(instance=setcarts)
+    form.fields['minimum_cart_value'].widget.attrs = {'class' : 'form-control' }
+    form.fields['offer_on_or_off'].widget.attrs = {'class' : 'form-control' }
+    form.fields['silveroff_value'].widget.attrs = {'class' : 'form-control' }
+    form.fields['silveroff_percentage'].widget.attrs = {'class' : 'form-control' }
+    form.fields['goldenoff_percentage'].widget.attrs = {'class' : 'form-control' }
+    form.fields['goldenoff_value'].widget.attrs = {'class' : 'form-control' }
+    form.fields['platinumoff_value'].widget.attrs = {'class' : 'form-control' }
+    form.fields['platinumoff_percentage'].widget.attrs = {'class' : 'form-control' }
+    form.fields['phoneno'].widget.attrs = {'class' : 'form-control' }
+
     if request.method == 'POST':
         form = Update_offer(request.POST,instance = setcarts)
         if form.is_valid():

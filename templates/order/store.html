@@ -1,31 +1,106 @@
 {% extends 'order/main.html' %}
 {% load static %}
 {% block content %}
-	<div class="row">
-		<th><h5>Total:<strong> ₹{{order.get_cart_total|floatformat:2}}</strong></h5></th><br>
-		<div class="wrap">
-			<div class="search">
-			  <form method="get">
-					 {{filter.form}}
+	<div class="head">
+	    <div class="head-search">
+		   <header>
+			  <div class="searchbar">
+				 <div class="search">
+					<!-- <input placeholder="What are you looking for?"> -->
+					<form method="get">
+						   <i class="fa fa-search fa-search-1"></i>
+						 <!-- <button style="width:20px;height:20p" class="btn btn-sm btn-danger" type="submit"><i class="fa"></i></button> -->
+						 {{filter.form.productname}}
+						 <a  type="submit" class="fa-search-2">search</a>
+				   </form>
+				 </div>
+			  </div>
 
-				 <button class="btn btn-sm btn-danger" type="submit">Search</button>
-			   </form>
-			</div>
-		 </div>
-		{% for product in products %}
-		<div class="col-lg-4">
+		   </header>
+
+		   <div class="category">
+			   <a class="category-1" href="{% url 'fruits' %}"><div ><section class="cat-name">Fruits </section></div></a>
+			   <a class="category-2"  href="{% url 'vegetables' %}"><div ><section class="cat-name">Vegetables</section></div></a>
+			   <a class="category-3" href="{% url 'groceries' %}"><div ><section class="cat-name">Groceries</section></div></a>
+			   <a class="category-4" href="{% url 'flowers' %}"><div ><section class="cat-name">Flowers</section></div></a>
+		   </div>
+		   <div class="category_sub">
+			  <div class="row-1">
+				 <div class="category-1" onclick="location.href=fruits" ><section class="cat-name">Fruits</section></div>
+				 <div class="category-2" onclick="location.href='vegetables'"><section class="cat-name">Vegetables</section></div>
+			  </div>
+
+			  <div class="row-2">
+				 <div class="category-3" onclick="location.href='groceries'"><section class="cat-name">Groceries</section></div>
+				 <div class="category-4" onclick="location.href='flowers'"><section class="cat-name">Flowers</section></div>
+			  </div>
+		   </div>
+		   <a class="header-bottom"href="#grid">Explore more</a>
+		</div>
+
+	<!-- <div class="row"> -->
+		<!-- <th><h5>Total:<strong> ₹{{order.get_cart_total|floatformat:2}}</strong></h5></th><br> -->
+
+
+		<div class="container-fluid" id="grid"style=" background-color: rgb(109, 221, 152);">
+			<div class="row" style="background-color: white;padding: 0 20px;">
+				{% for product in products %}
+				<div class="col  border-right border-success">
+                      <div class="grid-content grid-top">
+                        <div class="flip-card flip-center">
+                          <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                              <img src="{{product.image.url}}" alt="Onion!" style="width: 300px;height: 200px;" class="rounded">
+                            </div>
+                            <div class="flip-card-back">
+                              <h6 style="margin:10px 10px;text-align:center">Description  </h6>
+                              <hr>
+                              <ul class="desc-points">
+                                <li>{{product.desc}}</li>
+                                <!-- <li>It is better to</li> -->
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+				    <div>{{product.name}}</div>
+				    <br>
+                        <div class="ctrl-btn">
+                          <button type="button" data-product="{{product.id}}" data-action="add" data-page="home" data-type="{{product.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
+                          <div class="dropdown" style="display: inline; padding-left: 75px;">
+                            <select class="btn btn-outline-warning btn-sm  dropdown-toggle"  id="{{product.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="dropdown-menu" >
+						<option class="dropdown-item" value="{{product.get_types_display}}">{{product.get_types_display}}</option>
+						{% if product.get_types_display != "count" %}
+	   						{% for i in list %}
+	   						   <!-- <option value="{{ i }}">{{ i }} grams</option> -->
+							   <option class="dropdown-item" value="{{i}}">{{i}} gm</option>
+	   						{% endfor %}
+	   					{% endif %}
+
+                            </div>
+				   		</select>
+                          </div>
+                          <hr>
+                          <h6 style="padding-left: 30px; padding-top:0px;"><s>₹{{product.market_price}}</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹{{product.our_price}}</strong></span></h6>
+                        </div>
+                      </div>
+                    </div>
+    			{% endfor %}
+		   </div>
+		</div>
+</div>
+
+
+
+
+		<!-- <div class="col-lg-4">
 			<img class="thumbnail" src="{{product.image.url}}">
 			<div class="box-element product">
 				<h6><strong>{{product.name}}</strong></h6>
 				<hr>
 
 				<button data-product="{{product.id}}" data-action="add" data-page="home" data-type="{{product.types}}" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-				<!-- <a class="btn btn-outline-success" href="#">View</a> -->
-				<!-- <a class="btn btn-outline-success btn-sm" href="#">{{product.get_types_display}}</a> -->
-<!-- <select class="" name="">
-	<option value="">{{category}}</option>
-</select> -->
-
 				<select id="{{product.id}}" class="btn btn-outline-success added" name="">
 					<option value="{{product.get_types_display}}">{{product.get_types_display}}</option>
 					{% if product.get_types_display != "count" %}
@@ -38,9 +113,8 @@
 				<h6 style="display: inline-block; float: right;"><s>₹{{product.market_price}}</s></h6>
 				<h4 style="display: inline-block; float: right;"><strong>₹{{product.our_price}}</strong></h4>
 			</div>
-		</div>
-		{% endfor %}
-		{% for flower in flowers %}
+		</div> -->
+		<!-- {% for flower in flowers %}
 		<div class="col-lg-4">
 			<img class="thumbnail" src="{{flower.image.url}}">
 			<div class="box-element product">
@@ -48,26 +122,60 @@
 				<hr>
 
 				<button data-product="{{flower.id}}" data-category="{{flower.category}}" data-action="add" data-page="home" data-type="{{flower.types}}" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-				<!-- <a class="btn btn-outline-success" href="#">View</a> -->
 				<a class="btn btn-outline-success btn-sm" href="#">{{flower.category}}</a>
-<!-- <select class="" name="">
-	<option value="">{{category}}</option>
-</select> -->
-
-				<!-- <select id="{{product.id}}" class="btn btn-outline-success added" name="">
-					<option value="{{product.get_types_display}}">{{p.get_types_display}}</option>
-					{% if product.get_types_display != "count" %}
-						{% for i in list %}
-						   <option value="{{ i }}">{{ i }} grams</option>
-						{% endfor %}
-					{% endif %}
-				</select> -->
 
 				<h6 style="display: inline-block; float: right;"><s>₹{{flower.market_price}}</s></h6>
 				<h4 style="display: inline-block; float: right;"><strong>₹{{flower.our_price}}</strong></h4>
 			</div>
 		</div>
 		{% endfor %}
+	</div> -->
+	<div class="container-fluid" id="grid"style="background-color: rgb(109, 221, 152);">
+
+		<div class="row" style="background-color: white;padding: 0 20px;">
+			{% for flower in flowers %}
+			<div class="col border-right border-success">
+			  <div class="grid-content grid-top">
+			    <div class="flip-card flip-center">
+				 <div class="flip-card-inner">
+				   <div class="flip-card-front">
+					<img src="{{flower.image.url}}" alt="Onion!" style="width: 300px;height: 200px;" class="rounded">
+				   </div>
+				   <div class="flip-card-back">
+					<h6 style="margin:10px 10px;">Description : </h6>
+					<hr>
+					<ul class="desc-points">
+					  <li>{{flower.desc}}</li>
+					  <!-- <li>It is better to add onion in all types of food.</li> -->
+					</ul>
+				   </div>
+				 </div>
+			    </div>
+			    <br>
+			    <div class="ctrl-btn">
+				 <button type="button" data-product="{{flower.id}}" data-action="add" data-category="{{flower.category}}" data-page="home" data-type="{{flower.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
+				 <div class="dropdown" style="display: inline; padding-left: 75px;">
+					 <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{flower.category}}</button>
+				   <!-- <select class="btn btn-outline-warning btn-sm "  id="{{product.id}}"   aria-haspopup="true" aria-expanded="true">Quantity -->
+				   <!-- <div class="dropdown-menu" >
+					<option class="dropdown-item" value="{{product.get_types_display}}">{{product.get_types_display}}</option>
+					{% if product.get_types_display != "count" %}
+						{% for i in list %}
+						   <option value="{{ i }}">{{ i }} grams</option>
+						   <option class="dropdown-item" value="{{i}}">{{i}} gm</option>
+						{% endfor %}
+					{% endif %}
+
+				   </div> -->
+			   <!-- </select> -->
+				 </div>
+				 <hr>
+				 <h6 style="padding-left: 30px; padding-top:0px;"><s>₹{{flower.market_price}}</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹{{flower.our_price}}</strong></span></h6>
+			    </div>
+			  </div>
+			</div>
+		{% endfor %}
+	   </div>
 	</div>
 
 {% endblock content %}

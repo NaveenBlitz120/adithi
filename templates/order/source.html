@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adhithi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="css/heading.css">
+    <link rel="stylesheet" href="css/content.css">
+    <link rel="stylesheet" href="css/grid.css">
+
+</head>
+<body>
+
+    <div class="main">
+
+            <nav>
+                <div class="logo">
+                   <a href="#">Adhithi Veg Court</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#"><i class="fa" style="font-size:24px;padding-left: 1rem;">&#xf07a;</i>
+                        <span class='badge badge-warning' id='count'> 5 </span></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                </ul>
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>          
+            </nav>
+
+            <div class="head">
+                <div class="head-search">
+                    <header>
+                        <div class="searchbar">
+                            <div class="search">
+                                <i class="fa fa-search"></i>
+                                <input placeholder="What are you looking for?">
+                            </div>
+                        </div>
+            
+                    </header>
+
+                    <div class="category">
+                        <div class="category-1"><section class="cat-name">Fruits</section></div>
+                        <div class="category-2"><section class="cat-name">Vegetables</section></div>
+                        <div class="category-3"><section class="cat-name">Groceries</section></div>
+                        <div class="category-4"><section class="cat-name">Flowers</section></div>
+                    </div>
+                    <div class="category_sub">
+                        <div class="row-1">
+                            <div class="category-1" onclick="location.href='#grid'" ><section class="cat-name">Fruits</section></div>
+                            <div class="category-2" onclick="location.href='#grid'"><section class="cat-name">Vegetables</section></div>
+                        </div>
+
+                        <div class="row-2">
+                            <div class="category-3" onclick="location.href='#grid'"><section class="cat-name">Groceries</section></div>
+                            <div class="category-4" onclick="location.href='#grid'"><section class="cat-name">Flowers</section></div>
+                        </div>
+                    </div>
+                    <a class="header-bottom"href="#grid">Explore more</a>
+            </div>
+
+            <div class="container-fluid" id="grid"style="background-color: rgb(109, 221, 152);">
+
+                <div class="row" style="background-color: white;">
+                  <div class="col border-right border-success">
+                    <div class="grid-content grid-top">
+                      <div class="flip-card flip-center">
+                        <div class="flip-card-inner">
+                          <div class="flip-card-front">
+                            <img src="images/onion.jpg" alt="Onion!" style="width: 300px;height: 200px;" class="rounded">
+                          </div>
+                          <div class="flip-card-back">
+                            <h6 style="margin:10px 10px;">Description : </h6>
+                            <hr>
+                            <ul class="desc-points">
+                              <li>Onion is good for health.</li>
+                              <li>It is better to add onion in all types of food.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="ctrl-btn">
+                        <button type="button" name="add-to-cart" class="btn btn-info" style="display: inline;">Add to Cart</button>
+                        <div class="dropdown" style="display: inline; padding-left: 75px;">
+                          <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quantity</button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">250 gm</a>
+                          <a class="dropdown-item" href="#">500 gm</a>
+                          <a class="dropdown-item" href="#">750 gm</a>
+                          <a class="dropdown-item" href="#">1 kg</a>
+                          </div>
+                        </div>
+                        <hr>
+                        <h6 style="padding-left: 30px; padding-top:0px;"><s>₹48.0</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹40.0</strong></span></h6>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col border-right border-success">
+                    <div class="grid-content grid-top">
+                      <div class="flip-card flip-center">
+                        <div class="flip-card-inner">
+                          <div class="flip-card-front">
+                            <img src="images/onion.jpg" alt="Onion!" style="width: 300px;height: 200px;">
+                          </div>
+                          <div class="flip-card-back">
+                            <h6 style="margin:10px 10px;">Description : </h6>
+                            <hr>
+                            <ul class="desc-points">
+                              <li>Onion is good for health.</li>
+                              <li>It is better to add onion in all types of food.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="ctrl-btn">
+                        <button type="button" name="add-to-cart" class="btn btn-info" style="display: inline;">Add to Cart</button>
+                        <div class="dropdown" style="display: inline; padding-left: 75px;">
+                          <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kg</button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">250 gm</a>
+                          <a class="dropdown-item" href="#">500 gm</a>
+                          <a class="dropdown-item" href="#">750 gm</a>
+                          <a class="dropdown-item" href="#">1 kg</a>
+                          </div>
+                        </div>
+                        <hr>
+                        <h6 style="padding-left: 30px; padding-top:0px;"><s>₹48.0</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹40.0</strong></span></h6>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col border-right border-success">
+                    <div class="grid-content grid-top">
+                      <div class="flip-card flip-center">
+                        <div class="flip-card-inner">
+                          <div class="flip-card-front">
+                            <img src="images/onion.jpg" alt="Onion!" style="width: 300px;height: 200px;">
+                          </div>
+                          <div class="flip-card-back">
+                            <h6 style="margin:10px 10px;">Description : </h6>
+                            <hr>
+                            <ul class="desc-points">
+                              <li>Onion is good for health.</li>
+                              <li>It is better to add onion in all types of food.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="ctrl-btn">
+                        <button type="button" name="add-to-cart" class="btn btn-info" style="display: inline;">Add to Cart</button>
+                        <div class="dropdown" style="display: inline; padding-left: 75px;">
+                          <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kg</button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">250 gm</a>
+                          <a class="dropdown-item" href="#">500 gm</a>
+                          <a class="dropdown-item" href="#">750 gm</a>
+                          <a class="dropdown-item" href="#">1 kg</a>
+                          </div>
+                        </div>
+                        <hr>
+                        <h6 style="padding-left: 30px; padding-top:0px;"><s>₹48.0</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹40.0</strong></span></h6>
+                      </div>
+                    </div>
+                  </div>
+
+		<div class="col border-right border-success">
+                    <div class="grid-content grid-top">
+                      <div class="flip-card flip-center">
+                        <div class="flip-card-inner">
+                          <div class="flip-card-front">
+                            <img src="images/onion.jpg" alt="Onion!" style="width: 300px;height: 200px;">
+                          </div>
+                          <div class="flip-card-back">
+                            <h6 style="margin:10px 10px;">Description : </h6>
+                            <hr>
+                            <ul class="desc-points">
+                              <li>Onion is good for health.</li>
+                              <li>It is better to add onion in all types of food.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="ctrl-btn">
+                        <button type="button" name="add-to-cart" class="btn btn-info" style="display: inline;">Add to Cart</button>
+                        <div class="dropdown" style="display: inline; padding-left: 75px;">
+                          <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kg</button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">250 gm</a>
+                          <a class="dropdown-item" href="#">500 gm</a>
+                          <a class="dropdown-item" href="#">750 gm</a>
+                          <a class="dropdown-item" href="#">1 kg</a>
+                          </div>
+                        </div>
+                        <hr>
+                        <h6 style="padding-left: 30px; padding-top:0px;"><s>₹48.0</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹40.0</strong></span></h6>
+                      </div>
+                    </div>
+                  </div>
+  
+
+                  <div class="col">
+                    <div class="grid-content grid-top">
+                      <div class="flip-card flip-center">
+                        <div class="flip-card-inner">
+                          <div class="flip-card-front">
+                            <img src="images/onion.jpg" alt="Onion!" style="width: 300px;height: 200px;">
+                          </div>
+                          <div class="flip-card-back">
+                            <h6 style="margin:10px 10px;">Description : </h6>
+                            <hr>
+                            <ul class="desc-points">
+                              <li>Onion is good for health.</li>
+                              <li>It is better to add onion in all types of food.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="ctrl-btn">
+                        <button type="button" name="add-to-cart" class="btn btn-info" style="display: inline;">Add to Cart</button>
+                        <div class="dropdown" style="display: inline; padding-left: 75px;">
+                          <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kg</button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">250 gm</a>
+                          <a class="dropdown-item" href="#">500 gm</a>
+                          <a class="dropdown-item" href="#">750 gm</a>
+                          <a class="dropdown-item" href="#">1 kg</a>
+                          </div>
+                        </div>
+                        <hr>
+                        <h6 style="padding-left: 30px; padding-top:0px;"><s>₹48.0</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹40.0</strong></span></h6>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+  
+              </div>
+                                     
+        </div>
+    
+        <div class="preloader">
+            <div id="load"></div>
+
+        </div>
+
+    <!-- <script src="js/loader.js"></script> -->
+    <script src="js/navbar.js"></script>
+    <script src="js/anchor.js"></script>
+</body>
+</html>

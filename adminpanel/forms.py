@@ -7,6 +7,12 @@ class Create(ModelForm):
 		model = product
 		fields = '__all__'
 
+class CreateFlo(ModelForm):
+	class Meta:
+		model = flower
+		fields = '__all__'
+		exclude = ['types']
+
 class Update(ModelForm):
 	class Meta:
 		model = product
