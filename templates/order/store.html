@@ -18,7 +18,7 @@
 
 		   </header>
 
-		   <div class="category">
+		   <!-- <div class="category">
 			   <a class="category-1" href="{% url 'fruits' %}"><div ><section class="cat-name">Fruits </section></div></a>
 			   <a class="category-2"  href="{% url 'vegetables' %}"><div ><section class="cat-name">Vegetables</section></div></a>
 			   <a class="category-3" href="{% url 'groceries' %}"><div ><section class="cat-name">Groceries</section></div></a>
@@ -36,8 +36,24 @@
 			 </div>
 		   </div>
 		   <a class="header-bottom"href="#grid">Explore more</a>
-		</div>
+		</div> -->
+				<div class="category">
+                      <a href="{% url 'fruits' %}" style="color:aliceblue;"><div class="category-1"><section class="cat-name">Fruits</section></div></a> 
+                       <a href="{% url 'vegetables' %}" style="color:aliceblue;"><div class="category-2"><section class="cat-name">Vegetables</section></div></a>
+                       <a href="{% url 'groceries' %}" style="color:aliceblue;"><div class="category-3"><section class="cat-name">Groceries</section></div></a>
+                       <a href="{% url 'flowers' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Flowers</section></div></a>
+                   </div>
+                   <div class="category_sub">
+                    <div class="row-1">
+                      <a href="{% url 'fruits' %}" style="color:aliceblue;"><div class="category-1"><section class="cat-name">Fruits</section></div></a> 
+                      <a href="{% url 'vegetables' %}" style="color:aliceblue;"><div class="category-2"><section class="cat-name">Vegetables</section></div></a>
+                    </div>
 
+                    <div class="row-2">
+                      <a href="{% url 'groceries' %}" style="color:aliceblue;"><div class="category-3"><section class="cat-name">Groceries</section></div></a>
+                      <a href="{% url 'flowers' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Flowers</section></div></a>
+                    </div>
+                </div>
 	<!-- <div class="row"> -->
 		<!-- <th><h5>Total:<strong> ₹{{order.get_cart_total|floatformat:2}}</strong></h5></th><br> -->
 
