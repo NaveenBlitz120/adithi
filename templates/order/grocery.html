@@ -1,12 +1,30 @@
 {% extends 'order/main.html' %}
 {% load static %}
 {% block content %}
+
+<style media="screen">
+	.category-1{
+	    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'images/nuts.jpg' %}");
+	}
+	.category-2{
+	    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'images/daals.jpg' %}");
+	}
+	.category-3{
+	    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'images/oils.jpg' %}");
+	}
+	.category-4{
+	    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'images/kitchencleaners.jpg' %}");
+	}
+
+</style>
+
+
 	<div class="head">
 	    <div class="head-search">
 		   <header>
 			  <div class="searchbar">
 				 <div class="search">
-					<!-- <input plac\eholder="What are you looking for?"> -->
+					<!-- <input placeholder="What are you looking for?"> -->
 					<form method="get">
 						   <i class="fa fa-search fa-search-1"></i>
 						 <!-- <button style="width:20px;height:20p" class="btn btn-sm btn-danger" type="submit"><i class="fa"></i></button> -->
@@ -38,20 +56,22 @@
 		   <a class="header-bottom"href="#grid">Explore more</a>
 		</div> -->
 				<div class="category">
-                      <a href="{% url 'fruits' %}" style="color:aliceblue;"><div class="category-1"><section class="cat-name">Fruits</section></div></a>
-                       <a href="{% url 'vegetables' %}" style="color:aliceblue;"><div class="category-2"><section class="cat-name">Vegetables</section></div></a>
-                       <a href="{% url 'groceries' %}" style="color:aliceblue;"><div class="category-3"><section class="cat-name">Groceries</section></div></a>
-                       <a href="{% url 'flowers' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Flowers</section></div></a>
+                      <a href="{% url 'nuts' %}" style="color:aliceblue;"><div class="category-1"><section class="cat-name">Nuts</section></div></a>
+                       <a href="{% url 'daals' %}" style="color:aliceblue;"><div class="category-2"><section class="cat-name">Daals</section></div></a>
+                       <a href="{% url 'oils' %}" style="color:aliceblue;"><div class="category-3"><section class="cat-name">Oils</section></div></a>
+                       <a href="{% url 'kitchencleaners' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Kitchen-cleaners</section></div></a>
+                       <!-- <a href="{% url 'kitchencleaners' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Kitchen-cleaners</section></div></a> -->
                    </div>
                    <div class="category_sub">
                     <div class="row-1">
-                      <a href="{% url 'fruits' %}" style="color:aliceblue;"><div class="category-1"><section class="cat-name">Fruits</section></div></a>
-                      <a href="{% url 'vegetables' %}" style="color:aliceblue;"><div class="category-2"><section class="cat-name">Vegetables</section></div></a>
+                      <a href="{% url 'nuts' %}" style="color:aliceblue;"><div class="category-1"><section class="cat-name">Nuts</section></div></a>
+                      <a href="{% url 'daals' %}" style="color:aliceblue;"><div class="category-2"><section class="cat-name">Daals</section></div></a>
                     </div>
 
                     <div class="row-2">
-                      <a href="{% url 'groceries' %}" style="color:aliceblue;"><div class="category-3"><section class="cat-name">Groceries</section></div></a>
-                      <a href="{% url 'flowers' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Flowers</section></div></a>
+                      <a href="{% url 'oils' %}" style="color:aliceblue;"><div class="category-3"><section class="cat-name">Oils</section></div></a>
+                      <a href="{% url 'kitchencleaners' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Kitchen-cleaners</section></div></a>
+                      <!-- <a href="{% url 'kitchencleaners' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Kitchen-cleaners</section></div></a> -->
                     </div>
                 </div>
 	<!-- <div class="row"> -->

@@ -34,10 +34,11 @@ def vegetables(request):
 	products = product.objects.filter(category = 'vegetables')
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
+	lis = [250,500,750]
 	print(prod_obj)
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
-	context = {'products':prod_obj , 'filter':myfilter ,'order':order,'cartItems':cartItems }
+	context = {'products':prod_obj , 'filter':myfilter ,'order':order,'cartItems':cartItems,'list':lis }
 	return render(request, 'order/store.html', context)
 
 
@@ -51,9 +52,10 @@ def fruits(request):
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	print(prod_obj)
+	lis = [250,500,750]
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
-	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter }
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter,'list':lis }
 	return render(request, 'order/store.html', context)
 
 def groceries(request):
@@ -63,12 +65,73 @@ def groceries(request):
 	order = data['order']
 	items = data['items']
 	products = product.objects.filter(category = 'groceries' )
+	lis = [250,500,750]
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
-	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter }
-	return render(request, 'order/store.html', context)
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter ,'list':lis}
+	return render(request, 'order/grocery.html', context)
+
+def nuts(request):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = product.objects.filter(category = 'groceries' ,groceries_category='nuts')
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
+	lis = [250,500,750]
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter,'list':lis }
+	return render(request, 'order/grocery.html', context)
+
+def kitchencleaners(request):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = product.objects.filter(category = 'groceries' ,groceries_category='kitchen-cleaners')
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
+	lis = [250,500,750]
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter ,'list':lis}
+	return render(request, 'order/grocery.html', context)
+
+def daals(request):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = product.objects.filter(category = 'groceries',groceries_category='dhaals' )
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
+	lis = [250,500,750]
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter ,'list':lis}
+	return render(request, 'order/grocery.html', context)
+
+def oils(request):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = product.objects.filter(category = 'groceries',groceries_category='oils' )
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
+	lis = [250,500,750]
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter,'list':lis }
+	return render(request, 'order/grocery.html', context)
 
 def flowers(request):
 
@@ -83,7 +146,7 @@ def flowers(request):
 	flow_obj= myfilter.qs
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
-	context = {'flowers':flow_obj,'order':order,'cartItems':cartItems, 'filter':myfilter }
+	context = {'flowers':flow_obj,'order':order,'cartItems':cartItems, 'filter':myfilter ,'list':lis}
 	return render(request, 'order/store.html', context)
 
 def cart(request):

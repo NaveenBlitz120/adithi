@@ -13,12 +13,19 @@ class product(models.Model):
         ('groceries','groceries'),
         # ('flowers','flowers'),
     )
+    groceries_category = (
+        ('nuts','nuts'),
+        ('dhaals','dhaals'),
+        ('oils','oils'),
+        ('kitchen-cleaners','kitchen-cleaners'),
+    )
     name = models.CharField(max_length=200)
     our_price = models.FloatField()
     market_price = models.FloatField()
-    image = models.ImageField(null=True,blank = True)
+    image = models.ImageField(blank = True,default = 'default.png')
     types = models.CharField( choices = Type_choices,max_length=20 )
     category = models.CharField( choices = category,max_length = 60 )
+    groceries_category = models.CharField( choices = groceries_category,max_length = 60,null=True ,blank=True )
     desc = models.TextField(null=True)
     def __str__(self):
         return self.name

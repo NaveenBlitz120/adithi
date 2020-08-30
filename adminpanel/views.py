@@ -59,7 +59,7 @@ def stockflo(request):
 @allowed_user(allowed_roles=['admin'])
 def create(request):
 
-    form = Create()
+    form = Create(initial={'groceries_category': 'Null' })
     context = {'form':form,}
     if request.method == 'POST':
         #print('printing POST:',request.POST)
