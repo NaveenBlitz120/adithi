@@ -146,8 +146,54 @@ def flowers(request):
 	flow_obj= myfilter.qs
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
-	context = {'flowers':flow_obj,'order':order,'cartItems':cartItems, 'filter':myfilter ,'list':lis}
+	context = {'flowers':flow_obj,'order':order,'cartItems':cartItems, 'filter':myfilter }
 	return render(request, 'order/store.html', context)
+
+def viewflower(request,pk):
+
+	pro = flower.objects.get(id=pk)
+	print(pro)
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	it = data['items']
+	floweritems = data['floweritems']
+	# print(it)
+	# print(it[0],pk)
+	items = {}
+	for i in floweritems:
+		# print(type(i['id']),type(pk))
+		if i['id'] == int(pk):
+			items = i
+			# print('entered')
+
+	print(items)
+
+	context={'pro' : pro ,'item':items,'order':order, 'cartItems':cartItems}
+	return render(request , 'order/viewflower.html',context)
+
+
+def viewproduct(request,pk):
+
+	pro = product.objects.get(id=pk)
+	print(pro)
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	it = data['items']
+	# print(it)
+	# print(it[0],pk)
+	items = {}
+	for i in it:
+		# print(type(i['id']),type(pk))
+		if i['id'] == int(pk):
+			items = i
+			# print('entered')
+
+	print(items)
+
+	context={'pro' : pro ,'items':items,'order':order, 'cartItems':cartItems}
+	return render(request , 'order/viewproduct.html',context)
 
 def cart(request):
 
@@ -165,8 +211,9 @@ def checkout(request):
 		warning = ''
 		data = cartData(request)
 		checkout_data_form = checkoutform()
+		print(checkout_data_form)
 		checkout_data_form.fields['name'].widget.attrs = {'placeholder' : 'Name','id':'name'}
-		checkout_data_form.fields['number'].widget.attrs = {'placeholder' : 'your phone number','pattern':"[0-9]{10}"}
+		checkout_data_form.fields['phoneno'].widget.attrs = {'placeholder' : 'your phone number','pattern':"[0-9]{10}"}
 		checkout_data_form.fields['address'].widget.attrs = {'id' : 'autocomplete' ,'placeholder' : 'your Address Here or locate yourself ---->'}
 		cartItems = data['cartItems']
 		order = data['order']
@@ -205,7 +252,9 @@ def htmlbill(request):
 	bill = orders.objects.get(orderid = ordered_id)
 	bill_total = bill.orderfinaltotal
 	order_item = orderedcart.objects.filter(orderedid = bill)
-	context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total ,'form':fbform}
+	servicebill = service.objects.get(area = bill.area)
+	servicebillcharge = servicebill.rate
+	context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total ,'form':fbform ,'servicebillcharge':servicebillcharge}
 	if request.method == 'POST':
 		form = Create(request.POST)
 		print(form)

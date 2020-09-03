@@ -2,9 +2,9 @@ from django.shortcuts import render ,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse
-from .forms import Create , Update , Update_order , Update_offer , Update_flower , CreateFlo
-from order.models import product , orders , orderedcart , setcart , flower, feedback
-from .filters import myFilter , orderFilter , floFilter
+from .forms import Create , Update , Update_order , Update_offer , Update_flower , CreateFlo , Update_service , CreateSer
+from order.models import product , orders , orderedcart , setcart , flower, feedback , service
+from .filters import myFilter , orderFilter , floFilter , serFilter
 from .decorators import allowed_user ,unauthenticated_user
 from django.contrib.auth.decorators import login_required
 
@@ -57,6 +57,16 @@ def stockflo(request):
 
 @login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])
+def stockservice(request):
+    serv_obj = service.objects.all()
+    myfilter = serFilter(request.GET,queryset=serv_obj)
+    serv_obj= myfilter.qs
+    context ={ 'prod':serv_obj , 'filter':myfilter }
+    print(serv_obj ,context['prod'])
+    return render(request, 'admin/dashboard1.html',context)
+
+@login_required(login_url='login')
+@allowed_user(allowed_roles=['admin'])
 def create(request):
 
     form = Create(initial={'groceries_category': 'Null' })
@@ -79,6 +89,21 @@ def createflo(request):
     if request.method == 'POST':
         #print('printing POST:',request.POST)
         form = CreateFlo(request.POST , request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(st)
+
+    return render(request,'admin/forms.html',context)
+
+@login_required(login_url='login')
+@allowed_user(allowed_roles=['admin'])
+def createser(request):
+
+    form = CreateSer()
+    context = {'form':form,}
+    if request.method == 'POST':
+        #print('printing POST:',request.POST)
+        form = CreateSer(request.POST , request.FILES)
         if form.is_valid():
             form.save()
             return redirect(st)
@@ -128,6 +153,24 @@ def updateflo(request,pk):
 
 @login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])
+def updateser(request,pk):
+
+    order = service.objects.get(id=pk)
+    form = Update_service(instance=order)
+    form.fields['area'].widget.attrs = {'class' : 'form-control' }
+    form.fields['rate' ].widget.attrs = {'class' : 'form-control' }
+    if request.method == 'POST':
+        form = Update_service(request.POST,instance = order)
+        if form.is_valid():
+            form.save()
+            return redirect(st)
+
+
+    context = {'form':form}
+    return render(request,'admin/forms.html',context)
+
+@login_required(login_url='login')
+@allowed_user(allowed_roles=['admin'])
 def delete(request,pk):
 
     order = product.objects.get(id=pk)
@@ -143,6 +186,18 @@ def delete(request,pk):
 def deleteflo(request,pk):
 
     order = flower.objects.get(id=pk)
+    if request.method == 'POST':
+        order.delete()
+        return redirect(st)
+
+    context = {'item':order}
+    return render(request,'admin/delete.html',context)
+
+@login_required(login_url='login')
+@allowed_user(allowed_roles=['admin'])
+def deleteser(request,pk):
+
+    order = service.objects.get(id=pk)
     if request.method == 'POST':
         order.delete()
         return redirect(st)

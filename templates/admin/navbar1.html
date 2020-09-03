@@ -43,6 +43,9 @@
       {% if  request.path != "/admin/flowers" %}
       <a href="{% url 'floproducts' %}"style="font-weight: 200;">Flowers</a></li>
       {% endif %}
+      {% if  request.path != "/admin/services" %}
+      <a href="{% url 'stockservice' %}"style="font-weight: 200;">Services</a></li>
+      {% endif %}
     </div>
     <ul class="nav-links">
       <li></li>

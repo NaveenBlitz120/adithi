@@ -123,7 +123,7 @@
                               <label for="lname">Mobile </label>
                          </div>
                          <div class="col-75">
-                              {{checkout_data_form.number}}
+                              {{checkout_data_form.phoneno}}
                               <!-- <input type="text" id="lname" name="lastname" placeholder="Your number.."> -->
                          </div>
                     </div>
@@ -133,10 +133,20 @@
                               <label for="lname">Address </label>
                          </div>
                          <div style="position: relative;" class="col-75">
-                              <i  aria-hidden="true" class="material-icons ic "id="locator-button" >&#xe55f;</i>
+                              <!-- <i  aria-hidden="true" class="material-icons ic "id="locator-button" >&#xe55f;</i> -->
                               <!-- <i aria-hidden="true" class="dot circle outline link icon" id="locator-button"></i> -->
                               {{checkout_data_form.address}}
                               <!-- <input type="text" id="lname" name="lastname" placeholder="Your address.."> -->
+                         </div>
+                         <div class="row">
+                              <div class="col-25">
+                                   <label for="lname">Area</label>
+                              </div>
+                              <div class="col-75" style="position: relative;">
+
+                                   {{checkout_data_form.area}}
+                              </div>
+
                          </div>
                     </div>
 

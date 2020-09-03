@@ -85,6 +85,7 @@
 					    <h6 style="padding-left: 30px; padding-top:0px;"><s>₹{{product.market_price}}</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹{{product.our_price}}</strong></span></h6>
 					    <hr style="margin:0.5rem;">
                           <button type="button" data-product="{{product.id}}" data-action="add" data-page="home" data-type="{{product.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
+                          <a  href="{% url 'viewproduct' product.id %}" style="display: inline;">View</a>
                           <div class="dropdown" style="display: inline; padding-left: 3rem;">
                             <select class="btn btn-outline-warning btn-sm  dropdown-toggle"  id="{{product.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="dropdown-menu" >
@@ -170,7 +171,9 @@
 			    <br>
 			    <div class="ctrl-btn">
 				 <button type="button" data-product="{{flower.id}}" data-action="add" data-category="{{flower.category}}" data-page="home" data-type="{{flower.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
+				 <a  href="{% url 'viewflower' flower.id %}" style="display: inline;">View</a>
 				 <div class="dropdown" style="display: inline; padding-left: 75px;">
+
 					 <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{flower.category}}</button>
 				   <!-- <select class="btn btn-outline-warning btn-sm "  id="{{product.id}}"   aria-haspopup="true" aria-expanded="true">Quantity -->
 				   <!-- <div class="dropdown-menu" >

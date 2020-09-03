@@ -42,6 +42,7 @@ class orders(models.Model):
     name = models.CharField(max_length = 30)
     address = models.TextField()
     ordertotal = models.FloatField()
+    area = models.ForeignKey('service' ,on_delete=models.SET_NULL, null=True)
     date = models.DateTimeField(auto_now_add = True)
     status = models.CharField(choices = Status_Choices,max_length=20,default = Status_Choices[0][0])
     offer = models.IntegerField(default=0)
@@ -62,13 +63,13 @@ class setcart(models.Model):
     ('on','on'),
     ('off','off')
     )
-    minimum_cart_value = models.FloatField()
     offer_on_or_off = models.CharField(null=True,max_length=10,choices=on_or_off)
+    minimum_cart_value = models.FloatField()
     silveroff_value = models.FloatField()
-    goldenoff_value = models.FloatField()
-    platinumoff_value = models.FloatField()
     silveroff_percentage = models.IntegerField()
+    goldenoff_value = models.FloatField()
     goldenoff_percentage = models.IntegerField()
+    platinumoff_value = models.FloatField()
     platinumoff_percentage = models.IntegerField()
     phoneno = models.CharField(max_length = 10,null=True)
 
@@ -95,3 +96,9 @@ class flower(models.Model):
 class feedback(models.Model):
     name = models.CharField(max_length=50)
     feedbackdata = models.TextField()
+
+class service(models.Model):
+    area = models.CharField(max_length=50)
+    rate = models.FloatField()
+    def __str__(self):
+        return self.area

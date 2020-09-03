@@ -1,0 +1,98 @@
+{% extends 'order/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div style="margin-top:50px">
+
+     <img src="{{pro.image.url}}" alt="">
+
+     <p id='id' data-proid={{pro.id}}>
+          {{pro.name}}
+	 <button id='addtocart' type="button" data-product="{{pro.id}}" data-action="add" data-category="{{pro.category}}" data-page="home" data-type="{{pro.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>          {{pro.our_price}}<br>
+          {{pro.market_price}}
+     </p>
+
+
+     <div id= 'plusminus'  style="display:none;" >
+
+
+               <!-- <td>1</td> -->
+               <!--
+                    <td class="empty-cell">
+                         <img src="{{item.product.imageURL}}" alt="product image">
+                         <img src="/images/product-2.jpg" alt="strawberry">
+                    </td> -->
+                    <!-- <td>
+                         {{items.product.name}}
+                    </td> -->
+
+                    <td>
+                       ₹{{item.product.price|floatformat:2}}/{{item.product.category}}
+                    </td>
+                    <td>
+                         <img img data-product="{{item.product.id}}" data-type="flower"data-category="{{item.product.category}}" data-action="remove" data-remove='false' class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;"src="{% static  '/images/minus.png' %}" alt="sub" srcset="">
+                       {%if item.product.category == "grams"%}
+                         <span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+                       {%elif item.product.category == "count"%}
+                         <span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+                       {%elif item.product.category == "maalai"%}
+                         <span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+                       {%elif item.product.category == "bunch"%}
+                         <span style="padding: 10px;">{{item.quantity|floatformat:0}}</span>
+                       {%else%}
+                         <span style="padding: 10px;">{{item.quantity|floatformat:2}}</span>
+                       {%endif%}
+                       <img data-product="{{item.product.id}}"  data-type="flower" data-category="{{item.product.category}}" data-page="not" data-action="add" class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;" src="{% static  '/images/plus.png' %}" alt="add" srcset="">
+
+                    </td>
+                    <td>
+                       {{item.product.category}}
+                    </td>
+                    <td>
+                       ₹{{item.get_total|floatformat:2}}
+                    </td>
+                    <td>
+                       <img img data-product="{{item.product.id}}"  data-type="flower" data-remove='true' data-category="{{item.product.category}}" data-page="not" data-action="remove" class="update-cart" style="width:1rem;height:1rem;cursor:pointer;" src="{% static  '/images/cancel.svg' %}" alt="cancel">
+                    </td>
+
+     </div>
+
+
+
+     <!-- <div id= 'plusminus'  style="display:none;">
+          <img data-product="{{pro.id}}" data-type="{{items.product.type}}" data-action="remove" class=" update-cart"  style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;"src="{% static  '/images/minus.png' %}" alt="minus" srcset="">
+         {%if item.product.type == "grams"%}
+          <span style="padding: 10px;">{{items.quantity|floatformat:0}}</span>
+         {%elif item.product.type == "count"%}
+          <span style="padding: 10px;">{{items.quantity|floatformat:0}}</span>
+         {%else%}
+          <span style="padding: 10px;">{{items.quantity|floatformat:2}}</span>
+         {%endif%}
+         <!-- <span style="padding: 10px;">100</span> -->
+         <!-- <span style="padding: 10px;">100</span>
+         <span style="padding: 10px;">100</span>
+         <img  data-product="{{pro.id}}"  data-type="{{items.product.type}}" data-page="not" data-action="add" class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;" src="{% static  '/images/plus.png' %}" alt="plus" srcset="">
+     </div> -->
+
+
+</div>
+
+
+
+<script type="text/javascript">
+
+     let x = document.getElementById('id');
+     let pro_id = x.dataset.proid
+     if (flower[pro_id] !== undefined)
+     {
+          console.log(flower[pro_id]);
+          let b = document.getElementById('addtocart');
+          b.style.display = "none";
+          let a = document.getElementById('plusminus');
+          a.style.display = "block";
+     }
+
+
+</script>
+{% endblock content %}

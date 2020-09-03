@@ -121,8 +121,9 @@ def cartData(request):
 
 def guestOrder(request, data):
 	cust_name = data.cleaned_data['name']#changed
-	phonenum = data.cleaned_data['number']
+	phonenum = data.cleaned_data['phoneno']
 	add = data.cleaned_data['address']
+	area_selected = data.cleaned_data['area']
 	# orderid = '#ae'+str(int(old_orderid.orderid[2:])+1)
 	cookieData = cookieCart(request)
 	items = cookieData['items']
@@ -145,7 +146,7 @@ def guestOrder(request, data):
 	# cookieData = cookieCart(request)
 	# items = cookieData['items']
 
-	new_order = orders.objects.create(orderid = new_orderid,name = cust_name,phoneno = phonenum,ordertotal=0 ,address = add)
+	new_order = orders.objects.create(orderid = new_orderid,name = cust_name,phoneno = phonenum,ordertotal=0 ,address = add,area=area_selected)
 	# new_order.orderid = new_orderid
 	# new_order.name = name
 	# new_order.phoneno = phonenum
@@ -182,7 +183,9 @@ def guestOrder(request, data):
 		ordercart.save()
 
 	offerpercenttage = 0
+	service_charge = service.objects.get(area = area_selected)
 	update_order = orders.objects.get(orderid=new_orderid)
+	order_total_calculated = order_total_calculated + service_charge.rate
 
 	update_order.ordertotal =  round(order_total_calculated,2)
 	if requirement.offer_on_or_off == 'on':
@@ -202,7 +205,7 @@ def guestOrder(request, data):
 
 	update_order.orderfinaltotal =  round(order_total_calculated,2)
 
-	resp =  sendSMS('tjscNy0t/Wc-uAvFTKR7036IdflMIH71wcCasC1DPf', '91'+phonenum,'TXTLCL', 'HI !!!'+cust_name+' your order has been placed Successfully You can track order with order ID :'+update_order.orderid+' Someone from our side will contact you soon and confirm the order.')
+	resp =  sendSMS('tjscNy0t/Wc-uAvFTKR7036IdflMIH71wcCasC1DPf', '91'+phonenum,'TXTLCL', 'HI !!!'+cust_name+' your order has been placed Successfully You can track order with order ID :'+update_order.orderid+' Someone from our side will contact you soon and confirm the order. Please ,visit us again at adithiecart.herokuapp.com')
 	print (resp)
 	update_order.save()
 	return new_orderid

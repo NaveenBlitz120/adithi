@@ -1,0 +1,67 @@
+{%  extends 'admin/main.html' %}/
+
+{% block content %}
+
+
+<br>
+
+<div class="row">
+	
+	<div class="col-md-12" >
+		<div class="wrap">
+			<div style="margin:0 40%;">
+				<a class="btn btn-outline-warning btn-block"  href="{% url 'createser' %}">create a new Service Area</a>
+				
+			  </div>
+			<hr>
+            <!-- <div class="search">
+            	<form method="get">
+				<h5 style="padding-left: 5rem;">Services:</h5>
+					<div style="padding-left: 5rem;">
+						{{filter.form}}
+						<button class="btn btn-sm btn-danger" type="submit">Search</button>
+					</div>
+				</form>
+            </div> -->
+			<div class="search">
+				<form method="get" style="padding-left: 20%; padding-bottom: 5%;">
+				 <i class="fa fa-search fa-search-1" style="padding-left: 20%;"></i>
+				 {{filter.form.productname}}
+			   <button class="btn btn-sm btn-success fa-search-2" type="submit">Search</button>
+				 </form>
+			  </div>
+		   </div>
+		</div>
+		<hr>
+		
+		<div class="card card-body"  style="margin:0rem 15%;">
+
+			<table class="table table-sm">
+				<tr>
+                    <th>Area:</th>
+					<th>Rate:</th>
+
+					<th>Update</th>
+					<th>Delete</th>
+				</tr>
+
+				{% for product in prod %}
+					<tr>
+						<td>{{product.area}}</td>
+						<td>{{product.rate}}</td>
+
+						<td><a class="btn btn-sm btn-info" href="{% url 'updateser' product.id%}">Update</a></td>
+
+						<td><a class="btn btn-sm btn-danger" href="{% url 'deleteser' product.id%}">Delete</a></td>
+
+					</tr>
+				{% endfor %}
+
+
+			</table>
+		</div>
+    </div>
+
+</div>
+
+{% endblock %}

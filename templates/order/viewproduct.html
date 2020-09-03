@@ -1,0 +1,97 @@
+{% extends 'order/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div style="margin-top:50px">
+
+     <img src="{{pro.image.url}}" alt="">
+
+     <p id='id' data-proid={{pro.id}}>
+          {{pro.name}}
+          <button id='addtocart' type="button" data-product="{{pro.id}}" data-action="add" data-page="not" data-type="{{pro.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
+          {{pro.our_price}}<br>
+          {{pro.market_price}}
+     </p>
+
+
+     <div id= 'plusminus'  style="display:none;" >
+
+          <tr >
+               <!-- <td>1</td> -->
+               <!--
+                    <td class="empty-cell">
+                         <img src="{{item.product.imageURL}}" alt="product image">
+                         <img src="/images/product-2.jpg" alt="strawberry">
+                    </td> -->
+                    <!-- <td>
+                         {{items.product.name}}
+                    </td> -->
+
+                    <td>
+                         ₹{{items.product.price|floatformat:2}}/kg
+                    </td>
+                    <td>
+                         <img data-product="{{pro.id}}" data-type="{{items.product.type}}" data-action="remove" class=" update-cart"  style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;"src="{% static  '/images/minus.png' %}" alt="minus" srcset="">
+                         {%if items.product.type == "grams"%}
+                         <span style="padding: 10px;">{{items.quantity|floatformat:0}}</span>
+                         {%elif items.product.type == "count"%}
+                         <span style="padding: 10px;">{{items.quantity|floatformat:0}}</span>
+                         {%else%}
+                         <span style="padding: 10px;">{{items.quantity|floatformat:2}}</span>
+                         {%endif%}
+                         <!-- <span style="padding: 10px;">100</span>
+                              <span style="padding: 10px;">100</span>
+                              <span style="padding: 10px;">100</span> -->
+                              <img  data-product="{{pro.id}}"  data-type="{{items.product.type}}" data-page="not" data-action="add" class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;" src="{% static  '/images/plus.png' %}" alt="plus" srcset="">
+                         </td>
+                         <td>
+                              {{items.product.type}}
+                         </td>
+                         <td>
+                              ₹{{items.get_total|floatformat:2}}
+                         </td>
+                         <td>
+                              <img data-product="{{items.product.id}}" data-remove="true" data-type="{{item.product.type}}" data-page="not" data-action="remove" class="update-cart" style="width:1rem;height:1rem;cursor:pointer;" src="{% static  '/images/cancel.svg' %}" alt="cancel">
+                         </td>
+                    </tr>
+     </div>
+
+
+
+     <!-- <div id= 'plusminus'  style="display:none;">
+          <img data-product="{{pro.id}}" data-type="{{items.product.type}}" data-action="remove" class=" update-cart"  style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;"src="{% static  '/images/minus.png' %}" alt="minus" srcset="">
+         {%if item.product.type == "grams"%}
+          <span style="padding: 10px;">{{items.quantity|floatformat:0}}</span>
+         {%elif item.product.type == "count"%}
+          <span style="padding: 10px;">{{items.quantity|floatformat:0}}</span>
+         {%else%}
+          <span style="padding: 10px;">{{items.quantity|floatformat:2}}</span>
+         {%endif%}
+         <!-- <span style="padding: 10px;">100</span> -->
+         <!-- <span style="padding: 10px;">100</span>
+         <span style="padding: 10px;">100</span>
+         <img  data-product="{{pro.id}}"  data-type="{{items.product.type}}" data-page="not" data-action="add" class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;" src="{% static  '/images/plus.png' %}" alt="plus" srcset="">
+     </div> -->
+
+
+</div>
+
+
+
+<script type="text/javascript">
+
+     let x = document.getElementById('id');
+     let pro_id = x.dataset.proid
+     if (cart[pro_id] !== undefined)
+     {
+          console.log(cart[pro_id]);
+          let b = document.getElementById('addtocart');
+          b.style.display = "none";
+          let a = document.getElementById('plusminus');
+          a.style.display = "block";
+     }
+
+
+</script>
+{% endblock content %}

@@ -1,11 +1,12 @@
 from django import forms
 from django.forms import ModelForm
-from order.models import feedback
+from order.models import feedback,orders
 
-class checkoutform(forms.Form):
-    name = forms.CharField(max_length=20)
-    number = forms.CharField(max_length=10)
-    address = forms.CharField(max_length=200)
+class checkoutform(ModelForm):
+    class Meta:
+        model = orders
+        fields = ['name','phoneno','address','area']
+
 
 class Create(ModelForm):
 	class Meta:
