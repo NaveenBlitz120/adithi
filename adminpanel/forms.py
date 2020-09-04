@@ -21,7 +21,7 @@ class CreateSer(ModelForm):
 class Update(ModelForm):
 	class Meta:
 		model = product
-		fields = [ 'our_price','market_price' , 'types' , 'name' ]
+		fields = [ 'our_price','market_price' , 'types' , 'name','image' ]
 
 class Update_order(ModelForm):
 	class Meta:

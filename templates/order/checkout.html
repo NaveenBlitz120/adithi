@@ -11,69 +11,6 @@
      <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 </head>
 {% block content %}
-     <!-- <div class="row">
-		<div class="col-lg-6">
-			<div class="box-element" id="form-wrapper">
-				<form id="form" method="post">
-					<div id="user-info">
-						<div class="form-field">
-                                   {% csrf_token %} -->
-							<!-- <input required class="form-control" type="text" name="name" placeholder="Name.."> -->
-                                   <!-- {{checkout_data_form.name}}
-						</div>
-						<div class="form-field">
-                                   {{checkout_data_form.number}} -->
-                                   <!-- <input required class="form-control" type="tel" name="phonenumber" pattern="[0-9]{10}" placeholder="your phone number"> -->
-                              <!-- </div>
-                              <div class="ui icon big input" id="locator-input-section">
-                                   {{checkout_data_form.address}} -->
-                                   <!-- <input type="text" placeholder="Enter Your Address" id="autocomplete" /> -->
-                                   <!-- <i aria-hidden="true" class="dot circle outline link icon" id="locator-button"></i>
-                              </div>
-					</div> -->
-
-					<!-- <hr> -->
-                         <!-- <button type="submit" id="form-submit" class="filled-button">Send Message</button> -->
-                         <!-- <input id="form-button" class="btn btn-success btn-block" type="submit" value="place orders"> -->
-				<!-- </form>
-			</div> -->
-
-			<!-- <br>
-			<div class="box-element hidden" id="payment-info">
-				<small>Paypal Options</small>
-				<button id="make-payment">Make payment</button> -->
-			<!-- </div> -->
-
-		<!-- </div>
-
-		<div class="col-lg-6">
-			<div class="box-element">-->
-                    <!-- {{request}} -->
-				<!-- <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
-				<hr>
-				<h3>Order Summary</h3>
-				<hr>
-				{% for item in items %}
-				<div class="cart-row">
-					<div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
-					<div style="flex:2"><p>{{item.product.name}}</p></div>
-					<div style="flex:1"><p>₹{{item.product.price|floatformat:2}}</p></div>
-					<div style="flex:1"><p>x{{item.quantity}}</p></div>
-				</div>
-				{% endfor %}
-                    {% for item in floweritems %}
-				<div class="cart-row">
-					<div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
-					<div style="flex:2"><p>{{item.product.name}}</p></div>
-					<div style="flex:1"><p>₹{{item.product.price|floatformat:2}}</p></div>
-					<div style="flex:1"><p>x{{item.quantity}}</p></div>
-				</div>
-				{% endfor %}
-				<h5>Items:   {{order.get_cart_items}}</h5>
-				<h5>Total:   ₹{{order.get_cart_total|floatformat:2}} {{warning}}</h5>
-			</div>
-		</div>
-	</div>  -->
 <body>
 
      <nav>

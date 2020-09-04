@@ -1,15 +1,12 @@
 .head{
-
-
-     margin-top: 3rem;
-
     text-align: center;
+    background: #ffe482;
+    margin-top: -4rem;
 }
 
 .head-search{
-  background-image:linear-gradient(to bottom,#8cce8073, rgb(109, 221, 152)),url("/images/bg_3.jpg") ;
   background-size: cover;
-  height:43rem;
+  height:33rem;
 }
 
 header{
@@ -26,12 +23,6 @@ position: relative;
 font-size: 1rem;
 }
 
-.search .fa-search {
-  position: absolute;
-  top: 23px;
-  left: 17px;
-  color:  rgb(0, 0, 0);
-}
 
 .search input {
 width: 40vw;
@@ -39,34 +30,27 @@ height: 4rem;
 border-radius: 100px;
 text-indent: 3rem;
 font-weight: 500;
-border: 1px solid #939393;
+border: 0;
 }
+
+.fa-search-2:link,.fa-search-2:visited{
+    text-decoration: none;
+    color:#e0943d;
+}
+
+.fa-search-2{
+  vertical-align: middle;
+  font-weight: 1000;
+ font-size: 2rem;
+}
+
 
 textarea:focus, input:focus{
   outline: none;
 }
 
-.fa-search-2{
-  text-decoration: none;
-  margin-left: 0.5rem;
-  font-size: 1rem;
-  border-radius: 100px;
-  padding:1rem;
-  background-color: rgb(109, 221, 152);
-  color:black;
-  box-shadow: 2px 2px 5px 0.7px rgba(0, 0, 0, 0.5);
-}
-
-.fa-search-2:hover{
-  box-shadow: 2px 2px 5px 0.7px rgba(0, 0, 0, 0.5);
-}
-.fa-search-2:active{
-  box-shadow: 2px 2px 5px 0.5px rgba(0, 0, 0, 0.2);
-}
-.fa-search-2:link,
-.fa-search-2:visited{
-     text-decoration: none;
-     color: black;
+input{
+  background-color: rgb(241, 235, 235);
 }
 
 .header-bottom:link,
@@ -76,10 +60,10 @@ color: black;
 }
 
 .header-bottom{
-  margin-top: 7rem;
+  margin-top: 5rem;
 display: inline-block;
 padding: .7rem;
-background-color: rgb(109, 221, 152);
+background-color: #e0943d;
 border-radius: 100px;
 box-shadow: 2px 2px 2px 0.7px rgba(0, 0, 0, 0.5);
 }
@@ -98,12 +82,12 @@ box-shadow: 2px 2px 2px 0.5px rgba(0, 0, 0, 0.2);
 @media screen and (max-width:1200px){
 
   .head{
-    margin-top:3rem;
+    margin-top:-3rem;
     text-align: center;
 }
 
 .head-search{
-  background-image:linear-gradient(to bottom,#8cce8073, rgb(109, 221, 152)),url("/images/bg_3.jpg") ;
+
   height:43rem;
 }
 
@@ -115,7 +99,7 @@ header{
     margin-top: 5rem;
     display: inline-block;
     padding: .7rem;
-    background-color: rgb(109, 221, 152);
+    background-color: #e0943d;
     border-radius: 100px;
     box-shadow: 2px 2px 2px 0.7px rgba(0, 0, 0, 0.5);
 }
@@ -124,49 +108,39 @@ header{
 @media screen and (max-width:768px){
 
   .head{
-    margin-top:3rem;
+    margin-top:-2rem;
     text-align: center;
 }
 
 .head-search{
-  background-image:linear-gradient(to bottom,#8cce8073, rgb(109, 221, 152)),url("/images/bg_3.jpg") ;
+
   height:43rem;
 }
   header{
     width: 100%;
 }
 
-  .search .fa-search {
-    position: absolute;
-    top: 17px;
-    left: 11px;
-    color:  rgb(0, 0, 0);
-  }
+/* changed search */
+
   .search input {
     width:270px;
-    height: 50px;
-    border-radius: 100px;
+    height: 30px;
+    border-radius: 10px;
     text-indent: 2.5rem;
     font-weight: 500;
     border: 0;
   }
-  .fa-search-2{
-    text-decoration: none;
-    margin-left: 0.5rem;
-    font-size: 0.85rem;
-    border-radius: 100px;
-    padding:0.8rem;
-    margin-bottom: 1rem;
-    background-color: rgb(109, 221, 152);
-    color:black;
-    box-shadow: 2px 2px 5px 0.7px rgba(0, 0, 0, 0.5);
-  }
+
+
+
+
+
 
   .header-bottom{
     margin-top: 3rem;
     display: inline-block;
     padding: .7rem;
-    background-color: rgb(109, 221, 152);
+    background-color: #e0943d;
     border-radius: 100px;
     box-shadow: 2px 2px 2px 0.7px rgba(0, 0, 0, 0.5);
    }

@@ -13,11 +13,11 @@
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
      <link rel="stylesheet" href="{% static 'css/loader.css' %}">
      <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
      <link rel="stylesheet" href="{% static 'css/details.css' %}">
@@ -25,6 +25,8 @@
      <link rel="stylesheet" href="{% static 'css/content.css' %}">
      <link rel="stylesheet" href="{% static 'css/grid.css' %}">
      <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+
+
 
 
 	<script type="text/javascript">
@@ -103,39 +105,11 @@
     </style> -->
 </head>
 <body>
+<div class="main">
 
-	<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <a class="navbar-brand" href="{% url 'store' %}">Ecom</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item active">
-	        <a class="nav-link" href="{% url 'store' %}">All <span class="sr-only">(current)</span></a>
-	      </li>
-		  <a class="nav-link" href="{% url 'home' %}">admin <span class="sr-only">(current)</span></a>
-		  <a class="nav-link" href="{% url 'vegetables' %}">vegetables <span class="sr-only">(current)</span></a>
-		  <a class="nav-link" href="{% url 'fruits' %}">fruits <span class="sr-only">(current)</span></a>
-		  <a class="nav-link" href="{% url 'groceries' %}">groceries <span class="sr-only">(current)</span></a>
-		  <a class="nav-link" href="{% url 'flowers' %}">Flowers <span class="sr-only">(current)</span></a>
-	    </ul>
-	    <div class="form-inline my-2 my-lg-0">
-
-	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
-			<a href="{% url 'cart' %}">
-	    	</a>
-
-
-			<p id="cart-total">{{cartItems}}</p>
-
-	    </div>
-	  </div>
-	</nav> -->
-	<nav>
+	<nav class="nav-head">
 	    <div class="logo">
-		  <a href="#">Adhithi Veg Court</a>
+		  <a href="{% url 'store' %}">Adhithi Veg Court</a>
 	    </div>
 	    <ul class="nav-links">
 		   <li><a href="{% url 'store' %}">Home</a></li>
@@ -164,22 +138,34 @@
             {% endblock content %}
          <!-- </div> -->
 
+	    <footer>
 
-	    <!-- <script type="text/javascript">
+	      <nav class="nav-foot" style="transition:0.4s;">
+	        <a class="nav-foot-a fa" style="text-decoration:none;"href="{% url 'store' %}">&#xf015;<span></span></a>
+	        <a class="nav-foot-a fa" href="/category"> &#xf00b;<span></span></a>
+	        <a class="nav-foot-a fa" style="text-decoration:none;" href="{% url 'cart' %}">&#xf07a;<span class='badge badge-warning' id='count'> {{cartItems}} </span> <span></span></i>
+	        </a>
+	        <a class="nav-foot-a fa"href="#" style="text-decoration:none;">&#xf156; <span>{{order.get_cart_total|floatformat:2}}</span></a>
+	      </nav>
 
-	         let x = document.getElementById('id');
-	         console.log(x)
+	    </footer>
 
-	    </script> -->
 
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+   </div>
+
+
+
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
 
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/anchor.js' %}"></script>
+	<!-- <script type="text/javascript" src="{% static 'js/anchor.js' %}"></script> -->
+	<script src="{% static 'js/slick.js' %}"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
+	<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 </body>
 </html>

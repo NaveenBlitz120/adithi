@@ -25,7 +25,7 @@ SECRET_KEY = '3rd*83uc&8bo7wkhd%$1!09$^qh1qyjc87lqwc82p_sf6@a4on'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['adithiecart.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

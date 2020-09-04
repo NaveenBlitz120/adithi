@@ -14,13 +14,21 @@ nav{
     z-index: 10;
     position: fixed;
     width: 100%;
-    top:0rem;
+    /* top:0rem */
     left:0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 3rem;
-    background-color: rgb(109, 221, 152);
+    background-color: #ffc107;
+}
+
+.nav-head{
+  top:0rem;
+}
+
+.nav-foot{
+  bottom: 0rem;
 }
 
 .logo a{
@@ -68,6 +76,9 @@ nav{
     transition: all 0.5s;
 }
 
+.nav-foot{
+    display: none;
+}
 @media only screen and (max-width:1200px){
     body{
         overflow-x: hidden;
@@ -78,7 +89,7 @@ nav{
         width: 50%;
         position: absolute;
         right:0;
-        height:90vh;  
+        height:90vh;
         top:3rem;
         display: flex;
         flex-direction: column;
@@ -102,18 +113,18 @@ nav{
 
     .nav-active{
         font-size: 1.5rem;
-        opacity:0.7;
+        /* opacity:0.7; */
         transform: translateX(0);
     }
 
     .toggle .line1{
         transform: rotate(-45deg) translate(-5px,6px);
     }
-    
+
     .toggle .line2{
         opacity:0;
     }
-    
+
     .toggle .line3{
         transform: rotate(45deg) translate(-5px,-6px);
     }
@@ -137,34 +148,14 @@ nav{
         }
     }
 
+    .nav-foot{
+        background-color: blanchedalmond;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .nav-foot-a:link, .nav-foot-a:visited{
+        color: black;
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

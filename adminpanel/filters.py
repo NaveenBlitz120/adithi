@@ -4,7 +4,7 @@ from django_filters import CharFilter , ChoiceFilter
 from django import forms
 
 class myFilter(django_filters.FilterSet):
-    productname=CharFilter(field_name='name',lookup_expr='contains',widget=forms.TextInput(attrs={'placeholder':'what are you looking for?'}))
+    productname=CharFilter(field_name='name',lookup_expr='contains',widget=forms.TextInput(attrs={'placeholder':"what are you looking for?"}))
 
     class meta:
         model = product

@@ -17,7 +17,11 @@ class product(models.Model):
         ('nuts','nuts'),
         ('dhaals','dhaals'),
         ('oils','oils'),
-        ('kitchen-cleaners','kitchen-cleaners'),
+        ('Home-care','Home-care'),
+        ('Baby-care','Baby-care'),
+        ('Personal-care','Personal-care'),
+        ('Beverages','Beverages'),
+        ('Snacks','Snacks'),
     )
     name = models.CharField(max_length=200)
     our_price = models.FloatField()

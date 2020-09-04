@@ -88,13 +88,13 @@ def nuts(request):
 	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter,'list':lis }
 	return render(request, 'order/grocery.html', context)
 
-def kitchencleaners(request):
+def homecare(request):
 
 	data = cartData(request)
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'groceries' ,groceries_category='kitchen-cleaners')
+	products = product.objects.filter(category = 'groceries' ,groceries_category='Home-care')
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	lis = [250,500,750]
@@ -125,6 +125,66 @@ def oils(request):
 	order = data['order']
 	items = data['items']
 	products = product.objects.filter(category = 'groceries',groceries_category='oils' )
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
+	lis = [250,500,750]
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter,'list':lis }
+	return render(request, 'order/grocery.html', context)
+
+def babycare(request):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = product.objects.filter(category = 'groceries',groceries_category='Baby-care' )
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
+	lis = [250,500,750]
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter,'list':lis }
+	return render(request, 'order/grocery.html', context)
+
+def personalcare(request):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = product.objects.filter(category = 'groceries',groceries_category='Personal-care' )
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
+	lis = [250,500,750]
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter,'list':lis }
+	return render(request, 'order/grocery.html', context)
+
+def beverages(request):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = product.objects.filter(category = 'groceries',groceries_category='Beverages' )
+	myfilter = myFilter(request.GET,queryset=products)
+	prod_obj= myfilter.qs
+	lis = [250,500,750]
+	# test = product.objects.get(id=1)
+	# print(test.types,'entered')
+	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter,'list':lis }
+	return render(request, 'order/grocery.html', context)
+
+def snacks(request):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = product.objects.filter(category = 'groceries',groceries_category='Snacks' )
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	lis = [250,500,750]

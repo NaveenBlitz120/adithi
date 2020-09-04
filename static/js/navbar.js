@@ -3,7 +3,7 @@ const navSlide=() => {
     const nav=document.querySelector('.nav-links');
     const navLinks=document.querySelectorAll('.nav-links li');
     const contents=document.querySelector('.head');
-    
+
     burger.addEventListener('click',()=>{
 
         //Toogle nav
@@ -15,7 +15,7 @@ const navSlide=() => {
             link.style.animation='';
         }
         else{
-            link.style.animation = `navLinkFade 0.5s ease-in forwards ${index / 7+0.2}s`; 
+            link.style.animation = `navLinkFade 0.5s ease-in forwards ${index / 7+0.2}s`;
         }
       });
 
@@ -25,8 +25,27 @@ const navSlide=() => {
 
 
     });
-    
-    
+
+
 }
 
 navSlide();
+
+$(document).ready(function(){
+    $('.slider').slider();
+  });
+
+// Navbar - Footer
+
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.querySelector(".nav-foot").style.bottom = "0";
+    // document.querySelector(".nav-foot").style.bottom = "0";
+  }
+  else {
+    document.querySelector(".nav-foot").style.bottom = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+}

@@ -122,8 +122,9 @@ def update(request,pk):
     form.fields['market_price' ].widget.attrs = {'class' : 'form-control' }
     form.fields['types'].widget.attrs = {'class' : 'form-control' }
     form.fields['name'].widget.attrs = {'class' : 'form-control' }
+    form.fields['image'].widget.attrs = {'class' : 'form-control' }
     if request.method == 'POST':
-        form = Update(request.POST,instance = order)
+        form = Update(request.POST,request.FILES,instance = order)
         if form.is_valid():
             form.save()
             return redirect(st)
