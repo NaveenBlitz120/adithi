@@ -270,11 +270,12 @@ def checkout(request):
 		# print(request)
 		warning = ''
 		data = cartData(request)
-		checkout_data_form = checkoutform()
+		checkout_data_form = checkoutform(initial={'area':'select your area'})
 		print(checkout_data_form)
-		checkout_data_form.fields['name'].widget.attrs = {'placeholder' : 'Name','id':'name'}
-		checkout_data_form.fields['phoneno'].widget.attrs = {'placeholder' : 'your phone number','pattern':"[0-9]{10}"}
-		checkout_data_form.fields['address'].widget.attrs = {'id' : 'autocomplete' ,'placeholder' : 'your Address Here or locate yourself ---->'}
+		checkout_data_form.fields['name'].widget.attrs = {'id':'icon_prefix','class':'validate'}
+		checkout_data_form.fields['phoneno'].widget.attrs = {'id':'icon_telephone','class':'validate','pattern':"[0-9]{10}"}
+		checkout_data_form.fields['address'].widget.attrs = {'id' : 'textarea1','class':'materialize-textarea1' ,}
+		checkout_data_form.fields['area'].widget.attrs = {'class':'form-control' }
 		cartItems = data['cartItems']
 		order = data['order']
 		items = data['items']

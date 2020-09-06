@@ -6,7 +6,7 @@
 
 .head-search{
   background-size: cover;
-  height:33rem;
+  height:38rem;
 }
 
 header{
@@ -60,7 +60,7 @@ color: black;
 }
 
 .header-bottom{
-  margin-top: 5rem;
+  margin-top: 1rem;
 display: inline-block;
 padding: .7rem;
 background-color: #e0943d;

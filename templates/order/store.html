@@ -122,7 +122,7 @@
 						   <i class="fa fa-search"></i>
 						 <!-- <button style="width:20px;height:20p" class="btn btn-sm btn-danger" type="submit"><i class="fa"></i></button> -->
 						 {{filter.form.productname}}
-						 <button type="submit" class="fa-search-2" style="border:0px;">&#x2794;</button>
+						 <button type="submit" href="#grid" class="fa-search-2"  style="border:0px;background-color:#ffe482;border-radius:3rem;">&#x2794;</button>
 				   </form>
 				 </div>
 			  </div>
@@ -144,12 +144,14 @@
                       <a href="{% url 'groceries' %}" style="color:aliceblue;"><div class="category-3"><section class="cat-name">Groceries</section></div></a>
                       <a href="{% url 'flowers' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Flowers</section></div></a>
                     </div>
+
                 </div>
+			 <a class="header-bottom" href="#">More categories</a>
 	<!-- <div class="row"> -->
 		<!-- <th><h5>Total:<strong> ₹{{order.get_cart_total|floatformat:2}}</strong></h5></th><br> -->
 
 
-		<div class="container-fluid" id="grid">
+		<div class="container-fluid" style="margin-top: 2rem;" id="grid">
 			<div class="row" style="background-color: rgb(255, 255, 255);padding: 0;">
 				{% for product in products %}
 				<div class="col border-right" >
@@ -198,7 +200,7 @@
 			<div class="col">
 			  <div class="grid-img">
 
-				  <a href="#" class="product">
+				  <a href="{% url 'viewflower' flower.id %}" class="product">
                         <img src="{{flower.image.url}}" alt="Onion!" style="width: 300px;height: 250px;" class="rounded">
                       </a>
 
@@ -206,7 +208,7 @@
 			    <br>
 			    <div class="ctrl-btn">
 				 <button type="button" data-product="{{flower.id}}" data-action="add" data-category="{{flower.category}}" data-page="home" data-type="{{flower.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
-				 <a  href="{% url 'viewflower' flower.id %}" style="display: inline;">View</a>
+				 <!-- <a  href="{% url 'viewflower' flower.id %}" style="display: inline;">View</a> -->
 				 <div class="dropdown" style="display: inline; padding-left: 75px;">
 					 <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{flower.category}}</button>
 				 </div>

@@ -1,19 +1,19 @@
 {% extends 'order/main.html' %}
 {% load static %}
 {% block content %}
-	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<!-- <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
           <link rel="stylesheet" href="{% static 'css/zstore-core.css' %}">
 
 
 
 
-         <!-- <div class="cart-basic">
+         <div class="cart-basic">
            <div style="margin-top: 5rem;">
                <a class="go-home" href="/"><span style='font-size:1.5rem;'>&#8592; </span>Continue shopping</a>
 
            </div>
-       </div> -->
+       </div>
 
        <div data-theme-content-container="theme-content-container" class="theme-content-area " style="">
          <div class="theme-content-container theme-product-details-style-07">
@@ -37,29 +37,33 @@
      <div class="theme-product-varients-area">
        <div class="theme-product-varients-row" data-nostock-cart-add="theme-nostock-cart-add">
          <div class="theme-product-variant theme-product-quantity-cart-container">
-           <!-- <div class="theme-product-variant-label"> Choose Quantity </div> -->
+           <div class="theme-product-variant-label"> Choose Quantity </div>
      <div class="theme-product-varient-quantity">
-       <!-- <div class="theme-product-quantity-spinner">
+       <div class="theme-product-quantity-spinner">
          <input class="theme-quantity-decrease" onclick="decreaseCount(this)" type="button">
-         <input name="qty" title="quantity" type="text" maxlength="999" onkeypress="return productQuantity(event);" value="1" data-quantity="294396000000035968" data-theme-quantity="" data-zs-quantity=""><input class="theme-quantity-increase" onclick="increaseCount(this)" type="button"></div> -->
+         <input name="qty" title="quantity" type="text" maxlength="999" onkeypress="return productQuantity(event);" value="1" data-quantity="294396000000035968" data-theme-quantity="" data-zs-quantity=""><input class="theme-quantity-increase" onclick="increaseCount(this)" type="button"></div>
 
 
 
 
 
-     <!-- <div style="background-color: #ffc107; border-radius: 20px;" class="theme-cart-button zpbutton zpbutton-type-primary zpbutton-size-lg zpbutton-full-width" data-zs-add-to-cart="" data-zs-product-variant-id="294396000000035964">
+     <div style="background-color: #ffc107; border-radius: 20px;" class="theme-cart-button zpbutton zpbutton-type-primary zpbutton-size-lg zpbutton-full-width" data-zs-add-to-cart="" data-zs-product-variant-id="294396000000035964">
        <span data-theme-cart-button-text="theme-cart-button-text" style="color: black;">  </span>
        <span class="theme-cart-button-loading-container" data-theme-cart-button-loading="theme-cart-button-loading" style="display:none;"> Loading…
          <div class="theme-cart-button-loading-dots"><span></span><span></span><span></span></div>
        </span>
-     </div> -->
+     </div>
      <p id='id' data-proid={{pro.id}}>
           <button id='addtocart' type="button" data-product="{{pro.id}}" data-action="add" data-page="not" data-type="{{pro.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
      </p>
+
+
+	you need to change
+
      <div id= 'plusminus'  style="display:none;text-align:centre;" >
-                    <!-- <td>
+                    <td>
                          ₹{{items.product.price|floatformat:2}}/kg
-                    </td> -->
+                    </td>
                     <div style="text-align: center;font-size: 1.5rem;color: black;">
                          {{items.product.type}}
                     </div>
@@ -83,6 +87,8 @@
                               <button data-product="{{items.product.id}}" data-remove="true" data-type="{{item.product.type}}" data-page="not" data-action="remove" class="update-cart btn btn-danger" style="" >Delete</button>
                          </div>
      </div>
+	this above div fully
+
      <div class="container pt-3">
        <h2>Description</h2>
      </div>
@@ -94,10 +100,152 @@
      </div></div></div></div></div></div></div>
 
 
+ -->
 
 
 
 
+ <style media="screen">
+
+   .product{
+     margin-top: 10%;
+   }
+
+   .s1{
+     width:1rem;
+     height:1rem;
+     border:1px solid black;
+     background-color: white;
+     cursor:pointer;
+   }
+
+   .product-img{
+     padding-bottom: 1.5rem;
+   }
+
+
+   @media (max-width: 605px) {
+
+     .product{
+ 	/* margin-left: 3%; */
+     }
+
+     .product-img{
+ 	 width: 20rem;
+ 	 height: auto;
+ 	 margin: 0 auto;
+ 	 padding-bottom: 1.5rem;
+     }
+
+     .s1{
+ 	 width: 1.5rem;
+ 	 height: 1.5rem;
+     }
+
+     .desc-p{
+ 	  margin-left: .5%;
+     }
+
+   }
+ </style>
+
+
+ <div class="container product">
+
+   <div class="row">
+
+     <div class="col" style="display: flex;">
+ 	 <img src={{pro.image.url}} class="rounded product-img justify-content-center" height="350px" width="400px">
+     </div>
+
+     <div class="col border-left">
+
+ 	 <div class="row justify-content-center">
+ 	   <h2>{{pro.name}}</h2>
+ 	 </div>
+
+ 	 <div class="row justify-content-center">
+ 	   <p style="font-weight: 700;">{{pro.our_price}} /- item</p>
+ 	 </div>
+
+
+	 <br>
+	 <br>
+	 <!-- <br> -->
+	 <div class="row justify-content-center"  id='id' data-proid={{pro.id}} >
+		 <!-- <button type="button" class="btn btn-info">Add to Cart</button> -->
+		 <button id='addtocart' type="button" data-product="{{pro.id}}" data-action="add" data-page="not" data-type="{{pro.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
+
+	 </div>
+
+
+	 <div id= 'plusminus'  style="display:none;text-align:centre;" >
+
+
+			 <div class="row justify-content-center">
+
+				 <table style="height:50px;">
+					 <tbody>
+						 <tr>
+							 <td class="align-middle">
+								 <img data-product="{{pro.id}}" data-type="{{items.product.type}}" data-action="remove" class="s1 update-cart"  style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;"src="{% static  '/images/minus.png' %}" alt="minus" srcset="">
+								 <!-- <img data-product="5" data-type="grams" data-page="not" data-action="add" class="update-cart" src="images/plus.png" alt="plus" srcset="">                  </td> -->
+								 <td class="align-middle">
+									 <!-- <span class="align-middle" style="padding:10px;">8</span> -->
+
+									 {%if items.product.type == "grams"%}
+									 <span style="padding: 10px;" class="align-middle">{{items.quantity|floatformat:0}}</span>
+									 {%elif items.product.type == "count"%}
+									 <span style="padding: 10px;" class="align-middle">{{items.quantity|floatformat:0}}</span>
+									 {%else%}
+									 <span style="padding: 10px;" class="align-middle">{{items.quantity|floatformat:2}}</span>
+									 {%endif%}
+
+
+
+								 </td>
+								 <td class="align-middle">
+									 <img  data-product="{{pro.id}}"  data-type="{{items.product.type}}" data-page="not" data-action="add" class="s1 update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;" src="{% static  '/images/plus.png' %}" alt="plus" srcset="">
+									 <!-- <img data-product="5" data-type="grams" data-page="not" data-action="add" class="update-cart" src="images/minus.png" alt="plus" srcset=""> -->
+								 </td>
+							 </tr>
+						 </tbody>
+					 </table>
+
+
+				 </div>
+				 <div class="row justify-content-center">
+					 <p>{{items.product.type}}<p>
+					 </div>
+
+				 <div class="row justify-content-center">
+					 <h2>     ₹{{items.get_total|floatformat:2}}</h2>
+				 </div>
+
+
+				 <br>
+
+				 <div class="row justify-content-center">
+					 <!-- <button type="button" class="btn btn-danger">Delete</button> -->
+					 <button data-product="{{items.product.id}}" data-remove="true" data-type="{{item.product.type}}" data-page="not" data-action="remove" class="update-cart btn btn-danger" style="" >Delete</button>
+				 </div>
+	 </div>
+
+ 	<br>
+
+     </div>
+   </div>
+   <hr>
+   <div class="row justify-content-center">
+     <h4>Description</h4>
+   </div>
+
+   <div class="row container desc-p" style="text-align: justify;">
+	   <p>{{pro.desc}}</p>
+	<!-- <p>It is good. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+   </div>
+
+ </div>
 
 
 

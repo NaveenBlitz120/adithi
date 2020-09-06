@@ -6,7 +6,7 @@ class checkoutform(ModelForm):
     class Meta:
         model = orders
         fields = ['name','phoneno','address','area']
-
+        # widget={'area':forms.TextInput(attrs={'placeholder':'search'})}
 
 class Create(ModelForm):
 	class Meta:

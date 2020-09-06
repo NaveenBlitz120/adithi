@@ -1,0 +1,83 @@
+.modal-view{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-evenly;
+    font-weight: 700;
+}
+
+.modal-view a div img{
+    width: 7rem; 
+    height: 7rem;
+    border-radius: 10px;
+}
+
+.modal-view a div{
+    margin: 2rem;
+    padding: 1rem;
+    background-color: white;
+}
+
+a:link,a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+.mb-tab{
+    display: none;
+}
+
+/* @media screen and (max-width:1300px){
+    .modal-view div img{
+        width: 5rem; 
+        height: 5rem;
+        border-radius: 10px;
+    }
+
+    .modal-view div{
+        margin: 2rem;
+        padding: 1rem;
+        background-color: white;
+    }
+} */
+
+@media screen and (max-width:1020px){
+
+    .modal-view a div{
+        display: inline-block;
+        margin: 1rem;
+        padding: 1rem;
+        background-color: white;
+    }
+
+}
+
+@media screen and (max-width:920px){
+
+    .modal-view{
+        display: none;
+        font-weight: 700;
+    }
+
+    .modal-view a div img{
+        width: 5rem; 
+        height: 5rem;
+        border-radius: 10px;
+    }
+
+    .modal-view a div{
+        margin: 2rem;
+        padding: 1rem;
+        background-color: white;
+    }
+
+    .mb-tab{
+        display: table;
+    }
+
+
+
+    
+
+}    

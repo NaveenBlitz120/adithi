@@ -1,7 +1,6 @@
-{% extends 'order/main.html' %}
-{% load static %}
-{% block content %}
-
+<!DOCTYPE html>
+<html>
+  <head>
 
     <meta name = "viewport" content = "width = device-width, initial-scale = 1">
     <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -9,23 +8,23 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'css/mater.css' %}">
     <!--Import materialize.css-->
     <!-- <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="mater.css">
     <!-- Compiled and minified JavaScript -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
 
-
+    <!--Let browser know website is optimized for mobile-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
 
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 
-    <!-- <script>
+    <script>
        $(document).ready(function() {
           $('select').material_select();
        });
-    </script> -->
+    </script>
 
     <style media="screen">
 
@@ -40,7 +39,7 @@
       }
 
       .info{
-        margin-top: 5rem;
+        margin-top: 7vh;
       }
 
       .container .info1{
@@ -55,33 +54,13 @@
 }
     </style>
 
+  </head>
 
   <body>
-       <!-- <nav class="nav-head">
- 	    <div class="logo">
- 		  <a href="{% url 'store' %}">Adhithi Veg Court</a>
- 	    </div>
- 	    <ul class="nav-links">
- 		   <li><a href="{% url 'store' %}">Home</a></li>
- 		   <li><a href="{% url 'checkout' %}">Place Your Order</a></li>
- 		   <li><a href="#">About</a></li>
- 		   <li><a href="{% url 'cart' %}"><i class="fa" style="font-size:24px;padding-left: 1rem;">&#xf07a;</i>
- 			  <span class='badge badge-warning' id='count'> {{cartItems}} </span></a></li>
- 			  <li><a href="{% url 'cart' %}">₹{{order.get_cart_total|floatformat:2}}</a></li>
- 		   <li><a href="#"></a></li>
- 		   <li><a href="#"></a></li>
- 		   <li><a href="#"></a></li>
- 	    </ul>
- 	    <div class="burger">
- 		   <div class="line1"></div>
- 		   <div class="line2"></div>
- 		   <div class="line3"></div>
- 	    </div>
- 	</nav> -->
 
     <div class="center-align container info">
-      <div class="z-depth-3 info1">Items in Cart : {{cartItems}}</div>
-      <div class="z-depth-3 info1">Total Amount : ₹{{order.get_cart_total|floatformat:2}}/-</div>
+      <div class="z-depth-3 info1">Items in Cart : 3</div>
+      <div class="z-depth-3 info1">Total Amount : 135/-</div>
     </div>
 
     <!-- <div class="center-align container info total">
@@ -90,42 +69,39 @@
 
    <div class="container center-align">
 
-     <div class="row z-depth-2" style="margin-top: 5rem;display:block;">
+     <div class="row z-depth-2" style="margin-top: 10%;">
 
-       <img src="{% static 'images/place-order.png' %}" alt="Place Order" style="width: 10%; margin-top: 1%;margin-bottom:3%">
-       <hr>
-         <form class="col s12" method="post">
-              {% csrf_token %}
-           <div class="row" style="display:block;">
+       <img src="/images/place-order.jpg" alt="Place Order" style="width: 25%; margin-top: 10%;">
+         <form class="col s12">
+           <div class="row">
 
              <div class="input-field col s12 m6">
                <i class="material-icons prefix">account_circle</i>
-               <!-- <input id="icon_prefix" type="text" class="validate"> -->
-               {{checkout_data_form.name}}
+               <input id="icon_prefix" type="text" class="validate">
                <label for="icon_prefix">Name</label>
              </div>
 
              <div class="input-field col s12 m6">
                <i class="material-icons prefix">phone</i>
-               <!-- <input id="icon_telephone" type="tel" class="validate"> -->
-               {{checkout_data_form.phoneno}}
+               <input id="icon_telephone" type="tel" class="validate">
                <label for="icon_telephone">Telephone</label>
              </div>
 
-             <div class="input-field col s12 m6" >
+             <div class="input-field col s12 m6">
                <i class="material-icons prefix">add_location</i>
-               <!-- <textarea id="textarea1" class="materialize-textarea"></textarea> -->
-               {{checkout_data_form.address}}
+               <textarea id="textarea1" class="materialize-textarea"></textarea>
                <label for="textarea1">Address</label>
               </div>
 
-              <div style="margin-top:0;" class="input-field col s12 m6">
-                <label style="position:relative">Select Your Area</label>
-                <div class="" style="margin-top:1.5rem; margin:1rem 20%;" >
-                     {{checkout_data_form.area }}
-
-                </div>
-              </div>
+              <!-- <div class="input-field col s12 m6">
+                <select required name="area">
+                  <option value="" selected>Choose your option</option>
+                  <option value="1">Soolai</option>
+                  <option value="2">Erode</option>
+                  <option value="3">Chatram</option>
+                </select>
+                <label>Select Your Area</label>
+              </div> -->
 
             </div>
 
@@ -141,4 +117,4 @@
      </div><!-- container -->
 
   </body>
-{% endblock content %}
+</html>
