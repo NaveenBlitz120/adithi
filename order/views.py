@@ -292,8 +292,8 @@ def checkout(request):
 				if where:
 					return deletecookie(request,where)
 				else:
-					# response = redirect(where)
-					warning ='minimum cart value is 200'
+					# response = redirect(where
+					warning ='Minimum cart value is 200'
 					print('inside2')
 					context = {'items':items, 'order':order, 'floweritems':floweritems,'cartItems':cartItems,'checkout_data_form':checkout_data_form,'warning':warning}
 					return render(request, 'order/checkout.html', context)

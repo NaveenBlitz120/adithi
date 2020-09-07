@@ -89,6 +89,19 @@
 			</div>
 		</div>
 	</div> -->
+
+
+	<style media="screen">
+		hr {
+	             border: 0;
+	             clear:both;
+	             display:block;
+	             width: 50%;
+	             background-color:#757571;
+	             height: 1px;
+	           }
+
+	</style>
 	<div class="cart-basic-fix" style="margin-top: -7rem;padding:3rem 0 0 0">
             <div class="cart-basic">
 
@@ -221,14 +234,17 @@
 	</div>
 
 	<!-- <div> -->
-	
+
 		{% for item in items %}
 
 		<div class="cart-mob">
 		    <img data-product="{{item.product.id}}" data-remove="true" data-type="{{item.product.type}}" data-page="not" data-action="remove" class="update-cart cart-mob-cancel"  style="width:2rem;height:2rem;" src="{% static  '/images/cancel.svg' %}" alt="">
 		    <img class="cart-mob-pic" style="width:50%;height:50%;" src="{{item.product.imageURL}}" alt="strawberry">
 		    <h4 style="padding-top: 1rem;">{{item.product.name}}</h4>
-
+		    <div style="font-weight: 700;">
+                <!-- ₹20 -->
+			  ₹{{item.product.price|floatformat:2}}/kg
+            </div>
 		    <div class="cart-mob-flex">
 
 				  <div>
@@ -244,18 +260,19 @@
 					 <span style="padding: 10px;">100</span>
 					 <span style="padding: 10px;">100</span> -->
 					 <img  data-product="{{item.product.id}}"  data-type="{{item.product.type}}" data-page="not" data-action="add" class="update-cart" style="width:1rem;height:1rem;border:1px solid black;background-color: white;cursor:pointer;" src="{% static  '/images/plus.png' %}" alt="plus" srcset="">
-				  </div>
-				  <div>
-					 {{item.product.type}}
-				  </div>
-				  <div>
-					 <!-- ₹20 -->
-					 ₹{{item.product.price|floatformat:2}}/kg
-				  </div>
-				  <div>
+				 </div>
+					 <div>
+						 {{item.product.type}}
+					 </div>
+				  <!-- <div>
+					 ₹20
+
+				  </div> -->
+			  </div>
+				  <div style="padding:1rem; font-weight: 700;">
 					 ₹{{item.get_total|floatformat:2}}
 				  </div>
-		    </div>
+				  <hr>
 	   </div>
 
 		{% endfor %}
@@ -265,7 +282,10 @@
 			    <img img data-product="{{item.product.id}}"  data-type="flower" data-remove='true' data-category="{{item.product.category}}" data-page="not" data-action="remove" class="update-cart cart-mob-cancel" style="width:2rem;height:2rem;" src="{% static  '/images/cancel.svg' %}" alt="">
 			    <img class="cart-mob-pic" style="width:50%;height:50%;" src="{{item.product.imageURL}}" alt="strawberry">
 			    <h4 style="padding-top: 1rem;">{{item.product.name}}</h4>
-
+			    <div style="font-weight: 700;">
+	                <!-- ₹20 -->
+				  ₹{{item.product.price|floatformat:2}}/{{item.product.category}}
+	            </div>
 			    <div class="cart-mob-flex">
 
 					  <div>
@@ -289,21 +309,22 @@
 					  <div>
 						{{item.product.category}}
 					  </div>
-					  <div>
-						 <!-- ₹20 -->
+					  <!-- <div>
+						 ₹20
 						 ₹{{item.product.price|floatformat:2}}/{{item.product.category}}
-					  </div>
-					  <div>
+					  </div> -->
+				  </div>
+					  <div style="padding:1rem; font-weight: 700;">
 					 ₹{{item.get_total|floatformat:2}}
 					  </div>
-			    </div>
+					  <hr>
 		   	</div>
 
 			{% endfor %}
 
 			<div class='hide' id ='h' style="text-align: center;margin-top: 3rem;">
 	              <h4 style="padding-bottom: 3rem;color:black;font-weight: 700;">Grand Total: ₹{{order.get_cart_total|floatformat:2}}</h4>
-	              <a class="check-out" href="{% url 'checkout' %}">checkout<span style='font-size:1.3rem;'>&#8594;</span></a>
+	              <a class="check-out" style="margin:0;" href="{% url 'checkout' %}">checkout<span style='font-size:1.3rem;'>&#8594;</span></a>
 	          </div>
 <br><br><br>
 

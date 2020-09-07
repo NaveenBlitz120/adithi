@@ -114,8 +114,8 @@ tr:nth-child(2)
  }
 
  .go-home:hover{
-     background-color:rgb(109, 221, 152);
-     color: white;
+     background-color:#ffe482;
+     color: black;
  }
 
  .cart-item{
@@ -148,8 +148,8 @@ tr:nth-child(2)
  }
 
      .check-out:hover{
-         background-color: black;
-     color: white;
+         background-color: #ffe482;
+     color: black;
      }
 
      tr:hover:not(:first-child){
@@ -212,7 +212,7 @@ tr:nth-child(2)
 }
 
    .check-out:hover{
-        background-color: rgb(109, 221, 152);
+        background-color: #ffe482;
         color: rgb(0, 0, 0);
     }
 }
