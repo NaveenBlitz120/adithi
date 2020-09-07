@@ -22,7 +22,7 @@
      <link rel="stylesheet" href="{% static 'css/content.css' %}">
      <link rel="stylesheet" href="{% static 'css/grid.css' %}">
      <link rel="stylesheet" href="{% static 'css/cart.css' %}">
-     <!-- <link rel="stylesheet" href="{% static 'css/modals.css' %}"> -->
+     <link rel="stylesheet" href="{% static 'css/modals.css' %}">
 
 
 
@@ -112,9 +112,9 @@
 	    <ul class="nav-links">
 		   <li><a href="{% url 'store' %}">Home</a></li>
 		   <!-- <li><a href="{% url 'checkout' %}">Place Your Order</a></li> -->
-		   <li><a href="#">About</a></li>
+		   <li><a href="#adithi">About</a></li>
 		   <li><a href="{% url 'cart' %}"><i class="fa" style="font-size:24px;padding-left: 1rem;">&#xf07a;</i>
-			  <span class='badge badge-warning' id='count'> {{cartItems}} </span></a></li>
+			  <span style="color:white;background-color:#212529;" class='badge' id='count'> {{cartItems}} </span></a></li>
 			  <li><a href="{% url 'cart' %}">₹{{order.get_cart_total|floatformat:2}}</a></li>
 		   <li><a href="#"></a></li>
 		   <li><a href="#"></a></li>
@@ -139,86 +139,184 @@
 	    <footer>
 
 	      <nav class="nav-foot" style="transition:0.4s;">
-	        <a class="nav-foot-a fa" style="text-decoration:none;"href="{% url 'store' %}">&#xf015;<span></span></a>
-	        <a class="nav-foot-a fa" id='myBtn' href="#"> &#xf00b;<span></span></a>
-	        <a class="nav-foot-a fa" style="text-decoration:none;" href="{% url 'cart' %}">&#xf07a;<span class='badge badge-warning' id='count'> {{cartItems}} </span> <span></span></i>
+	        <a class="nav-foot-a fa" style="text-decoration:none;font-size:1.5rem;"href="{% url 'store' %}">&#xf015;<span></span></a>
+	        <a class="nav-foot-a fa" id="myBtn" style="font-size:1.5rem;"  href="#"> &#xf00b;<span></span></a>
+	        <a class="nav-foot-a fa" style="text-decoration:none;font-size:1.5rem;" href="{% url 'cart' %}">&#xf07a;<span class='badge badge-warning' id='count'> {{cartItems}} </span> <span></span></i>
 	        </a>
-	        <a class="nav-foot-a fa"href="#" style="text-decoration:none;">&#xf156; <span>{{order.get_cart_total|floatformat:2}}</span></a>
+	        <a class="nav-foot-a fa"href="#" style="text-decoration:none;font-weight:500;">&#xf156; <span>{{order.get_cart_total|floatformat:2}}</span></a>
 	      </nav>
 
 	    </footer>
-	    <!-- <div id="myModal" class="modal" >
+	    <style>
+	    td{
+		    background-color: transparent;
+	    }
+	    .modal {
+	      display: none; /* Hidden by default */
+	      position: fixed; /* Stay in place */
+	      z-index: 1; /* Sit on top */
+	      /* padding-top: 3rem; */
+	      left: 0;
+	      top: 0;
+	      width: 100%; /* Full width */
+	      height: 100%; /* Full height */
+	      overflow: auto; /* Enable scroll if needed */
+	      background-color: rgb(0,0,0); /* Fallback color */
+	      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	    }
 
-	      Modal content
-	      <div class="modal-content" style="text-align: center; background-color: rgb(226, 197, 34);">
-	        <span style="color: black;" class="close">&times;</span>
-	        <h2 style="margin:2rem;">All Categories</h2>
-	        <div style="background-color: #ddbebe;">
+	    /* Modal Content */
+	    .modal-content {
+	      background-color: #fefefe;
+	      margin: auto;
+	      padding: 20px;
+	      border: 1px solid #888;
+	      width: 90%;
+	    }
+
+	    /* The Close Button */
+	    .close {
+	      color: #aaaaaa;
+	      float: right;
+	      font-size: 28px;
+	      font-weight: bold;
+	    }
+
+	    .close:hover,
+	    .close:focus {
+	      color: #000;
+	      text-decoration: none;
+	      cursor: pointer;
+	    }
+	    </style>
+
+	    <!-- <h2>Modal Example</h2> -->
+
+	    <!-- Trigger/Open The Modal -->
+	    <!-- <button id="myBtn">Open Modal</button> -->
+
+	    <!-- The Modal -->
+	    <div style="margin-top:3rem;" id="myModal" class="modal" >
+
+	      <!-- Modal content -->
+	      <div class="modal-content" style="text-align: center; background-color: rgb(255, 255, 255);">
+	        <span style="width:2rem; height:2rem; color: white; background-color: black; border-radius: 100px;margin-left:90%;" class="close">&times;</span>
+	        <h3 style="margin:.5rem;padding-bottom:1rem;">All Categories</h3>
+	        <div style="background-color: #a19f9f; border-radius: 20px;">
 	                <div class="modal-view">
-	                    <a href=""><div>
-	                        <img  src="img.jpg" alt="" srcset="">
+	                    <a href="{% url 'vegetables' %}"><div>
+	                        <img  src="{% static 'images/vegetablescat.png' %}" alt="" srcset="">
 	                        <p>Vegetables</p>
 	                    </div></a>
 
-	                    <a href=""><div>
-	                        <img  src="img.jpg" alt="" srcset="">
-	                        <p>Vegetables</p>
+	                    <a href="{% url 'fruits' %}"><div>
+	                        <img  src="{% static 'images/fruit-free-2198378_640.png' %}" alt="" srcset="">
+	                        <p>Fruits</p>
 	                    </div></a>
 
-	                    <a href=""><div>
-	                        <img  src="img.jpg" alt="" srcset="">
-	                        <p>Vegetables</p>
+	                    <a href="{% url 'flowers' %}"><div>
+	                        <img  src="{% static 'images/12flower.jpg' %}" alt="" srcset="">
+	                        <p>Flowers</p>
 	                    </div></a>
 
-	                    <a href=""><div>
-	                        <img  src="img.jpg" alt="" srcset="">
-	                        <p>Vegetables</p>
+	                    <a href="{% url 'groceries' %}"><div>
+	                        <img  src="{% static 'images/grocery.jpg' %}" alt="" srcset="">
+	                        <p>Groceries</p>
 	                    </div></a>
 	            </div>
 
 	            <div class="modal-view">
-	              <a href=""><div>
-	                  <img  src="img.jpg" alt="" srcset="">
-	                  <p>Vegetables</p>
+	              <a href="{% url 'oils' %}"><div>
+	                  <img  src="{% static 'images/6oil.jpeg' %}" alt="" srcset="">
+	                  <p>Oils</p>
 	              </div></a>
 
-	              <a href=""><div>
-	                  <img  src="img.jpg" alt="" srcset="">
-	                  <p>Vegetables</p>
+	              <a href="{% url 'nuts' %}"><div>
+	                  <img  src="{% static 'images/nuts.jpg' %}" alt="" srcset="">
+	                  <p>Nuts</p>
 	              </div></a>
 
-	              <a href=""><div>
-	                  <img  src="img.jpg" alt="" srcset="">
-	                  <p>Vegetables</p>
+	              <a href="{% url 'daals' %}"><div>
+	                  <img  src="{% static 'images/5dals.jpeg' %}" alt="" srcset="">
+	                  <p>Daals</p>
 	              </div></a>
 
-	              <a href=""><div>
-	                  <img  src="img.jpg" alt="" srcset="">
-	                  <p>Vegetables</p>
+	              <a href="{% url 'homecare' %}"><div>
+	                  <img  src="{% static 'images/7home.webp' %}" alt="" srcset="">
+	                  <p>Home-care</p>
+	              </div></a>
+	      </div>
+	            <div class="modal-view">
+	              <a href="{% url 'babycare' %}"><div>
+	                  <img  src="{% static 'images/8baby.png' %}" alt="" srcset="">
+	                  <p>Baby-care</p>
+	              </div></a>
+
+	              <a href="{% url 'personalcare' %}"><div>
+	                  <img  src="{% static 'images/9personal.png' %}" alt="" srcset="">
+	                  <p>Personal-care</p>
+	              </div></a>
+
+	              <a href="{% url 'beverages' %}"><div>
+	                  <img  src="{% static 'images/8beverage.png' %}" alt="" srcset="">
+	                  <p>Beverages</p>
+	              </div></a>
+
+	              <a href="{% url 'snacks' %}"><div>
+	                  <img  src="{% static 'images/11snack.png' %}" alt="" srcset="">
+	                  <p>Snacks</p>
 	              </div></a>
 	      </div>
 
 
-	                    <table class="mb-tab" style="">
-	                      <tr>
-	                        <td> <a href=""><li style="list-style: none;"><img style="width: 3rem; background-color: transparent;"src="https://www.bigbasket.com/media/uploads/section_item/images/hdpi/Fruits__Vegetables-5thSep.jpg" alt=""></li></a></td>
-	                        <td><a href=""><li style="list-style: none;"><p>Vegetable</p></li></a></td>
+	                    <table class="mb-tab" style="margin:0 auto;" cellspacing="20px">
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'vegetables' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;"src="{% static 'images/vegetablescat.png' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'vegetables' %}"><li style="list-style: none;"><p style="justify-items: left; margin-top:1rem;">Vegetable</p></li></a></td>
 	                      </tr>
-	                      <tr>
-	                        <td> <a href=""><li style="list-style: none;"><img style="width: 3rem; background-color: transparent;"src="img.jpg" alt=""></li></a></td>
-	                        <td><a href=""><li style="list-style: none;"><p>Vegetable</p></li></a></td>
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'fruits' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;"src="{% static 'images/fruit-free-2198378_640.png' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'fruits' %}"><li style="list-style: none;"><p style="justify-items: left; margin-top:1rem;">Fruits</p></li></a></td>
 	                      </tr>
-	                      <tr>
-	                        <td> <a href=""><li style="list-style: none;"><img style="width: 3rem; background-color: transparent;"src="img.jpg" alt=""></li></a></td>
-	                        <td><a href=""><li style="list-style: none;"><p>Vegetable</p></li></a></td>
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'flowers' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;"src="{% static 'images/12flower.jpg' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'flowers' %}"><li style="list-style: none;"><p style="margin-top:1rem;">Flower</p></li></a></td>
 	                      </tr>
-	                      <tr>
-	                        <td> <a href=""><li style="list-style: none;"><img style="width: 3rem; background-color: transparent;"src="img.jpg" alt=""></li></a></td>
-	                        <td><a href=""><li style="list-style: none;"><p>Vegetable</p></li></a></td>
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'groceries' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;"src="{% static 'images/grocery.jpg' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'groceries' %}"><li style="list-style: none; "><p style="margin-top:1rem;">Grocery</p></li></a></td>
 	                      </tr>
-	                      <tr>
-	                        <td> <a href=""><li style="list-style: none;"><img style="width: 3rem; background-color: transparent;"src="img.jpg" alt=""></li></a></td>
-	                        <td><a href=""><li style="list-style: none;"><p>Vegetable</p></li></a></td>
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'oils' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;"src="{% static 'images/6oil.jpeg' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'oils' %}"><li style="list-style: none; "><p style="margin-top:1rem;">Oil</p></li></a></td>
+	                      </tr>
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'nuts' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;"src="{% static 'images/nuts.jpg' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'nuts' %}"><li style="list-style: none; "><p style="margin-top:1rem;">Nuts</p></li></a></td>
+	                      </tr>
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'daals' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;"src="{% static 'images/5dals.jpeg' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'daals' %}"><li style="list-style: none; "><p style="margin-top:1rem;">Daals</p></li></a></td>
+	                      </tr>
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'homecare' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;" src="{% static 'images/7home.webp' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'homecare' %}"><li style="list-style: none; "><p style="margin-top:1rem;">Home-care</p></li></a></td>
+	                      </tr>
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'babycare' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;"src="{% static 'images/8baby.png' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'babycare' %}"><li style="list-style: none; "><p style="margin-top:1rem;">Baby-care</p></li></a></td>
+	                      </tr>
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'personalcare' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;"src="{% static 'images/9personal.png' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'personalcare' %}"><li style="list-style: none; "><p style="margin-top:1rem;">Personal-care</p></li></a></td>
+	                      </tr>
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'beverages' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;"src="{% static 'images/8beverage.png' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'beverages' %}"><li style="list-style: none; "><p style="margin-top:1rem;">Beverage</p></li></a></td>
+	                      </tr>
+	                      <tr style="border-bottom:1px solid black;">
+	                        <td> <a href="{% url 'snacks' %}"><li style="list-style: none;"><img style="width: 3.5rem; background-color: transparent;"src="{% static 'images/11snack.png' %}" alt=""></li></a></td>
+	                        <td><a href="{% url 'snacks' %}"><li style="list-style: none; "><p style="margin-top:1rem;">Snack</p></li></a></td>
 	                      </tr>
 	                    </table>
 
@@ -228,20 +326,25 @@
 	        </div>
 	      </div>
 
-	    </div> -->
+	    </div>
 
-	    <!-- <script>
+	    <script>
 	    // Get the modal
 	    var modal = document.getElementById("myModal");
 
 	    // Get the button that opens the modal
 	    var btn = document.getElementById("myBtn");
+	    var btn1 = document.getElementById("myBtn1");
 
 	    // Get the <span> element that closes the modal
 	    var span = document.getElementsByClassName("close")[0];
 
 	    // When the user clicks the button, open the modal
 	    btn.onclick = function() {
+	      modal.style.display = "block";
+	    }
+
+	    btn1.onclick = function() {
 	      modal.style.display = "block";
 	    }
 
@@ -257,7 +360,7 @@
 	      }
 	    }
 	    </script>
- -->
+
 
 
    </div>

@@ -10,10 +10,10 @@
 .modal-view a div img{
     width: 7rem; 
     height: 7rem;
-    border-radius: 10px;
 }
 
 .modal-view a div{
+    border-radius: 20px;
     margin: 2rem;
     padding: 1rem;
     background-color: white;
@@ -59,20 +59,9 @@ a:link,a:visited{
         display: none;
         font-weight: 700;
     }
-
-    .modal-view a div img{
-        width: 5rem; 
-        height: 5rem;
-        border-radius: 10px;
-    }
-
-    .modal-view a div{
-        margin: 2rem;
-        padding: 1rem;
-        background-color: white;
-    }
-
     .mb-tab{
+        font-size: 1.2rem;
+        font-weight: 700;
         display: table;
     }
 

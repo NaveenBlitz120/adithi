@@ -20,16 +20,16 @@
 
 
 	<div class="head">
-	    <div class="head-search">
+	    <div class="head-search" style="margin-top:5rem;">
 		   <header>
 			  <div class="searchbar">
 				 <div class="search">
 					<!-- <input placeholder="What are you looking for?"> -->
 					<form method="get">
-						   <i class="fa fa-search fa-search-1"></i>
+						   <i class="fa fa-search"></i>
 						 <!-- <button style="width:20px;height:20p" class="btn btn-sm btn-danger" type="submit"><i class="fa"></i></button> -->
 						 {{filter.form.productname}}
-						 <button type="submit" class="fa-search-2" style="border:0px;">search</button>
+						 <button type="submit" href="#grid" class="fa-search-2"  style="border:0px;background-color:#ffe482;border-radius:3rem;">&#x2794;</button>
 				   </form>
 				 </div>
 			  </div>
@@ -53,11 +53,12 @@
                       <a href="{% url 'homecare' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Kitchen-cleaners</section></div></a>
                     </div>
                 </div>
+			 <a class="header-bottom" id="myBtn1"  href="#">More categories</a>
 	<!-- <div class="row"> -->
 		<!-- <th><h5>Total:<strong> ₹{{order.get_cart_total|floatformat:2}}</strong></h5></th><br> -->
 
 
-		<div class="container-fluid" id="grid"style=" background-color: rgb(109, 221, 152);">
+		<div class="container-fluid" id="grid"style="margin-top:2rem;">
 			<div class="row" style="background-color: white;padding: 0;">
 				{% for product in products %}
 				<div class="col  ">
