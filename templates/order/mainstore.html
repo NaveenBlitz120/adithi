@@ -2,29 +2,15 @@
 {% load static %}
 {% block content %}
 
-<style media="screen">
-	.category-1{
-	    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'images/nuts.jpg' %}");
-	}
-	.category-2{
-	    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'images/daals.jpg' %}");
-	}
-	.category-3{
-	    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'images/oils.jpg' %}");
-	}
-	.category-4{
-	    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'images/kitchencleaners.jpg' %}");
-	}
 
-</style>
 
 
 	<div class="head">
-	    <div class="head-search" style="margin-top:5rem;">
+	    <div class="head-search" style="margin-top:6rem;">
 		   <header>
 			  <div class="searchbar">
 				 <div class="search">
-					<!-- <input placeholder="What are you looking for?"> -->
+					<!-- <input plac\eholder="What are you looking for?"> -->
 					<form method="get">
 						   <i class="fa fa-search"></i>
 						 <!-- <button style="width:20px;height:20p" class="btn btn-sm btn-danger" type="submit"><i class="fa"></i></button> -->
@@ -35,33 +21,33 @@
 			  </div>
 
 		   </header>
-
 				<div class="category">
-                      <a href="{% url 'nuts' %}" style="color:aliceblue;"><div class="category-1"><section class="cat-name">Nuts</section></div></a>
-                       <a href="{% url 'daals' %}" style="color:aliceblue;"><div class="category-2"><section class="cat-name">Daals</section></div></a>
-                       <a href="{% url 'oils' %}" style="color:aliceblue;"><div class="category-3"><section class="cat-name">Oils</section></div></a>
-                       <a href="{% url 'homecare' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Kitchen-cleaners</section></div></a>
+                      <a href="{% url 'fruits' %}" style="color:aliceblue;text-decoration:none;"><div class="category-1"><section class="cat-name">Fruits</section></div></a>
+                       <a href="{% url 'vegetables' %}" style="color:aliceblue;text-decoration:none;"><div class="category-2"><section class="cat-name">Vegetables</section></div></a>
+                       <a href="{% url 'groceries' %}" style="color:aliceblue;text-decoration:none;"><div class="category-3"><section class="cat-name">Groceries</section></div></a>
+                       <a href="{% url 'flowers' %}" style="color:aliceblue;text-decoration:none;"><div class="category-4"><section class="cat-name">Flowers</section></div></a>
                    </div>
                    <div class="category_sub">
                     <div class="row-1">
-                      <a href="{% url 'nuts' %}" style="color:aliceblue;"><div class="category-1"><section class="cat-name">Nuts</section></div></a>
-                      <a href="{% url 'daals' %}" style="color:aliceblue;"><div class="category-2"><section class="cat-name">Daals</section></div></a>
+                      <a href="{% url 'fruits' %}" style="color:aliceblue;"><div class="category-1"><section class="cat-name">Fruits</section></div></a>
+                      <a href="{% url 'vegetables' %}" style="color:aliceblue;"><div class="category-2"><section class="cat-name">Vegetables</section></div></a>
                     </div>
 
                     <div class="row-2">
-                      <a href="{% url 'oils' %}" style="color:aliceblue;"><div class="category-3"><section class="cat-name">Oils</section></div></a>
-                      <a href="{% url 'homecare' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Kitchen-cleaners</section></div></a>
+                      <a href="{% url 'groceries' %}" style="color:aliceblue;"><div class="category-3"><section class="cat-name">Groceries</section></div></a>
+                      <a href="{% url 'flowers' %}" style="color:aliceblue;"><div class="category-4"><section class="cat-name">Flowers</section></div></a>
                     </div>
+
                 </div>
 			 <a class="header-bottom" id="myBtn1"  href="#">More categories</a>
 	<!-- <div class="row"> -->
 		<!-- <th><h5>Total:<strong> ₹{{order.get_cart_total|floatformat:2}}</strong></h5></th><br> -->
 
 
-		<div class="container-fluid" id="grid"style="margin-top:2rem;">
-			<div class="row" style="background-color: white;padding: 0;">
+		<div class="container-fluid" style="margin-top: 2rem;" id="grid">
+			<div class="row" style="background-color: rgb(255, 255, 255);padding: 0;">
 				{% for product in products %}
-				<div class="col  ">
+				<div class="col border-right" >
                       <div class="grid-img">
 					  <a href="{% url 'viewproduct' product.id %}" class="product">
 	                        <img src="{{product.image.url}}" alt="Onion!" style="width: 300px;height: 250px;" class="rounded">
@@ -93,25 +79,29 @@
                       </div>
     			{% endfor %}
 		   </div>
-		</div>
+		 </div>
 
 
-	<!-- <div class="container-fluid" id="grid"style="background-color: rgb(109, 221, 152);">
 
-		<div class="row" style="background-color: white;padding: 0 20px;">
+
+
+
+	<div class="container-fluid" id="grid">
+
+		<div class="row" style="background-color: rgb(255,255,255);padding: 0 20px;">
 			{% for flower in flowers %}
 			<div class="col">
 			  <div class="grid-img">
 
-				  <a href="#" class="product">
-				    <img src="{{flower.image.url}}" alt="Onion!" style="width: 300px;height: 250px;" class="rounded">
-				  </a>
+				  <a href="{% url 'viewflower' flower.id %}" class="product">
+                        <img src="{{flower.image.url}}" alt="Onion!" style="width: 300px;height: 250px;" class="rounded">
+                      </a>
 
 			    </div>
 			    <br>
 			    <div class="ctrl-btn">
 				 <button type="button" data-product="{{flower.id}}" data-action="add" data-category="{{flower.category}}" data-page="home" data-type="{{flower.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
-				 <a  href="{% url 'viewflower' flower.id %}" style="display: inline;">View</a>
+				 <!-- <a  href="{% url 'viewflower' flower.id %}" style="display: inline;">View</a> -->
 				 <div class="dropdown" style="display: inline; padding-left: 75px;">
 					 <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{flower.category}}</button>
 				 </div>
@@ -120,11 +110,10 @@
 			    </div>
 			  </div>
 		{% endfor %}
+		</div>
 	   </div>
-	</div> -->
+	</div>
 </div>
-</div>
-
 
 <script type="text/javascript">
 	var btn1 = document.getElementById("myBtn1");
@@ -133,6 +122,5 @@
 	  modal.style.display = "block";
 	}
 </script>
-
 
 {% endblock content %}

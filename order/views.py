@@ -39,7 +39,7 @@ def vegetables(request):
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
 	context = {'products':prod_obj , 'filter':myfilter ,'order':order,'cartItems':cartItems,'list':lis }
-	return render(request, 'order/store.html', context)
+	return render(request, 'order/mainstore.html', context)
 
 
 def fruits(request):
@@ -56,7 +56,7 @@ def fruits(request):
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
 	context = {'products':prod_obj,'order':order,'cartItems':cartItems, 'filter':myfilter,'list':lis }
-	return render(request, 'order/store.html', context)
+	return render(request, 'order/mainstore.html', context)
 
 def groceries(request):
 
@@ -207,7 +207,7 @@ def flowers(request):
 	# test = product.objects.get(id=1)
 	# print(test.types,'entered')
 	context = {'flowers':flow_obj,'order':order,'cartItems':cartItems, 'filter':myfilter }
-	return render(request, 'order/store.html', context)
+	return render(request, 'order/mainstore.html', context)
 
 def viewflower(request,pk):
 

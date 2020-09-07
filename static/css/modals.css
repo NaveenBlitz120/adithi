@@ -8,7 +8,7 @@
 }
 
 .modal-view a div img{
-    width: 7rem; 
+    width: 7rem;
     height: 7rem;
 }
 
@@ -17,20 +17,25 @@
     margin: 2rem;
     padding: 1rem;
     background-color: white;
+    color: black;
 }
 
 a:link,a:visited{
     text-decoration: none;
-    color: black;
+    /* color: black; */
 }
 
 .mb-tab{
     display: none;
 }
 
+.mb-tab a:link,
+.mb-tab a:visited{
+     color: black;
+}
 /* @media screen and (max-width:1300px){
     .modal-view div img{
-        width: 5rem; 
+        width: 5rem;
         height: 5rem;
         border-radius: 10px;
     }
@@ -67,6 +72,6 @@ a:link,a:visited{
 
 
 
-    
 
-}    
+
+}

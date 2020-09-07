@@ -324,6 +324,7 @@
 
 			<div class='hide' id ='h' style="text-align: center;margin-top: 3rem;">
 	              <h4 style="padding-bottom: 3rem;color:black;font-weight: 700;">Grand Total: ₹{{order.get_cart_total|floatformat:2}}</h4>
+			    <a class="check-out" style="margin:0;" href="{% url 'store' %}"><span style='font-size:1.3rem;'>&#8592;</span>Back</a>
 	              <a class="check-out" style="margin:0;" href="{% url 'checkout' %}">checkout<span style='font-size:1.3rem;'>&#8594;</span></a>
 	          </div>
 <br><br><br>
