@@ -317,9 +317,11 @@ def htmlbill(request):
 	bill = orders.objects.get(orderid = ordered_id)
 	bill_total = bill.orderfinaltotal
 	order_item = orderedcart.objects.filter(orderedid = bill)
+	item_count = order_item.count()
+	print(item_count)
 	servicebill = service.objects.get(area = bill.area)
 	servicebillcharge = servicebill.rate
-	context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total ,'form':fbform ,'servicebillcharge':servicebillcharge}
+	context = {'order_item' : order_item,'item_count': item_count , 'bill' : bill , 'bill_total':bill_total ,'form':fbform ,'servicebillcharge':servicebillcharge}
 	if request.method == 'POST':
 		form = Create(request.POST)
 		print(form)
