@@ -99,7 +99,7 @@ header{
     margin-top: 5rem;
     display: inline-block;
     padding: .7rem;
-    background-color: rgb(238, 231, 221);
+    background-color: orange;
     border-radius: 100px;
     box-shadow: 2px 2px 2px 0.7px rgba(0, 0, 0, 0.5);
 }
@@ -140,7 +140,7 @@ header{
     margin-top: 3rem;
     display: inline-block;
     padding: .7rem;
-    background-color: rgb(238, 231, 221);
+    background-color: orange;
     border-radius: 100px;
     box-shadow: 2px 2px 2px 0.7px rgba(0, 0, 0, 0.5);
    }
