@@ -26,7 +26,7 @@ class product(models.Model):
     name = models.CharField(max_length=200)
     our_price = models.FloatField()
     market_price = models.FloatField()
-    image = models.ImageField(blank = True,default = 'default.png')
+    image = models.ImageField(blank = True,default = 'default.png',null=True)
     types = models.CharField( choices = Type_choices,max_length=20 )
     category = models.CharField( choices = category,max_length = 60 )
     groceries_category = models.CharField( choices = groceries_category,max_length = 60,null=True ,blank=True )

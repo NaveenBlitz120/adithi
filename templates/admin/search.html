@@ -69,7 +69,14 @@
 					<tr>
 						<td>{{obj.name}}</td>
                         <td>{{obj.our_price}}</td>
-                        <td><img src="{{obj.image.url}}" alt="" width="150" height = "100"></td>
+                        <td>
+                             {% if obj.image %}
+                             <!-- <img src="{{flower.image.url}}" alt="Onion!" style="width: 300px;height: 250px;" class="rounded"> -->
+                             <!-- <img src={{pro.image.url}} class="rounded product-img justify-content-center" height="350px" width="400px"> -->
+                             <img src="{{obj.image.url}}" alt="" width="150" height = "100"></td>
+                             {% else %}
+                             <img src="{% static 'images/default.png' %}" width="150" height = "100">
+                             {% endif %}
                         <td>{{obj.category}}</>
 
                         {% if prod.0.types != "flower"%}

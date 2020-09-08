@@ -149,14 +149,19 @@
 
    }
  </style>
-
-
+{% for pro in pros %}
  <div class="container product">
 
    <div class="row">
 
      <div class="col" style="display: flex;margin-top:3rem;">
- 	 <img src={{pro.image.url}} class="rounded product-img justify-content-center" height="350px" width="400px">
+          {% if pro.image %}
+          <!-- <img src="{{flower.image.url}}" alt="Onion!" style="width: 300px;height: 250px;" class="rounded"> -->
+          <img src={{pro.image.url}} class="rounded product-img justify-content-center" height="350px" width="400px">
+          <!-- <imgsrc={{pro.image.url}} class="rounded product-img justify-content-center" height="350px" width="400px"> -->
+          {% else %}
+          <img src="{% static 'images/default.png' %}" class="rounded product-img justify-content-center" height="350px" width="400px">
+          {% endif %}
      </div>
 
      <div class="col border-left">
@@ -250,7 +255,7 @@
 
 
 
-
+{% endfor %}
 
 
 

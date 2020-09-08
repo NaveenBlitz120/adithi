@@ -5,8 +5,8 @@
 
 
 
-	<div class="head">
-	    <div class="head-search" style="margin-top:6rem;">
+	<div class="head" style="margin-top:1rem;">
+	    <div class="head-search" style="margin-top:2.5rem;">
 		   <header>
 			  <div class="searchbar">
 				 <div class="search">
@@ -50,8 +50,12 @@
 				<div class="col border-right" >
                       <div class="grid-img">
 					  <a href="{% url 'viewproduct' product.id %}" class="product">
-	                        <img src="{{product.image.url}}" alt="Onion!" style="width: 300px;height: 250px;" class="rounded">
-	                      </a>
+						{% if product.image %}
+	                        <img src="{{product.image.url}}" alt="Onion!" class="rounded">
+					    {% else %}
+					    <img src="{% static 'images/default.png' %}" alt="Onion!"  class="rounded">
+					    {% endif %}
+					  </a>
 				  </div>
                         <br>
 				    <div style="padding:0.4em;padding-bottom:0" >{{product.name}}</div>
@@ -94,7 +98,12 @@
 			  <div class="grid-img">
 
 				  <a href="{% url 'viewflower' flower.id %}" class="product">
-                        <img src="{{flower.image.url}}" alt="Onion!" style="width: 300px;height: 250px;" class="rounded">
+					  {% if flower.image %}
+       				   <img src="{{flower.image.url}}" alt="Onion!"  class="rounded">
+       				   {% else %}
+       				   <img src="{% static 'images/default.png' %}" alt="Onion!" class="rounded">
+       				   {% endif %}
+                        <!-- <img src="{{flower.image.url}}" alt="Onion!" style="width: 300px;height: 250px;" class="rounded"> -->
                       </a>
 
 			    </div>

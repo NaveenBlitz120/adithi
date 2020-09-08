@@ -235,8 +235,11 @@ def viewflower(request,pk):
 
 def viewproduct(request,pk):
 
-	pro = product.objects.get(id=pk)
-	print(pro)
+	pro = product.objects.filter(id=pk)
+	# print(pro)
+	# if not pro.image:
+	# 	print('entere')
+	# 	pro.iamge = 'images/default.png'
 	data = cartData(request)
 	cartItems = data['cartItems']
 	order = data['order']
@@ -250,9 +253,10 @@ def viewproduct(request,pk):
 			items = i
 			# print('entered')
 
-	print(items)
+	# print(items)
 
-	context={'pro' : pro ,'items':items,'order':order, 'cartItems':cartItems}
+	context={'pros':pro,'items':items,'order':order, 'cartItems':cartItems}
+	# return ('hii')
 	return render(request , 'order/viewproduct.html',context)
 
 def cart(request):

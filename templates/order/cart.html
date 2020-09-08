@@ -150,7 +150,11 @@
 				    <!-- <td>1</td> -->
 
 				    <td class="empty-cell">
+					    {% if item.product.imageURL %}
 					    <img src="{{item.product.imageURL}}" alt="product image">
+					     {% else %}
+						<img src="{% static 'images/default.png' %}" alt="product image">
+						 {% endif %}
 					   <!-- <img src="/images/product-2.jpg" alt="strawberry"> -->
 				    </td>
 				    <td>
@@ -188,7 +192,11 @@
 				    <!-- <td>1</td> -->
 
 				    <td class="empty-cell">
-					    <img src="{{item.product.imageURL}}" alt="product image">
+					    {% if item.product.imageURL %}
+ 					   <img src="{{item.product.imageURL}}" alt="product image">
+ 					    {% else %}
+ 					    <img src="{% static 'images/default.png' %}" alt="product image">
+ 						{% endif %}
 					   <!-- <img src="/images/product-2.jpg" alt="strawberry"> -->
 				    </td>
 				    <td>
@@ -239,7 +247,12 @@
 
 		<div class="cart-mob">
 		    <img data-product="{{item.product.id}}" data-remove="true" data-type="{{item.product.type}}" data-page="not" data-action="remove" class="update-cart cart-mob-cancel"  style="width:2rem;height:2rem;" src="{% static  '/images/cancel.svg' %}" alt="">
-		    <img class="cart-mob-pic" style="width:50%;height:50%;" src="{{item.product.imageURL}}" alt="strawberry">
+		    {% if item.product.imageURL %}
+		    <img class="cart-mob-pic" style="width:50%;height:50%;" src="{{item.product.imageURL}}" alt="product image">
+			{% else %}
+			<img class="cart-mob-pic" style="width:50%;height:50%;"src="{% static 'images/default.png' %}" alt="product image">
+			 {% endif %}
+
 		    <h4 style="padding-top: 1rem;font-size:1.2rem;font-weight:700;">{{item.product.name}}</h4>
 		    <div style="font-weight: 700; padding-bottom:1rem;">
                 <!-- ₹20 -->
@@ -280,7 +293,11 @@
 		{% for item in floweritems %}
 			<div class="cart-mob">
 			    <img img data-product="{{item.product.id}}"  data-type="flower" data-remove='true' data-category="{{item.product.category}}" data-page="not" data-action="remove" class="update-cart cart-mob-cancel" style="width:2rem;height:2rem;" src="{% static  '/images/cancel.svg' %}" alt="">
-			    <img class="cart-mob-pic" style="width:50%;height:50%;" src="{{item.product.imageURL}}" alt="strawberry">
+			    {% if item.product.imageURL %}
+			    <img class="cart-mob-pic" style="width:50%;height:50%;" src="{{item.product.imageURL}}" alt="product image">
+				{% else %}
+				<img class="cart-mob-pic" style="width:50%;height:50%;"src="{% static 'images/default.png' %}" alt="product image">
+				 {% endif %}
 			    <h4 style="padding-top: 1rem;">{{item.product.name}}</h4>
 			    <div style="font-weight: 700;">
 	                <!-- ₹20 -->

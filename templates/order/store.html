@@ -157,7 +157,11 @@
 				<div class="col border-right" >
                       <div class="grid-img">
 					  <a href="{% url 'viewproduct' product.id %}" class="product">
-	                        <img src="{{product.image.url}}" alt="Onion!" style="width: 300px;height: 250px;" class="rounded">
+					{% if product.image %}
+	   				   <img src="{{product.image.url}}" alt="Onion!"  class="rounded">
+	   				   {% else %}
+	   				   <img src="{% static 'images/default.png' %}" alt="Onion!" class="rounded">
+	   				   {% endif %}
 	                      </a>
 				  </div>
                         <br>
@@ -201,7 +205,11 @@
 			  <div class="grid-img">
 
 				  <a href="{% url 'viewflower' flower.id %}" class="product">
-                        <img src="{{flower.image.url}}" alt="Onion!" style="width: 300px;height: 250px;" class="rounded">
+				   {% if flower.image %}
+   				   <img src="{{flower.image.url}}" alt="Onion!" class="rounded">
+   				   {% else %}
+   				   <img src="{% static 'images/default.png' %}" alt="Onion!" class="rounded">
+   				   {% endif %}
                       </a>
 
 			    </div>

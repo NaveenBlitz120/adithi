@@ -8,6 +8,7 @@
 
 
      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> -->
      <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
      <link href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/font-awesome.min.css" rel="stylesheet">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -115,7 +116,7 @@
 		   <li><a href="#adithi">About</a></li>
 		   <li><a href="{% url 'cart' %}"><i class="fa" style="font-size:24px;padding-left: 1rem;">&#xf07a;</i>
 			  <span style="color:white;background-color:#212529;" class='badge' id='count'> {{cartItems}} </span></a></li>
-			  <li><a href="{% url 'cart' %}">₹{{order.get_cart_total|floatformat:2}}</a></li>
+			  <li><a href="{% url 'cart' %}">	 &#x20B9;{{order.get_cart_total|floatformat:2}}</a></li>
 		   <li><a href="#"></a></li>
 		   <li><a href="#"></a></li>
 		   <li><a href="#"></a></li>
@@ -344,7 +345,7 @@
 	      modal.style.display = "block";
 	    }
 
-	    
+
 
 	    // When the user clicks on <span> (x), close the modal
 	    span.onclick = function() {

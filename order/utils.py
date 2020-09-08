@@ -26,13 +26,17 @@ def cookieCart(request):
 			# print(flowers.our_price,'entered')
 			total = round((flowers.our_price * flo[i]['quantity']),2)
 			order['get_cart_total'] += total
+			if flowers.image:
+				image_check = flowers.image.url
+			else:
+				image_check = None
 			floitem = {
 				'id':flowers.id,
 				'product':{
 					'id':flowers.id,
 					'name':flowers.name,
 					'price':flowers.our_price,
-					'imageURL':flowers.image.url,
+					'imageURL':image_check,
 					'category':flowers.category,
 					},
 				'quantity':flo[i]['quantity'],
@@ -72,6 +76,10 @@ def cookieCart(request):
 			total = round((products.our_price * cart[i]['quantity']),2)
 			print('i')
 			# print(products)
+			if products.image:
+				image_check = products.image.url
+			else:
+				image_check = None
 			order['get_cart_total'] += total
 			item = {
 				'id':products.id,
@@ -79,7 +87,8 @@ def cookieCart(request):
 					'id':products.id,
 					'name':products.name,
 					'price':products.our_price,
-				    'imageURL':products.image.url,
+
+				    'imageURL':image_check,
 					'type':products.types
 					},
 				'quantity':cart[i]['quantity'],
