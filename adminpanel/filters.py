@@ -4,21 +4,21 @@ from django_filters import CharFilter , ChoiceFilter
 from django import forms
 
 class myFilter(django_filters.FilterSet):
-    productname=CharFilter(field_name='name',lookup_expr='contains',widget=forms.TextInput(attrs={'placeholder':"what are you looking for?"}))
+    productname=CharFilter(field_name='name',lookup_expr='contains',widget=forms.TextInput(attrs={'placeholder':"what are you looking for?",'style':'background-color:white'}))
 
     class meta:
         model = product
         fields = ['name']
 
 class floFilter(django_filters.FilterSet):
-    productname=CharFilter(field_name='name',lookup_expr='contains',widget=forms.TextInput(attrs={'placeholder':'what are you looking for?'}))
+    productname=CharFilter(field_name='name',lookup_expr='contains',widget=forms.TextInput(attrs={'placeholder':'what are you looking for?','style':'background-color:white'}))
 
     class meta:
         model = flower
         fields = ['name']
 
 class serFilter(django_filters.FilterSet):
-    productname=CharFilter(field_name='area',lookup_expr='contains',widget=forms.TextInput(attrs={'placeholder':'what are you looking for?'}))
+    productname=CharFilter(field_name='area',lookup_expr='contains',widget=forms.TextInput(attrs={'placeholder':'what are you looking for?','style':'background-color:white'}))
 
     class meta:
         model = service

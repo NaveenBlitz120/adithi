@@ -41,72 +41,6 @@
 	</div>
 	<!-- Banner Ends Here -->
 
-	<div id="adithi">
-
-	</div>
-
-	<section class="features" style="background-color: rgb(243, 239, 233); padding-top: 1.5rem;">
-
-	  <div class="crow">
-	    <h2 style="font-weight:700;font-size:2.5rem;">Adhithi Veg Corp</h2>
-	    <p class="process">
-		   We are an Online Groceries, Fruits and Vegetables market in Erode. We are the first online Flowerist in Erode.<br> Adhithi Veg corp is established On 22nd Aug 2020.
-	    </p>
-	  </div>
-
-	  <div id="about-extra">
-
-	  </div>
-
-	  <!-- About Content -->
-	  <div class="crow">
-	    <div class="ccol span-1-of-4 box" style="padding: 1rem;">
-		 <ion-icon name="alert-outline" class="icon-big" style="margin: 0 auto; padding-bottom: 2rem;"></ion-icon>
-		 <h3>Why We are?</h3>
-		 <p>
-		   We supply Variety of Products with Best Quality. Products are Delivered at your Doorstep. Promising Value for Money. 100% farm to Kitchen.
-		 </p>
-	    </div>
-
-	    <div class="ccol span-1-of-4 box">
-		 <ion-icon name="refresh-circle-outline" class="icon-big" style="margin: 0 auto; padding-bottom: 2rem;"></ion-icon>
-		 <h3>Fresh Products Everyday</h3>
-		 <p>
-		   We assure you that we should deliver fresh Vegetables & Fruits only. We procure the vegetables on everyday early morning on fresh.
-		 </p>
-	    </div>
-
-	    <div class="ccol span-1-of-4 box">
-		 <ion-icon name="information-circle-outline" class="icon-big" style="margin: 0 auto; padding-bottom: 2rem;"></ion-icon>
-		 <h3>What You Get from Us!</h3>
-		 <p>
-		    We’ve taken away all the stress associated with shopping for daily essentials, and you can now order all your household products and groceries online without travelling long distances or standing in serpentine queues.
-		 </p>
-	    </div>
-
-	    <div class="ccol span-1-of-4 box">
-		 <ion-icon name="return-down-back-outline" class="icon-big" style="margin: 0 auto; padding-bottom: 2rem;"></ion-icon>
-		 <h3>Easy Return Policy</h3>
-		 <p>
-		   Returning or Replacement of Products is only Available, When the Delivered Products are found to be Damaged. The Customer must Contact us within 12hours from Delivery.
-		  </p>
-	    </div>
-
-	  </div>
-
-	  <div id="point">
-
-	  </div>
-
-	  <div class="crow">
-	    <h2>Process & Delivery Point</h2>
-	    <p class="process">
-		 We are taking the order on the Current day upto 10:00 pm and the products will be delivered on or before 10:00 am, the next morning. Currently, we are delivering for below pin codes :-) <br> <br> <strong>638 001, 638 002, 638 003, 638 004, 638 009, 638 011, 638 012.</strong>
-	    </p>
-	  </div>
-
-	</section>
-
 
 
 
@@ -116,15 +50,17 @@
 	    <div class="head-search">
 		   <header>
 			  <div class="searchbar">
-				 <div class="search">
-					<!-- <input plac\eholder="What are you looking for?"> -->
+
+				  <h2>shop by category</h2>
+				 <!-- <div class="search">
+					comment<input plac\eholder="What are you looking for?">
 					<form method="get">
 						   <i class="fa fa-search"></i>
-						 <!-- <button style="width:20px;height:20p" class="btn btn-sm btn-danger" type="submit"><i class="fa"></i></button> -->
+						 comment<button style="width:20px;height:20p" class="btn btn-sm btn-danger" type="submit"><i class="fa"></i></button>
 						 {{filter.form.productname}}
 						 <button type="submit" href="#grid" class="fa-search-2"  style="border:0px;background-color:#ffe482;border-radius:3rem;">&#x2794;</button>
 				   </form>
-				 </div>
+				 </div> -->
 			  </div>
 
 		   </header>
@@ -148,10 +84,10 @@
                 </div>
 			 <a class="header-bottom" id="myBtn1"  href="#">More categories</a>
 	<!-- <div class="row"> -->
-		<!-- <th><h5>Total:<strong> ₹{{order.get_cart_total|floatformat:2}}</strong></h5></th><br> -->
+		<!-- <th><h5>Total:<strong> Rs.{{order.get_cart_total|floatformat:2}}</strong></h5></th><br> -->
 
 
-		<div class="container-fluid" style="margin-top: 2rem;" id="grid">
+		<!-- <div class="container-fluid" style="margin-top: 2rem;" id="grid">
 			<div class="row" style="background-color: rgb(255, 255, 255);padding: 0;">
 				{% for product in products %}
 				<div class="col border-right" >
@@ -164,21 +100,21 @@
 	   				   {% endif %}
 	                      </a>
 				  </div>
-                        <br>
+                        <brcomment>
 				    <div style="padding:0.4em;padding-bottom:0" >{{product.name}}</div>
-				    <!-- <br> -->
+				    <br>
                         <div class="ctrl-btn" style="padding:0.5rem;">
-					 <h6 style="padding-left: 30px; padding-top:0px;"><s>₹{{product.market_price}}</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹{{product.our_price}}</strong></span></h6>
+					 <h6 style="padding-left: 30px; padding-top:0px;"><s>Rs.{{product.market_price}}</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>Rs.{{product.our_price}}</strong></span></h6>
 					 <hr style="margin:0.5rem;">
                           <button type="button" data-product="{{product.id}}" data-action="add" data-page="home" data-type="{{product.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
-                          <!-- <a  href="{% url 'viewproduct' product.id %}" style="display: inline;">View</a> -->
+                          comment <a  href="{% url 'viewproduct' product.id %}" style="display: inline;">View</a>
                           <div class="dropdown" style="display: inline; padding-left: 3rem;">
                             <select class="btn btn-outline-warning btn-sm  dropdown-toggle"  id="{{product.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="dropdown-menu" >
 						<option class="dropdown-item" value="{{product.get_types_display}}">{{product.get_types_display}}</option>
 						{% if product.get_types_display != "count" %}
 	   						{% for i in list %}
-	   						   <!-- <option value="{{ i }}">{{ i }} grams</option> -->
+	   						   comment <option value="{{ i }}">{{ i }} grams</option>
 							   <option class="dropdown-item" value="{{i}}">{{i}} gm</option>
 	   						{% endfor %}
 	   					{% endif %}
@@ -190,11 +126,11 @@
                       </div>
     			{% endfor %}
 		   </div>
-		 </div>
+		 </div> -->
 
 
 
-
+<!--
 
 
 	<div class="container-fluid" id="grid">
@@ -216,19 +152,111 @@
 			    <br>
 			    <div class="ctrl-btn">
 				 <button type="button" data-product="{{flower.id}}" data-action="add" data-category="{{flower.category}}" data-page="home" data-type="{{flower.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
-				 <!-- <a  href="{% url 'viewflower' flower.id %}" style="display: inline;">View</a> -->
+				 comment <a  href="{% url 'viewflower' flower.id %}" style="display: inline;">View</a>
 				 <div class="dropdown" style="display: inline; padding-left: 75px;">
 					 <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{flower.category}}</button>
 				 </div>
 				 <hr>
-				 <h6 style="padding-left: 30px; padding-top:0px;"><s>₹{{flower.market_price}}</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹{{flower.our_price}}</strong></span></h6>
+				 <h6 style="padding-left: 30px; padding-top:0px;"><s>Rs.{{flower.market_price}}</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>Rs.{{flower.our_price}}</strong></span></h6>
 			    </div>
 			  </div>
 		{% endfor %}
 		</div>
-	   </div>
+	   </div> -->
 	</div>
 </div>
+
+
+
+<div id="adithi">
+
+</div>
+
+<section class="features" style="background-color: rgb(243, 239, 233); padding-top: 1.5rem;">
+
+  <div class="crow">
+    <h2 style="font-weight:700;font-size:2rem;">Adhithi Veg Corp</h2>
+    <p class="process">
+	   We are an Online Groceries, Fruits and Vegetables market in Erode. We are the first online Flowerist in Erode.<br> Adhithi Veg corp is established On 22nd Aug 2020.
+    </p>
+  </div>
+
+  <div id="about-extra">
+
+  </div>
+
+  <!-- About Content -->
+  <div class="crow">
+    <div class="ccol span-1-of-4 box" style="padding: 1rem;">
+	 <ion-icon name="alert-outline" class="icon-big" style="margin: 0 auto; padding-bottom: 2rem;"></ion-icon>
+	 <h3>Why We are?</h3>
+	 <p>
+	   We supply Variety of Products with Best Quality. Products are Delivered at your Doorstep. Promising Value for Money. 100% farm to Kitchen.
+	 </p>
+    </div>
+
+    <div class="ccol span-1-of-4 box">
+	 <ion-icon name="refresh-circle-outline" class="icon-big" style="margin: 0 auto; padding-bottom: 2rem;"></ion-icon>
+	 <h3>Fresh Products Everyday</h3>
+	 <p>
+	   We assure you that we should deliver fresh Vegetables & Fruits only. We procure the vegetables on everyday early morning on fresh.
+	 </p>
+    </div>
+
+    <div class="ccol span-1-of-4 box">
+	 <ion-icon name="information-circle-outline" class="icon-big" style="margin: 0 auto; padding-bottom: 2rem;"></ion-icon>
+	 <h3>What You Get from Us!</h3>
+	 <p>
+	    We’ve taken away all the stress associated with shopping for daily essentials, and you can now order all your household products and groceries online without travelling long distances or standing in serpentine queues.
+	 </p>
+    </div>
+
+    <div class="ccol span-1-of-4 box">
+	 <ion-icon name="return-down-back-outline" class="icon-big" style="margin: 0 auto; padding-bottom: 2rem;"></ion-icon>
+	 <h3>Easy Return Policy</h3>
+	 <p>
+	   Returning or Replacement of Products is only Available, When the Delivered Products are found to be Damaged. The Customer must Contact us within 12hours from Delivery.
+	  </p>
+    </div>
+
+  </div>
+
+  <div id="point">
+
+  </div>
+
+  <div class="crow">
+    <h2>Process & Delivery Point</h2>
+    <p class="process">
+	 We are taking the order on the Current day upto 10:00 pm and the products will be delivered on or before 10:00 am, the next morning. Currently, we are delivering for below pin codes :-) <br> <br> <strong>638 001, 638 002, 638 003, 638 004, 638 009, 638 011, 638 012.</strong>
+    </p>
+  </div>
+
+</section>
+
+
+
+<div class="foot_er-1">
+    <!-- <p style="font-size: 1rem;">&copy;</p> -->
+
+
+
+
+	 <div class="sub-footer"  style="text-align: center;">
+			 <div>Concept & Designed by Buddies Tech</div>
+	 <div style="padding: 1rem;"><a style="text-decoration: none;color:black;" href="buddiestech.herokuapp.com" target="_blank" onMouseOver="this.style.color='white'" onMouseOut="this.style.color='black'"> BuddiesTech</a></div>
+
+	<a class="foot_er-a" href="https://twitter.com/BuddiesTech1?s=09"><i class="fa fa-twitter"></i></a>
+	 <a class="foot_er-a" href="https://m.facebook.com/buddiestech.buddiestech.9"><i class="fa fa-facebook"></i></a>
+	 <a class="foot_er-a" href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQGAcN3LRr-w5wAAAXRtnA6Q5Je9BlMNEH2nHuKJfWDAfC4Qlwf8YxaCQ2_JoYa9956ItawQ2o-_G8ITsVnQ3eCJoCwSVNotfW1VzI2bqA3mn6ykJrvgncoGOnrI1rrLVxaqvz8=&originalReferer=http://buddiestech.herokuapp.com/&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fbuddies-tech-30326a1a7"><i class="fa fa-linkedin"></i></a>
+	 </div>
+
+
+</div>
+
+
+
+
 
 <script type="text/javascript">
 	var btn1 = document.getElementById("myBtn1");

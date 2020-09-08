@@ -67,7 +67,7 @@
  		   <li><a href="#">About</a></li>
  		   <li><a href="{% url 'cart' %}"><i class="fa" style="font-size:24px;padding-left: 1rem;">&#xf07a;</i>
  			  <span class='badge badge-warning' id='count'> {{cartItems}} </span></a></li>
- 			  <li><a href="{% url 'cart' %}">₹{{order.get_cart_total|floatformat:2}}</a></li>
+ 			  <li><a href="{% url 'cart' %}">Rs.{{order.get_cart_total|floatformat:2}}</a></li>
  		   <li><a href="#"></a></li>
  		   <li><a href="#"></a></li>
  		   <li><a href="#"></a></li>
@@ -81,7 +81,7 @@
 
     <div class="center-align container info">
       <div class="z-depth-3 info1">Items in Cart : {{cartItems}}</div>
-      <div class="z-depth-3 info1">Total Amount : ₹{{order.get_cart_total|floatformat:2}}/-</div>
+      <div class="z-depth-3 info1">Total Amount : Rs.{{order.get_cart_total|floatformat:2}}/-</div>
     </div>
 
     <!-- <div class="center-align container info total">
@@ -142,6 +142,23 @@
          </form>
        </div>
      </div><!-- container -->
+     <div class="foot_er-1">
+         <!-- <p style="font-size: 1rem;">&copy;</p> -->
+
+
+
+
+           <div class="sub-footer"  style="text-align: center;">
+                     <div>Concept & Designed by Buddies Tech</div>
+           <div style="padding: 1rem;"><a style="text-decoration: none;color:black;" href="buddiestech.herokuapp.com" target="_blank" onMouseOver="this.style.color='white'" onMouseOut="this.style.color='black'"> BuddiesTech</a></div>
+
+         <a class="foot_er-a" href="https://twitter.com/BuddiesTech1?s=09"><i class="fa fa-twitter"></i></a>
+           <a class="foot_er-a" href="https://m.facebook.com/buddiestech.buddiestech.9"><i class="fa fa-facebook"></i></a>
+           <a class="foot_er-a" href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQGAcN3LRr-w5wAAAXRtnA6Q5Je9BlMNEH2nHuKJfWDAfC4Qlwf8YxaCQ2_JoYa9956ItawQ2o-_G8ITsVnQ3eCJoCwSVNotfW1VzI2bqA3mn6ykJrvgncoGOnrI1rrLVxaqvz8=&originalReferer=http://buddiestech.herokuapp.com/&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fbuddies-tech-30326a1a7"><i class="fa fa-linkedin"></i></a>
+           </div>
+
+
+    </div>
 
   </body>
 {% endblock content %}

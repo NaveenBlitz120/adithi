@@ -1,7 +1,7 @@
 .head{
     text-align: center;
     background: #ffe482;
-    margin-top: -4rem;
+    margin-top: 0rem;
 }
 
 .head-search{
@@ -108,7 +108,7 @@ header{
 @media screen and (max-width:768px){
 
   .head{
-    margin-top:-2rem;
+    margin-top:0rem;
     text-align: center;
 }
 

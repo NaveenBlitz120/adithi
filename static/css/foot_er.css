@@ -1,0 +1,24 @@
+.sub-footer{
+    /* margin-top: 3rem; */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    padding: 2rem;
+    background-color: #ffe482;
+}
+.foot_er-a{
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    padding: 1rem;
+}
+
+.foot_er-a:hover{
+    color: white;
+}
+
+@media screen and (max-width:768px){
+    .sub-footer{
+        font-size: 0.9rem;
+    }
+}

@@ -20,7 +20,7 @@
 
 
 	<div class="head">
-	    <div class="head-search" style="margin-top:5rem;">
+	    <div class="head-search" style="margin-top:3.02rem;">
 		   <header>
 			  <div class="searchbar">
 				 <div class="search">
@@ -55,7 +55,7 @@
                 </div>
 			 <a class="header-bottom" id="myBtn1"  href="#">More categories</a>
 	<!-- <div class="row"> -->
-		<!-- <th><h5>Total:<strong> ₹{{order.get_cart_total|floatformat:2}}</strong></h5></th><br> -->
+		<!-- <th><h5>Total:<strong> Rs.{{order.get_cart_total|floatformat:2}}</strong></h5></th><br> -->
 
 
 		<div class="container-fluid" id="grid"style="margin-top:2rem;">
@@ -75,7 +75,7 @@
 				    <div style="padding:0.4em;padding-bottom:0" >{{product.name}}</div>
 				    <!-- <br> -->
                         <div class="ctrl-btn" style="padding:0.5rem;">
-					 <h6 style="padding-left: 30px; padding-top:0px;"><s>₹{{product.market_price}}</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹{{product.our_price}}</strong></span></h6>
+					 <h6 style="padding-left: 30px; padding-top:0px;"><s>Rs.{{product.market_price}}</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>Rs.{{product.our_price}}</strong></span></h6>
 					 <hr style="margin:0.5rem;">
                           <button type="button" data-product="{{product.id}}" data-action="add" data-page="home" data-type="{{product.types}}"  name="add-to-cart" class="btn btn-info add-btn update-cart" style="display: inline;">Add to Cart</button>
                           <!-- <a  href="{% url 'viewproduct' product.id %}" style="display: inline;">View</a> -->
@@ -120,7 +120,7 @@
 					 <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{flower.category}}</button>
 				 </div>
 				 <hr>
-				 <h6 style="padding-left: 30px; padding-top:0px;"><s>₹{{flower.market_price}}</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>₹{{flower.our_price}}</strong></span></h6>
+				 <h6 style="padding-left: 30px; padding-top:0px;"><s>Rs.{{flower.market_price}}</s>   <span style="font-size: 1.7em; padding-left: 2.5em;"><strong>Rs.{{flower.our_price}}</strong></span></h6>
 			    </div>
 			  </div>
 		{% endfor %}

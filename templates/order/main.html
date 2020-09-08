@@ -8,7 +8,7 @@
 
 
      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-	<!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> -->
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
      <link href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/font-awesome.min.css" rel="stylesheet">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -24,6 +24,7 @@
      <link rel="stylesheet" href="{% static 'css/grid.css' %}">
      <link rel="stylesheet" href="{% static 'css/cart.css' %}">
      <link rel="stylesheet" href="{% static 'css/modals.css' %}">
+     <link rel="stylesheet" href="{% static 'css/foot_er.css' %}">
 
 
 
@@ -108,15 +109,15 @@
 
 	<nav class="nav-head">
 	    <div class="logo">
-		  <a href="{% url 'store' %}">Adhithi Veg Court</a>
+		  <a style="font-size:1.5rem; font-family: 'Montserrat', sans-serif; " href="{% url 'store' %}"><img style="width:3rem;border-radius:100px;"src="{% static 'images/alogo.jpeg' %}"></img> Adhithi Veg Court</a>
 	    </div>
 	    <ul class="nav-links">
-		   <li><a href="{% url 'store' %}">Home</a></li>
+		   <li><a  href="{% url 'store' %}">Home</a></li>
 		   <!-- <li><a href="{% url 'checkout' %}">Place Your Order</a></li> -->
 		   <li><a href="#adithi">About</a></li>
 		   <li><a href="{% url 'cart' %}"><i class="fa" style="font-size:24px;padding-left: 1rem;">&#xf07a;</i>
 			  <span style="color:white;background-color:#212529;" class='badge' id='count'> {{cartItems}} </span></a></li>
-			  <li><a href="{% url 'cart' %}">	 &#x20B9;{{order.get_cart_total|floatformat:2}}</a></li>
+			  <li><a href="{% url 'cart' %}">Rs.{{order.get_cart_total|floatformat:2}}</a></li>
 		   <li><a href="#"></a></li>
 		   <li><a href="#"></a></li>
 		   <li><a href="#"></a></li>
@@ -328,6 +329,7 @@
 	      </div>
 
 	    </div>
+
 
 	    <script>
 	    // Get the modal

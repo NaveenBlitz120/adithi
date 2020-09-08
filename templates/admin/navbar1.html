@@ -1,26 +1,28 @@
 {%load static %}
 
 <style>
-  .hello-msg{
-    font-size: 18px;
-    color: #a8dadc;
-    margin-right:20px;
-  }
+     .nav-links1{
+         display: flex;
+         justify-content: space-around;
+         padding-top: 1rem;
+         padding-left: 1rem;
+         width: 30%;
+     }
 
-  .mynavbar
-  {
-    background-color:#1d3557;
-  }
-  
-  .logu{
-    color:#a8dadc;
-    margin-right:20px;   
-  }
-  
-  .logu:hover{
-        color: #e63946;
-        text-decoration: none;
-    }
+     .nav-links1 li{
+         list-style: none;
+     }
+
+     .nav-links1 a{
+         text-decoration:none ;
+         color: black;
+         font-weight: 500;
+     }
+
+     .nav-links1 a:hover{
+         color: seashell;
+     }
+
 </style>
 
 
@@ -29,25 +31,25 @@
     <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/anchor.js' %}"></script>
     <div class="logo nav-left" style="font-weight: 200;">
-      
-      <a href="{% url 'store' %}" style="font-weight: 200;">Home</a></li>
+
+      <a href="{% url 'store' %}" style="font-weight: 200;">Home</a>
       {% if  request.path != "/admin/" %}
-      <a href="{% url 'home' %}"style="font-weight: 200;">Orders</a></li>
+      <a href="{% url 'home' %}"style="font-weight: 200;">Orders</a>
       {% endif %}
       {% if  request.path != "/admin/products" %}
-      <a href="{% url 'products'%}"style="font-weight: 200;">Products</a></li>
+      <a href="{% url 'products'%}"style="font-weight: 200;">Products</a>
       {% endif %}
       {% if  request.path != "/admin/updateoffer/" %}
-      <a href="{% url 'updateoffer' %}"style="font-weight: 200;">Offers</a></li>
+      <a href="{% url 'updateoffer' %}"style="font-weight: 200;">Offers</a>
       {% endif %}
       {% if  request.path != "/admin/flowers" %}
-      <a href="{% url 'floproducts' %}"style="font-weight: 200;">Flowers</a></li>
+      <a href="{% url 'floproducts' %}"style="font-weight: 200;">Flowers</a>
       {% endif %}
       {% if  request.path != "/admin/services" %}
-      <a href="{% url 'stockservice' %}"style="font-weight: 200;">Services</a></li>
+      <a href="{% url 'stockservice' %}"style="font-weight: 200;">Services</a>
       {% endif %}
     </div>
-    <ul class="nav-links">
+    <ul class="nav-links1">
       <li></li>
       <li></li>
       <li></li>
@@ -58,10 +60,6 @@
 
     </ul>
     </div>
-    <div class="burger">
-      <div class="line1"></div>
-      <div class="line2"></div>
-      <div class="line3"></div>
-    </div>
+
 
 </nav>

@@ -14,18 +14,22 @@ st='/admin'
 @login_required(login_url='login')
 @allowed_user(allowed_roles=['admin'])
 def home(request):
-    order = orders.objects.all()
+
+    order = orders.objects.all().order_by('date')
     products = product.objects.all()
+
     total_products = products.count()
     total_orders = order.count()
     completed = order.filter(status='completed').count()
     pending = order.filter(status='pending').count()
+
     orderfil = orderFilter(request.GET , queryset=order)
     order = orderfil.qs
+    order = reversed(list(order))
 
     context = {'orders':order, 'products':products,
     'total_orders':total_orders,'completed':completed,
-	'pending':pending ,'filter':orderfil  }
+	'pending':pending , 'filter':orderfil }
     return render(request, 'admin/dashboard.html', context)
 
 def feedbackpage(request):
