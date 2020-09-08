@@ -34,6 +34,7 @@ def home(request):
 
 def feedbackpage(request):
     feedbacks = feedback.objects.all()
+    feedbacks = reversed(list(feedbacks))
     context ={
         'feedbacks':feedbacks
     }

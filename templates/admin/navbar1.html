@@ -48,6 +48,9 @@
       {% if  request.path != "/admin/services" %}
       <a href="{% url 'stockservice' %}"style="font-weight: 200;">Services</a>
       {% endif %}
+      {% if  request.path != "/admin/FeedBack" %}
+      <a href="{% url 'feedback' %}"style="font-weight: 200;">FeedBack</a>
+      {% endif %}
     </div>
     <ul class="nav-links1">
       <li></li>
