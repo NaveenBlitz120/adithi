@@ -211,7 +211,7 @@ def flowers(request):
 
 def viewflower(request,pk):
 
-	pro = flower.objects.get(id=pk)
+	pro = flower.objects.filter(id=pk)
 	print(pro)
 	data = cartData(request)
 	cartItems = data['cartItems']
@@ -229,7 +229,7 @@ def viewflower(request,pk):
 
 	print(items)
 
-	context={'pro' : pro ,'item':items,'order':order, 'cartItems':cartItems}
+	context={'pros' : pro ,'item':items,'order':order, 'cartItems':cartItems}
 	return render(request , 'order/viewflower.html',context)
 
 
