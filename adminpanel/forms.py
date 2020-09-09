@@ -21,7 +21,7 @@ class CreateSer(ModelForm):
 class Update(ModelForm):
 	class Meta:
 		model = product
-		fields = [ 'our_price','market_price' , 'types' , 'name','image','product_avail' ]
+		fields = [ 'our_price','market_price' , 'types' , 'name','image' ]
 
 class Update_order(ModelForm):
 	class Meta:
@@ -36,7 +36,7 @@ class Update_offer(ModelForm):
 class Update_flower(ModelForm):
 	class Meta:
 		model = flower
-		fields = [ 'our_price','market_price' , 'name','product_avail' ]
+		fields = [ 'our_price','market_price' , 'name' ]
 
 class Update_service(ModelForm):
 	class Meta:
