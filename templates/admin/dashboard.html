@@ -41,8 +41,12 @@
 						<td>{{order.date}}</td>
 						<td>{{order.status}}</td>
 						<td>{{order.orderfinaltotal}}</td>
-						<td><a class="btn btn-sm btn-info" href="{% url 'updateorder' order.id %}">Update</a></td>
-
+						
+						{% if order.status == 'completed' or order.status == 'cancelled'%}
+							<td><a class="btn btn-sm btn-dark" href=""><strike>Update</strike></a></td>	
+						{% else %}
+							<td><a class="btn btn-sm btn-info" href="{% url 'updateorder' order.id %}">Update</a></td>		
+						{% endif %}
 						<td><a class="btn btn-sm btn-danger" href="{% url 'view' order.id %}">View</a></td>
 
 					</tr>

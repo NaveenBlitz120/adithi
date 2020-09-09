@@ -7,6 +7,7 @@ from order.models import product , orders , orderedcart , setcart , flower, feed
 from .filters import myFilter , orderFilter , floFilter , serFilter
 from .decorators import allowed_user ,unauthenticated_user
 from django.contrib.auth.decorators import login_required
+from order.utils import sendSMS
 
 
 st='/admin'
@@ -237,13 +238,30 @@ def logoutUser(request):
 @allowed_user(allowed_roles=['admin'])
 def update_order(request , pk):
     order = orders.objects.get(id=pk)
+    s= order.status
     form = Update_order(instance=order)
     form.fields['status'].widget.attrs = {'class' : 'form-control' }
-    if request.method == 'POST':
+    print(s)
+    print(request.method == 'POST' and(s!='completed' and s!='cancelled'))
+    if request.method == 'POST' and (s!='completed' and s!='cancelled'):
+        print(s)
         form = Update_order(request.POST,instance = order)
+        
         if form.is_valid():
             form.save()
+            order = orders.objects.get(id=pk)
+            s= order.status
+            phonenum=order.phoneno
+            cust_name=order.name
+            if s=='completed':
+                resp =  sendSMS('tjscNy0t/Wc-uAvFTKR7036IdflMIH71wcCasC1DPf', '91'+phonenum,'TXTLCL', 'HI !!! '+cust_name+' your order has been delivered Successfully. Your order '+order.orderid+' has been completed. Please , visit us again at adithiecart.herokuapp.com')
+                print (resp)
+            if s=='cancelled':
+                resp =  sendSMS('tjscNy0t/Wc-uAvFTKR7036IdflMIH71wcCasC1DPf', '91'+phonenum,'TXTLCL', 'HI !!! '+cust_name+' your order '+order.orderid+' has been Cancelled .Sorry for your inconvenience .Please ,visit us again at adithiecart.herokuapp.com')
+                print (resp)
             return redirect(st)
+    elif s=='completed' or s=='cancelled':
+        return redirect(st)
 
     context = {'form':form}
     return render(request,'admin/forms.html',context)
@@ -257,7 +275,11 @@ def view(request,pk):
     bill_total = bill.orderfinaltotal
     # order_item = []
     order_item = orderedcart.objects.filter(orderedid = bill)
-    context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total}
+    item_count = order_item.count()
+    servicebill = service.objects.get(area = bill.area)
+    servicebillcharge = servicebill.rate
+    order_item = orderedcart.objects.filter(orderedid = bill)
+    context = {'order_item' : order_item, 'bill' : bill , 'bill_total':bill_total,'servicebillcharge':servicebillcharge,'item_count': item_count }
     return render(request, 'admin/invoice.html',context)
 
 @login_required(login_url='login')
