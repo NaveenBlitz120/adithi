@@ -30,6 +30,7 @@ class product(models.Model):
     types = models.CharField( choices = Type_choices,max_length=20 )
     category = models.CharField( choices = category,max_length = 60 )
     groceries_category = models.CharField( choices = groceries_category,max_length = 60,null=True ,blank=True )
+    product_avail = models.BooleanField( default = True)
     desc = models.TextField(null=True)
     def __str__(self):
         return self.name
@@ -92,6 +93,7 @@ class flower(models.Model):
     desc = models.TextField(null=True)
     image = models.ImageField(null=True,blank = True)
     types = models.CharField(default='flower' ,max_length=20 )
+    product_avail = models.BooleanField( default = True)
     category = models.CharField( choices = category,max_length = 60 )
     def __str__(self):
         return self.name

@@ -31,7 +31,7 @@ def vegetables(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'vegetables')
+	products = product.objects.filter(category = 'vegetables',product_avail = True)
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	lis = [250,500,750]
@@ -48,7 +48,7 @@ def fruits(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'fruits')
+	products = product.objects.filter(category = 'fruits',product_avail = True)
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	print(prod_obj)
@@ -64,7 +64,7 @@ def groceries(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'groceries' )
+	products = product.objects.filter(category = 'groceries',product_avail = True )
 	lis = [250,500,750]
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
@@ -79,7 +79,7 @@ def nuts(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'groceries' ,groceries_category='nuts')
+	products = product.objects.filter(category = 'groceries' ,groceries_category='nuts',product_avail = True)
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	lis = [250,500,750]
@@ -94,7 +94,7 @@ def homecare(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'groceries' ,groceries_category='Home-care')
+	products = product.objects.filter(category = 'groceries' ,groceries_category='Home-care',product_avail = True)
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	lis = [250,500,750]
@@ -109,7 +109,7 @@ def daals(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'groceries',groceries_category='dhaals' )
+	products = product.objects.filter(category = 'groceries',groceries_category='dhaals' ,product_avail = True)
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	lis = [250,500,750]
@@ -124,7 +124,7 @@ def oils(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'groceries',groceries_category='oils' )
+	products = product.objects.filter(category = 'groceries',groceries_category='oils',product_avail = True )
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	lis = [250,500,750]
@@ -139,7 +139,7 @@ def babycare(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'groceries',groceries_category='Baby-care' )
+	products = product.objects.filter(category = 'groceries',groceries_category='Baby-care',product_avail = True )
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	lis = [250,500,750]
@@ -154,7 +154,7 @@ def personalcare(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'groceries',groceries_category='Personal-care' )
+	products = product.objects.filter(category = 'groceries',groceries_category='Personal-care' ,product_avail = True)
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	lis = [250,500,750]
@@ -169,7 +169,7 @@ def beverages(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'groceries',groceries_category='Beverages' )
+	products = product.objects.filter(category = 'groceries',groceries_category='Beverages',product_avail = True )
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	lis = [250,500,750]
@@ -184,7 +184,7 @@ def snacks(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = product.objects.filter(category = 'groceries',groceries_category='Snacks' )
+	products = product.objects.filter(category = 'groceries',groceries_category='Snacks',product_avail = True )
 	myfilter = myFilter(request.GET,queryset=products)
 	prod_obj= myfilter.qs
 	lis = [250,500,750]
@@ -201,7 +201,7 @@ def flowers(request):
 	items = data['items']
 	floweritems = data['floweritems']
 
-	flowers = flower.objects.all()
+	flowers = flower.objects.filter(product_avail = True)
 	myfilter = myFilter(request.GET,queryset=flowers)
 	flow_obj= myfilter.qs
 	# test = product.objects.get(id=1)
@@ -307,13 +307,17 @@ def checkout(request):
 
 
 def htmlbill(request):
-	ordered_id = request.COOKIES['orderid']
+	try:
+		ordered_id = request.COOKIES['orderid']
+	except:
+		response = redirect('vegetables')
+		return response
 	print(ordered_id)
 	print('hiiiis')
 	fbform = Create()
 	print(fbform,'hereiiii')
-	fbform.fields['name'].widget.attrs = {'placeholder' : 'Your Name goes here','id':'name'}
-	fbform.fields['feedbackdata'].widget.attrs = {'placeholder' : 'Your Message will be placed here,,,,,','id':'message'}
+	fbform.fields['name'].widget.attrs = {'placeholder' : 'Your Name goes here','id':'name','class':'form-control'}
+	fbform.fields['feedbackdata'].widget.attrs = {'placeholder' : 'Your Message will be placed here,,,,,','id':'message','class':'form-control'}
 	bill = orders.objects.get(orderid = ordered_id)
 	bill_total = bill.orderfinaltotal
 	order_item = orderedcart.objects.filter(orderedid = bill)

@@ -216,6 +216,8 @@ def guestOrder(request, data):
 
 	resp =  sendSMS('tjscNy0t/Wc-uAvFTKR7036IdflMIH71wcCasC1DPf', '91'+phonenum,'TXTLCL', 'HI !!!'+cust_name+' your order has been placed Successfully You can track order with order ID :'+update_order.orderid+' Someone from our side will contact you soon and confirm the order. Please ,visit us again at adithiecart.herokuapp.com')
 	print (resp)
+	resp =  sendSMS('tjscNy0t/Wc-uAvFTKR7036IdflMIH71wcCasC1DPf', '91'+requirement.phoneno,'TXTLCL', 'Order Alert!!'+cust_name+' Has placed an order You can track order with order ID :'+update_order.orderid+'Waiting for your earlier confirmation.')
+	print (resp)
 	update_order.save()
 	return new_orderid
 
